@@ -42,6 +42,11 @@ func Parse(agent string) (result *Result, err error) {
     return
   }
 
+  result, err = DefaultParser.TryMisc(agent)
+  if err == nil {
+    return
+  }
+
   err = ErrNoMatch
   return
 }

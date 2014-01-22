@@ -24,17 +24,27 @@ func (p *Parser) LookupDataset(label string) (*Result, error) {
 func (p *Parser) TryCrawler(agent string) (result *Result, err error) {
   result, err = p.ChallengeGoogle(agent)
   if err == nil {
-    return result, nil
+    return
   }
 
   result, err = p.ChallengeCrawlers(agent)
   if err == nil {
-    return result, nil
+    return
   }
 
-  return nil, ErrNoMatch
+  err = ErrNoMatch
+  return
 }
 
+func (p *Parser) TryMisc(agent string) (result *Result, err error) {
+  result, err = p.ChallengeDesktopTools(agent)
+  if err == nil {
+    return
+  }
+
+  err = ErrNoMatch
+  return
+}
 
 func (p *Parser) ChallengeGoogle(agent string) (*Result, error) {
   if ! strings.Contains(agent, "Google") {
@@ -171,6 +181,22 @@ func (p *Parser) ChallengeCrawlers(agent string) (*Result, error) {
     if strings.Contains(agent, "compatible; Indy Library") {
       return p.LookupDataset("IndyLibrary")
     }
+  }
+
+  return nil, ErrNoMatch
+}
+
+func (p *Parser) ChallengeDesktopTools(agent string) (*Result, error) {
+  if strings.Contains(agent, "AppleSyndication/") {
+    return p.LookupDataset("SafariRSSReader")
+  }
+
+  if strings.Contains(agent, "compatible; Google Desktop/") {
+    return p.LookupDataset("GoogleDesktop")
+  }
+
+  if strings.Contains(agent, "Windows-RSS-Platform") {
+    return p.LookupDataset("WindowsRSSReader")
   }
 
   return nil, ErrNoMatch
