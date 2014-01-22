@@ -42,11 +42,10 @@ EOM
     Vendor:   "%s",
     Category: "%s",
 EOM
-            if ($e->{os}) {
-                printf $out <<EOM, $e->{os};
+            my $os = $e->{os} || "UNKNOWN";
+            printf $out <<EOM, $os;
     Os:       "%s",
 EOM
-            }
         }
         print $out <<EOM;
   },

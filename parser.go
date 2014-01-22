@@ -53,6 +53,16 @@ func (p *Parser) ChallengeGoogle(agent string) (*Result, error) {
     return p.LookupDataset("GoogleBot")
   }
 
+  if strings.Contains(agent, "Mediapartners-Google") {
+    if strings.Contains(agent, "compatible; Mediapartners-Google") || agent == "Mediapartners-Google" {
+      return p.LookupDataset("GoogleMediaPartners")
+    }
+  }
+
+  if strings.Contains(agent, "Feedfetcher-Google;") {
+    return p.LookupDataset("GoogleFeedFetcher")
+  }
+
   return nil, ErrNoMatch
 }
 
