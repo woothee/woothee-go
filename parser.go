@@ -46,6 +46,26 @@ func (p *Parser) TryMisc(agent string) (result *Result, err error) {
   return
 }
 
+func (p *Parser) TryRareCases(agent string) (result *Result, err error) {
+  result, err = p.ChallengeSmartphonePatterns(agent)
+  if err == nil {
+    return
+  }
+
+  result, err = p.ChallengeSleipnir(agent)
+  if err == nil {
+    return
+  }
+
+  result, err = p.ChallengeHttpLibrary(agent)
+  if err == nil {
+    return
+  }
+
+  err = ErrNoMatch
+  return
+}
+
 func (p *Parser) ChallengeGoogle(agent string) (*Result, error) {
   if ! strings.Contains(agent, "Google") {
     return nil, ErrNoMatch
@@ -200,4 +220,117 @@ func (p *Parser) ChallengeDesktopTools(agent string) (*Result, error) {
   }
 
   return nil, ErrNoMatch
+}
+
+func (p *Parser) ChallengeSmartphonePatterns(agent string) (*Result, error) {
+  if strings.Contains(agent, "CFNetwork/") {
+    // This is like iPhone, but only Category and Name are filled
+    result, err := p.LookupDataset("iOS")
+    if err != nil {
+      return nil, err
+    } else {
+      r := EmptyResult.Clone()
+      r.Name = result.Name
+      r.Category = result.Category
+      return r, nil
+    }
+  }
+
+  return nil, ErrNoMatch
+}
+
+func (p *Parser) ChallengeSleipnir (agent string) (*Result, error) {
+  start := strings.Index(agent, "Sleipnir/");
+  if start < 0 {
+    return nil, ErrNoMatch
+  }
+
+  // Absolutely refuse to use regexps
+  agent_len := len(agent)
+
+  end := start + 9
+  for ; end < agent_len; end++ {
+    switch agent[end] {
+    case '0','1','2','3','4','5','6','7','8','9','.':
+      // no op
+    default:
+      break
+    }
+  }
+  version := agent[start:end]
+  if version == "" {
+    version = VALUE_UNKNOWN
+  }
+
+  result, err := p.LookupDataset("Sleipnir")
+  if err != nil {
+    return nil, err
+  }
+
+  win, err := p.LookupDataset("Win")
+  if err != nil {
+    return nil, err
+  }
+
+  r := result.Clone()
+  r.Version = version
+  r.Category = win.Category
+  r.Os = win.Name
+
+  return r, nil
+}
+
+func (p *Parser) ChallengeHttpLibrary (agent string) (*Result, error) {
+  var version string
+
+  if strings.HasPrefix(agent, "Apache-HttpClient/") || strings.HasPrefix(agent, "Jakarta Commons-HttpClient/") || strings.HasPrefix(agent, "Java/") {
+    version = "Java"
+  } else if i := strings.Index(agent, "HttpClient"); i > - 1 {
+    // i should be greater than 0 so we can check for either "-" or " "
+    // preceding the "HttpClient" string
+    if i == 0 {
+      return nil, ErrNoMatch
+    }
+
+    switch agent[i - 1] {
+    case '-', ' ':
+      // OK, no op
+    default:
+      return nil, ErrNoMatch
+    }
+
+    agent_len := len(agent)
+    if agent_len > i + 10 { // Longer than "...HttpClient"
+      if agent[i + 11] == '/' {
+        goto MATCH_JAVA_MISC
+      }
+      return nil, ErrNoMatch
+    }
+
+MATCH_JAVA_MISC:
+    version = "Java"
+  } else if strings.Contains(agent, "Java(TM) 2 Runtime Environment,") {
+    version = "Java"
+  } else if strings.HasPrefix(agent, "Wget/") {
+    version = "wget"
+  } else if strings.HasPrefix(agent, "libwww-perl") || strings.HasPrefix(agent, "WWW-Mechanize") || strings.HasPrefix(agent, "LWP::Simple") || strings.HasPrefix(agent, "LWP ") || strings.HasPrefix(agent, "lwp-trivial") {
+    version = "perl"
+  } else if strings.HasPrefix(agent, "Ruby") || strings.HasPrefix(agent, "feedzirra") || strings.HasPrefix(agent, "Typoeus") {
+    version = "ruby"
+  } else if strings.HasPrefix(agent, "Python-urllib/") || strings.HasPrefix(agent, "Twisted ") {
+    version = "python"
+  } else if strings.HasPrefix(agent, "PHP") || strings.HasPrefix(agent, "WordPress") || strings.HasPrefix(agent, "CakePHP") || strings.HasPrefix(agent, "PukiWiki") || strings.HasPrefix(agent, "PECL::HTTP") {
+
+
+  if version == "" {
+    return nil, ErrNoMatch
+  }
+
+  result, err := p.LookupDataset("HTTPLibrary")
+  if err != nil {
+    return nil, err
+  }
+  result = result.Clone()
+  result.Version = version
+  return result, nil
 }

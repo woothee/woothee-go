@@ -16,21 +16,25 @@ type Result struct {
 type DataSet map[string]*Result
 
 const (
+  VALUE_UNKNOWN         = "UNKNOWN"
   CATEGORY_PC           = "pc"
   CATEGORY_SMARTPHONE   = "smartphone"
   CATEGORY_MOBILEPHONE  = "mobilephone"
   CATEGORY_APPLIANCE    = "appliance"
   CATEGORY_CRAWLER      = "crawler"
   CATEGORY_MISC         = "misc"
-  CATEGORY_UNKNOWN      = "UNKNOWN"
 )
 
 var (
-  EmptyResult   = &Result { Category: CATEGORY_UNKNOWN }
+  EmptyResult   = &Result { VALUE_UNKNOWN, VALUE_UNKNOWN, VALUE_UNKNOWN, VALUE_UNKNOWN, VALUE_UNKNOWN, VALUE_UNKNOWN }
   ErrNoMatch    = errors.New("No match")
   ErrNoDataSet  = errors.New("No such dataset")
   DefaultParser = NewParser()
 )
+
+func (r *Result) Clone() (*Result) {
+  return &Result { r.Name, r.Category, r.Os, r.Type, r.Version, r.Vendor }
+}
 
 func Parse(agent string) (result *Result, err error) {
   if agent == "" || agent == "-" {
@@ -43,6 +47,11 @@ func Parse(agent string) (result *Result, err error) {
   }
 
   result, err = DefaultParser.TryMisc(agent)
+  if err == nil {
+    return
+  }
+
+  result, err = DefaultParser.TryRareCases(agent)
   if err == nil {
     return
   }
