@@ -124,6 +124,11 @@ func (p *Parser) TryOs(agent string, result *Result) (err error) {
     return
   }
 
+  err = p.ChallengeOsx(agent, result)
+  if err == nil {
+    return
+  }
+
   err = ErrNoMatch
   return
 }
@@ -643,5 +648,32 @@ func (p *Parser) ChallengeWindows(agent string, result *Result) error {
   return nil
 }
 
+func (p *Parser) ChallengeOsx(agent string, result *Result) error {
+  if ! strings.Contains(agent, "Mac OS X") {
+    return ErrNoMatch
+  }
 
+  data, err := p.LookupDataSet("OSX")
+  if err != nil {
+    return err
+  }
 
+  if strings.Contains(agent, "like Mac OS X") {
+    switch {
+    case strings.Contains(agent, "iPhone;"):
+      data, err = p.LookupDataSet("iPhone")
+    case strings.Contains(agent, "iPad;"):
+      data, err = p.LookupDataSet("iPad")
+    case strings.Contains(agent, "iPod;"):
+      data, err = p.LookupDataSet("iPod")
+    }
+    if err != nil {
+      return err
+    }
+  }
+
+  result.Category = data.Category
+  result.Os       = data.Name
+
+  return nil
+}
