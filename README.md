@@ -1,6 +1,10 @@
 go-woothee
 ==========
 
+[![Build Status](https://travis-ci.org/lestrrat/go-woothee.png?branch=master)](https://travis-ci.org/lestrrat/go-woothee)
+
+[![Coverage Status](https://coveralls.io/repos/lestrrat/go-woothee/badge.png?branch=topic%2Fgoveralls)](https://coveralls.io/r/lestrrat/go-woothee?branch=topic%2Fgoveralls)
+
 [Woothee](https://github.com/woothee) is a multi-language UserAgent detection library, and this is the Go version of Woothee.
 
 ```go
