@@ -129,6 +129,26 @@ func (p *Parser) TryOs(agent string, result *Result) (err error) {
     return
   }
 
+  err = p.ChallengeLinux(agent, result)
+  if err == nil {
+    return
+  }
+
+  err = p.ChallengeSmartphone(agent, result)
+  if err == nil {
+    return
+  }
+
+  err = p.ChallengeMobilephone(agent, result)
+  if err == nil {
+    return
+  }
+
+  err = p.ChallengeAppliance(agent, result)
+  if err == nil {
+    return
+  }
+
   err = ErrNoMatch
   return
 }
@@ -675,4 +695,162 @@ func (p *Parser) ChallengeOsx(agent string, result *Result) error {
   result.Os       = data.Name
 
   return nil
+}
+
+func (p *Parser) ChallengeLinux(agent string, result *Result) error {
+  if ! strings.Contains(agent, "Linux") {
+    return ErrNoMatch
+  }
+
+  var data *Result
+  var err error
+  if strings.Contains(agent, "Android") {
+    data, err = p.LookupDataSet("Android")
+  } else {
+    data, err = p.LookupDataSet("Linux")
+  }
+
+  if err != nil {
+    return err
+  }
+
+  result.Category = data.Category
+  result.Os       = data.Name
+
+  return nil
+}
+
+var FIREFOXOS_PATTERN = regexp.MustCompile(
+  `^Mozilla/[.0-9]+ \(Mobile;(.*;)? rv:[.0-9]+\) Gecko/[.0-9]+ Firefox/[.0-9]+$`,
+)
+func (p *Parser) ChallengeSmartphone(agent string, result *Result) error {
+  var data *Result
+  var err error
+
+  switch {
+  case strings.Contains(agent, "iPhone"):
+    data, err = p.LookupDataSet("iPhone")
+  case strings.Contains(agent, "iPad"):
+    data, err = p.LookupDataSet("iPad")
+  case strings.Contains(agent, "iPod"):
+    data, err = p.LookupDataSet("iPod")
+  case strings.Contains(agent, "Android"):
+    data, err = p.LookupDataSet("Android")
+  case strings.Contains(agent, "CFNetwork"):
+    data, err = p.LookupDataSet("iOS")
+  case strings.Contains(agent, "BlackBerry"):
+    data, err = p.LookupDataSet("BlackBerry")
+  }
+
+  if err != nil {
+    return err
+  }
+
+  // Firefox OS specific pattern
+  // http://lawrencemandel.com/2012/07/27/decision-made-firefox-os-user-agent-string/
+  firefox, err := p.LookupDataSet("Firefox")
+  if err != nil {
+    return err
+  }
+  if result.Name == firefox.Name {
+    if FIREFOXOS_PATTERN.MatchString(agent) {
+      data, err = p.LookupDataSet("FirefoxOS")
+      if err != nil {
+        return err
+      }
+    }
+  }
+
+  if data == nil {
+    return ErrNoMatch
+  }
+
+  result.Category = data.Category
+  result.Os       = data.Os
+
+  return nil
+}
+
+var KDDI_PATTERN = regexp.MustCompile(`KDDI-([^- /;()"']+)`)
+var WILLCOM_PATTERN = regexp.MustCompile(`(?:WILLCOM|DDIPOCKET);[^/]+/([^ /;()]+)`)
+func (p *Parser) ChallengeMobilephone(agent string, result *Result) error {
+  if strings.Contains(agent, "KDDI-") {
+    if match := KDDI_PATTERN.FindStringSubmatchIndex(agent); match != nil {
+      term := agent[match[2]:match[3]]
+      data, err := p.LookupDataSet("au")
+      if err != nil {
+        return err
+      }
+      result.Category = data.Category
+      result.Os       = data.Os
+      result.Version  = term
+      return nil
+    }
+  }
+
+  if strings.Contains(agent, "WILLCOM") || strings.Contains(agent, "DDIPOCKET") {
+    if match := WILLCOM_PATTERN.FindStringSubmatchIndex(agent); match != nil {
+      term := agent[match[2]:match[3]]
+      data, err := p.LookupDataSet("willcom")
+      if err != nil {
+        return err
+      }
+      result.Category = data.Category
+      result.Os       = data.Os
+      result.Version  = term
+      return nil
+    }
+  }
+
+  if strings.Contains(agent, "SymbianOS") {
+    data, err := p.LookupDataSet("SymbianOS")
+    if err != nil {
+      return err
+    }
+    result.Category = data.Category
+    result.Os       = data.Os
+    return nil
+  }
+
+  if strings.Contains(agent, "Google Wireless Transcoder") {
+    err := p.PopulateDataSet(result, "MobileTranscoder")
+    if err != nil {
+      return err
+    }
+    result.Version = "Google"
+  }
+
+  if strings.Contains(agent, "Naver Transcoder") {
+    err := p.PopulateDataSet(result, "MobileTranscoder")
+    if err != nil {
+      return err
+    }
+    result.Version = "Naver"
+  }
+
+  return ErrNoMatch
+}
+
+func (p *Parser) ChallengeAppliance(agent string, result *Result) error {
+  if strings.Contains(agent, "Nintendo DSi;") {
+    data, err := p.LookupDataSet("NintendoDSi")
+    if err != nil {
+      return err
+    }
+    result.Category = data.Category
+    result.Os       = data.Os
+    return nil
+  }
+
+  if strings.Contains(agent, "Nintendo Wii;") {
+    data, err := p.LookupDataSet("NintendoWii")
+    if err != nil {
+      return err
+    }
+    result.Category = data.Category
+    result.Os       = data.Os
+    return nil
+  }
+
+  return ErrNoMatch
 }
