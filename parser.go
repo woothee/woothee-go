@@ -821,6 +821,7 @@ func (p *Parser) ChallengeSmartphone(agent string, result *Result) error {
   if err != nil {
     return err
   }
+
   if result.Name == firefox.Name {
     if FIREFOXOS_PATTERN.MatchString(agent) {
       data, err = p.LookupDataSet("FirefoxOS")
@@ -835,7 +836,7 @@ func (p *Parser) ChallengeSmartphone(agent string, result *Result) error {
   }
 
   result.Category = data.Category
-  result.Os       = data.Os
+  result.Os       = data.Name
 
   return nil
 }
