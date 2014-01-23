@@ -62,6 +62,11 @@ func (p *Parser) TryRareCases(agent string) (result *Result, err error) {
     return
   }
 
+  result, err = p.ChallengeMaybeRssReader(agent)
+  if err == nil {
+    return
+  }
+
   err = ErrNoMatch
   return
 }
@@ -375,16 +380,66 @@ func (p *Parser) isPHP(agent string) bool {
     // match. this pattern must be followed by either
     // " class" or "2"
     pattern_len := len(pattern)
+    if i + pattern_len + 6 <= agent_len {
+      if agent[i + pattern_len:i + pattern_len + 6] == " class" {
+        return true
+      }
+    }
+
     if i + pattern_len + 1 <= agent_len {
       if agent[i + pattern_len] == '2' {
         return true
       }
     }
+  }
 
-    if i + pattern_len + 6 <= agent_len {
-      if agent[i + pattern_len:i + pattern_len + 6] == " class" {
-        return true
-      }
+  return false
+}
+
+func (p *Parser) ChallengeMaybeRssReader(agent string) (*Result, error) {
+  if p.isRssReader(agent) || strings.Contains(agent, "headline-reader") || strings.Contains(agent, "cococ/") {
+    return p.LookupDataset("VariousRSSReader")
+  }
+
+  return nil, ErrNoMatch
+}
+
+func (p *Parser) isRssReader(agent string) bool {
+  i := strings.Index(agent, "rss")
+  if i == -1 {
+    return false
+  }
+
+  // "rss" must be followed by one of the following
+  agent_len := len(agent)
+  if i + 3 + 6 <= agent_len {
+    if agent[i + 3:i + 3 + 6] == "reader" {
+      return true
+    }
+  }
+
+  if i + 3 + 3 <= agent_len {
+    if agent[i + 3:i + 3 + 3] == "bar" {
+      return true
+    }
+  }
+
+  if i + 3 + 1 <= agent_len {
+    switch agent[i+3] {
+    case '-', '_', '/', ';', '(', ')':
+      return true
+    }
+  }
+
+  // Otherwise, need to be followed by 0 or more " ", "+", followed by "/"
+  for x := i + 3; x < agent_len; x++ {
+    switch agent[x] {
+    case ' ', '+':
+      // no op
+    case '/':
+      return true
+    default:
+      break
     }
   }
 
