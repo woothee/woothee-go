@@ -322,15 +322,14 @@ func (p *Parser) ChallengeDesktopTools(agent string, result *Result) error {
 func (p *Parser) ChallengeSmartphonePatterns(agent string, result *Result) error {
   if strings.Contains(agent, "CFNetwork/") {
     // This is like iPhone, but only Category and Name are filled
-    err := p.PopulateDataSet(result, "iOS")
+    data, err := p.LookupDataSet("iOS")
     if err != nil {
       return err
-    } else {
-      r := EmptyResult.Clone()
-      r.Name = result.Name
-      r.Category = result.Category
-      return nil
     }
+
+    result.Os       = data.Name
+    result.Category = data.Category
+    return nil
   }
 
   return ErrNoMatch
