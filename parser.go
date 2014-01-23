@@ -5,6 +5,26 @@ import (
   "strings"
 )
 
+var (
+  CHROME_PATTERN = regexp.MustCompile(`(?:Chrome|CrMo|CriOS)/([.0-9]+)`)
+  DOCOMO_VERSION_PATTERN = regexp.MustCompile(`DoCoMo/[.0-9]+[ /]([^- /;()"']+)`)
+  FIREFOX_PATTERN = regexp.MustCompile(`Firefox/([.0-9]+)`)
+  FIREFOXOS_PATTERN = regexp.MustCompile(`^Mozilla/[.0-9]+ \(Mobile;(.*;)? rv:[.0-9]+\) Gecko/[.0-9]+ Firefox/[.0-9]+$`)
+  FOMA_VERSION_PATTERN = regexp.MustCompile(`\(([^;)]+);FOMA;`)
+  JIG_PATTERN = regexp.MustCompile(`jig browser[^;]+; ([^);]+)`)
+  KDDI_PATTERN = regexp.MustCompile(`KDDI-([^- /;()"']+)`)
+  MAYBE_RSS_PATTERN = regexp.MustCompile(`(?i)rss(?:reader|bar|[-_ /;()]|[ +]*/)`)
+  MAYBE_CRAWLER_PATTERN = regexp.MustCompile(`(?i)(?:bot|crawler|spider)(?:[-_ ./;@()]|$)`)
+  MAYBE_FEED_PARSER_PATTERN = regexp.MustCompile(`(?i)(?:feed|web) ?parser`)
+  MAYBE_WATCHDOG_PATTERN = regexp.MustCompile(`(?i)watch ?dog`)
+  MSIE_PATTERN = regexp.MustCompile(`MSIE ([.0-9]+);`)
+  SAFARI_PATTERN = regexp.MustCompile(`Version/([.0-9]+)`)
+  SOFTBANK_PATTERN = regexp.MustCompile(`(?:SoftBank|Vodafone|J-PHONE)/[.0-9]+/([^ /;()]+)`)
+  TRIDENT_PATTERN = regexp.MustCompile(`Trident/([.0-9]+); rv ([.0-9]+)`)
+  WILLCOM_PATTERN = regexp.MustCompile(`(?:WILLCOM|DDIPOCKET);[^/]+/([^ /;()]+)`)
+  WINDOWS_VERSION_PATTERN = regexp.MustCompile(`Windows ([ .a-zA-Z0-9]+)[;\\)]`)
+)
+
 type Parser struct {
   AgentDataSet DataSet
 }
@@ -27,6 +47,11 @@ func (p *Parser) Parse(agent string) (result *Result, err error) {
   err = p.TryBrowser(agent, result)
   if err == nil {
     p.TryOs(agent, result)
+    return
+  }
+
+  err = p.TryMobilephone(agent, result)
+  if err == nil {
     return
   }
 
@@ -115,7 +140,38 @@ func (p *Parser) TryBrowser(agent string, result *Result) (err error) {
     return
   }
 
-  return ErrNoMatch
+  err = ErrNoMatch
+  return
+}
+
+func (p *Parser) TryMobilephone(agent string, result *Result) (err error) {
+  err = p.ChallengeDocomo(agent, result)
+  if err == nil {
+    return
+  }
+
+  err = p.ChallengeAu(agent, result)
+  if err == nil {
+    return
+  }
+
+  err = p.ChallengeSoftbank(agent, result)
+  if err == nil {
+    return
+  }
+
+  err = p.ChallengeWillcom(agent, result)
+  if err == nil {
+    return
+  }
+
+  err = p.ChallengeMiscMobilephone(agent, result)
+  if err == nil {
+    return
+  }
+
+  err = ErrNoMatch
+  return
 }
 
 func (p *Parser) TryAppliance(agent string, result *Result) (err error) {
@@ -535,9 +591,6 @@ func (p *Parser) isPHP(agent string) bool {
   return false
 }
 
-var MAYBE_RSS_PATTERN = regexp.MustCompile(
-  `(?i)rss(?:reader|bar|[-_ /;()]|[ +]*/)`,
-)
 func (p *Parser) ChallengeMaybeRssReader(agent string, result *Result) error {
   if MAYBE_RSS_PATTERN.MatchString(agent) || strings.Contains(agent, "headline-reader") || strings.Contains(agent, "cococ/") {
     return p.PopulateDataSet(result, "VariousRSSReader")
@@ -546,15 +599,6 @@ func (p *Parser) ChallengeMaybeRssReader(agent string, result *Result) error {
   return ErrNoMatch
 }
 
-var MAYBE_CRAWLER_PATTERN = regexp.MustCompile(
-  `(?i)(?:bot|crawler|spider)(?:[-_ ./;@()]|$)`,
-)
-var MAYBE_FEED_PARSER_PATTERN = regexp.MustCompile(
-  `(?i)(?:feed|web) ?parser`,
-)
-var MAYBE_WATCHDOG_PATTERN = regexp.MustCompile(
-  `(?i)watch ?dog`,
-)
 func (p *Parser) ChallengeMaybeCrawler(agent string, result *Result) error {
   if MAYBE_CRAWLER_PATTERN.MatchString(agent) || p.hasCrawlerPrefix(agent) || MAYBE_FEED_PARSER_PATTERN.MatchString(agent) || MAYBE_WATCHDOG_PATTERN.MatchString(agent) {
     return p.PopulateDataSet(result, "VariousCrawler")
@@ -631,9 +675,6 @@ func (p *Parser) ChallengeDigitalTv(agent string, result *Result) error {
   return ErrNoMatch
 }
 
-var WINDOWS_VERSION_PATTERN = regexp.MustCompile(
-  `Windows ([ .a-zA-Z0-9]+)[;\\)]`,
-)
 func (p *Parser) ChallengeWindows(agent string, result *Result) error {
   if !strings.Contains(agent, "Windows") {
     return ErrNoMatch
@@ -750,9 +791,6 @@ func (p *Parser) ChallengeLinux(agent string, result *Result) error {
   return nil
 }
 
-var FIREFOXOS_PATTERN = regexp.MustCompile(
-  `^Mozilla/[.0-9]+ \(Mobile;(.*;)? rv:[.0-9]+\) Gecko/[.0-9]+ Firefox/[.0-9]+$`,
-)
 func (p *Parser) ChallengeSmartphone(agent string, result *Result) error {
   var data *Result
   var err error
@@ -801,8 +839,6 @@ func (p *Parser) ChallengeSmartphone(agent string, result *Result) error {
   return nil
 }
 
-var KDDI_PATTERN = regexp.MustCompile(`KDDI-([^- /;()"']+)`)
-var WILLCOM_PATTERN = regexp.MustCompile(`(?:WILLCOM|DDIPOCKET);[^/]+/([^ /;()]+)`)
 func (p *Parser) ChallengeMobilephone(agent string, result *Result) error {
   if strings.Contains(agent, "KDDI-") {
     if match := KDDI_PATTERN.FindStringSubmatchIndex(agent); match != nil {
@@ -885,8 +921,6 @@ func (p *Parser) ChallengeAppliance(agent string, result *Result) error {
   return ErrNoMatch
 }
 
-var MSIE_PATTERN = regexp.MustCompile(`MSIE ([.0-9]+);`)
-var TRIDENT_PATTERN = regexp.MustCompile(`Trident/([.0-9]+); rv ([.0-9]+)`)
 func (p *Parser) ChallengeMsie(agent string, result *Result) error {
   if ! strings.Contains(agent, "compatible; MSIE") && ! strings.Contains(agent, "Trident/") {
     return ErrNoMatch
@@ -909,8 +943,6 @@ func (p *Parser) ChallengeMsie(agent string, result *Result) error {
   return nil
 }
 
-var CHROME_PATTERN = regexp.MustCompile(`(?:Chrome|CrMo|CriOS)/([.0-9]+)`)
-var SAFARI_PATTERN = regexp.MustCompile(`Version/([.0-9]+)`)
 func (p *Parser) ChallengeSafariChrome(agent string, result *Result) error {
   if ! strings.Contains(agent, "Safari/") {
     return ErrNoMatch
@@ -939,7 +971,6 @@ func (p *Parser) ChallengeSafariChrome(agent string, result *Result) error {
   return nil
 }
 
-var FIREFOX_PATTERN = regexp.MustCompile(`Firefox/([.0-9]+)`)
 func (p *Parser) ChallengeFirefox(agent string, result *Result) error {
   if ! strings.Contains(agent, "Firefox/") {
     return ErrNoMatch
@@ -979,4 +1010,128 @@ func (p *Parser) ChallengeOpera(agent string, result *Result) error {
   result.Version = version
 
   return nil
+}
+
+func (p *Parser) ChallengeDocomo(agent string, result *Result) error {
+  if ! strings.Contains(agent, "DoCoMo") && ! strings.Contains(agent, ";FOMA;") {
+    return ErrNoMatch
+  }
+
+  version := VALUE_UNKNOWN
+  if match := DOCOMO_VERSION_PATTERN.FindStringSubmatchIndex(agent); match != nil {
+    version = agent[match[2]:match[3]]
+  } else if FOMA_VERSION_PATTERN.FindStringSubmatchIndex(agent); match != nil {
+    version = agent[match[2]:match[3]]
+  }
+
+  err := p.PopulateDataSet(result, "docomo")
+  if err != nil {
+    return err
+  }
+  result.Version = version
+  return nil
+}
+
+func (p *Parser) ChallengeAu(agent string, result *Result) error {
+  if ! strings.Contains(agent, "KDDI-") {
+    return ErrNoMatch
+  }
+
+  version := VALUE_UNKNOWN
+  if match := KDDI_PATTERN.FindStringSubmatchIndex(agent); match != nil {
+    version = agent[match[2]:match[3]]
+  }
+
+  err := p.PopulateDataSet(result, "au")
+  if err != nil {
+    return err
+  }
+  result.Version = version
+  return nil
+}
+
+func (p *Parser) ChallengeSoftbank(agent string, result *Result) error {
+  if ! strings.Contains(agent, "SoftBank") && ! strings.Contains(agent, "Vodafone") && ! strings.Contains(agent, "J-PHONE") {
+    return ErrNoMatch
+  }
+
+  version := VALUE_UNKNOWN
+  if match := SOFTBANK_PATTERN.FindStringSubmatchIndex(agent); match != nil {
+    version = agent[match[2]:match[3]]
+  }
+
+  err := p.PopulateDataSet(result, "SoftBank")
+  if err != nil {
+    return err
+  }
+  result.Version = version
+  return nil
+}
+
+func (p *Parser) ChallengeWillcom(agent string, result *Result) error {
+  if ! strings.Contains(agent, "WILLCOM") && ! strings.Contains(agent, "DDIPOCKET") {
+    return ErrNoMatch
+  }
+
+  version := VALUE_UNKNOWN
+  if match := WILLCOM_PATTERN.FindStringSubmatchIndex(agent); match != nil {
+    version = agent[match[2]:match[3]]
+  }
+
+  err := p.PopulateDataSet(result, "willcom")
+  if err != nil {
+    return err
+  }
+  result.Version = version
+  return nil
+}
+
+func (p *Parser) ChallengeMiscMobilephone(agent string, result *Result) error {
+  if strings.Contains(agent, "jig browser") {
+    err := p.PopulateDataSet(result, "jig")
+    if err != nil {
+      return err
+    }
+
+    if match := JIG_PATTERN.FindStringSubmatchIndex(agent); match != nil {
+      result.Version = agent[match[2]:match[3]]
+    }
+    return nil
+  }
+
+  if strings.Contains(agent, "emobile/") || strings.Contains(agent, "OpenBrwoser") || strings.Contains(agent, "Browser/Obigo-Browser") {
+    err := p.PopulateDataSet(result, "emobile")
+    if err != nil {
+      return err
+    }
+    return nil
+  }
+
+  if strings.Contains(agent, "SymbianOS") {
+    err := p.PopulateDataSet(result, "SymbianOS")
+    if err != nil {
+      return err
+    }
+    return nil
+  }
+
+  if strings.Contains(agent, "Hatena-Mobile-Gateway/") {
+    err := p.PopulateDataSet(result, "MobileTranscoder")
+    if err != nil {
+      return err
+    }
+    result.Version = "Hatena"
+    return nil
+  }
+
+  if strings.Contains(agent, "livedoor-Mobile-Gateway/") {
+    err := p.PopulateDataSet(result, "MobileTranscoder")
+    if err != nil {
+      return err
+    }
+    result.Version = "livedoor"
+    return nil
+  }
+
+  return ErrNoMatch
 }
