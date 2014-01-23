@@ -1044,7 +1044,7 @@ func (p *Parser) ChallengeDocomo(agent string, result *Result) error {
   version := VALUE_UNKNOWN
   if match := DOCOMO_VERSION_PATTERN.FindStringSubmatchIndex(agent); match != nil {
     version = agent[match[2]:match[3]]
-  } else if FOMA_VERSION_PATTERN.FindStringSubmatchIndex(agent); match != nil {
+  } else if match := FOMA_VERSION_PATTERN.FindStringSubmatchIndex(agent); match != nil {
     version = agent[match[2]:match[3]]
   }
 
