@@ -11,6 +11,7 @@ var (
   FIREFOX_PATTERN = regexp.MustCompile(`Firefox/([.0-9]+)`)
   FIREFOXOS_PATTERN = regexp.MustCompile(`^Mozilla/[.0-9]+ \(Mobile;(.*;)? rv:[.0-9]+\) Gecko/[.0-9]+ Firefox/[.0-9]+$`)
   FOMA_VERSION_PATTERN = regexp.MustCompile(`\(([^;)]+);FOMA;`)
+  HEADLINE_READER_PATTERN = regexp.MustCompile(`(?i)headline-reader`)
   JIG_PATTERN = regexp.MustCompile(`jig browser[^;]+; ([^);]+)`)
   KDDI_PATTERN = regexp.MustCompile(`KDDI-([^- /;()"']+)`)
   MAYBE_RSS_PATTERN = regexp.MustCompile(`(?i)rss(?:reader|bar|[-_ /;()]|[ +]*/)`)
@@ -516,7 +517,7 @@ MATCH_JAVA_MISC:
     version = "wget"
   } else if strings.HasPrefix(agent, "libwww-perl") || strings.HasPrefix(agent, "WWW-Mechanize") || strings.HasPrefix(agent, "LWP::Simple") || strings.HasPrefix(agent, "LWP ") || strings.HasPrefix(agent, "lwp-trivial") {
     version = "perl"
-  } else if strings.HasPrefix(agent, "Ruby") || strings.HasPrefix(agent, "feedzirra") || strings.HasPrefix(agent, "Typoeus") {
+  } else if strings.HasPrefix(agent, "Ruby") || strings.HasPrefix(agent, "feedzirra") || strings.HasPrefix(agent, "Typhoeus") {
     version = "ruby"
   } else if strings.HasPrefix(agent, "Python-urllib/") || strings.HasPrefix(agent, "Twisted ") {
     version = "python"
@@ -592,7 +593,7 @@ func (p *Parser) isPHP(agent string) bool {
 }
 
 func (p *Parser) ChallengeMaybeRssReader(agent string, result *Result) error {
-  if MAYBE_RSS_PATTERN.MatchString(agent) || strings.Contains(agent, "headline-reader") || strings.Contains(agent, "cococ/") {
+  if MAYBE_RSS_PATTERN.MatchString(agent) || HEADLINE_READER_PATTERN.MatchString(agent) || strings.Contains(agent, "cococ/") {
     return p.PopulateDataSet(result, "VariousRSSReader")
   }
 
