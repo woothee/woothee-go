@@ -13,7 +13,58 @@ func NewParser() (*Parser) {
   return &Parser { DefaultDataSet }
 }
 
-func (p *Parser) LookupDataset(label string) (*Result, error) {
+func (p *Parser) Parse(agent string) (result *Result, err error) {
+  result = EmptyResult.Clone()
+  if agent == "" || agent == "-" {
+    return
+  }
+
+  err = p.TryCrawler(agent, result)
+  if err == nil {
+    return
+  }
+
+  err = p.TryAppliance(agent, result)
+  if err == nil {
+    return
+  }
+
+  err = p.TryMisc(agent, result)
+  if err == nil {
+    return
+  }
+
+  err = p.TryOs(agent, result)
+  if err == nil {
+    return
+  }
+
+  err = p.TryRareCases(agent, result)
+  if err == nil {
+    return
+  }
+
+  err = ErrNoMatch
+  return
+}
+
+func (p *Parser) PopulateDataSet(result *Result, label string) error {
+  ds, err := p.LookupDataSet(label)
+  if err != nil {
+    return err
+  }
+
+  result.Name     = ds.Name
+  result.Category = ds.Category
+  result.Os       = ds.Os
+  result.Type     = ds.Type
+  result.Version  = ds.Version
+  result.Vendor   = ds.Vendor
+
+  return nil
+}
+
+func (p *Parser) LookupDataSet(label string) (*Result, error) {
   result := p.AgentDataSet[label]
   if result == nil {
     return nil, ErrNoDataSet
@@ -22,23 +73,13 @@ func (p *Parser) LookupDataset(label string) (*Result, error) {
   return result, nil
 }
 
-func (p *Parser) TryCrawler(agent string) (result *Result, err error) {
-  result, err = p.ChallengeGoogle(agent)
+func (p *Parser) TryCrawler(agent string, result *Result) (err error) {
+  err = p.ChallengeGoogle(agent, result)
   if err == nil {
     return
   }
 
-  result, err = p.ChallengeCrawlers(agent)
-  if err == nil {
-    return
-  }
-
-  err = ErrNoMatch
-  return
-}
-
-func (p *Parser) TryMisc(agent string) (result *Result, err error) {
-  result, err = p.ChallengeDesktopTools(agent)
+  err = p.ChallengeCrawlers(agent, result)
   if err == nil {
     return
   }
@@ -47,28 +88,18 @@ func (p *Parser) TryMisc(agent string) (result *Result, err error) {
   return
 }
 
-func (p *Parser) TryRareCases(agent string) (result *Result, err error) {
-  result, err = p.ChallengeSmartphonePatterns(agent)
+func (p *Parser) TryAppliance(agent string, result *Result) (err error) {
+  err = p.ChallengePlaystation(agent, result)
   if err == nil {
     return
   }
 
-  result, err = p.ChallengeSleipnir(agent)
+  err = p.ChallengeNintendo(agent, result)
   if err == nil {
     return
   }
 
-  result, err = p.ChallengeHttpLibrary(agent)
-  if err == nil {
-    return
-  }
-
-  result, err = p.ChallengeMaybeRssReader(agent)
-  if err == nil {
-    return
-  }
-
-  result, err = p.ChallengeMaybeCrawler(agent)
+  err = p.ChallengeDigitalTv(agent, result)
   if err == nil {
     return
   }
@@ -77,183 +108,233 @@ func (p *Parser) TryRareCases(agent string) (result *Result, err error) {
   return
 }
 
-func (p *Parser) ChallengeGoogle(agent string) (*Result, error) {
+func (p *Parser) TryMisc(agent string, result *Result) (err error) {
+  err = p.ChallengeDesktopTools(agent, result)
+  if err == nil {
+    return
+  }
+
+  err = ErrNoMatch
+  return
+}
+
+func (p *Parser) TryOs(agent string, result *Result) (err error) {
+  err = p.ChallengeWindows(agent, result)
+  if err == nil {
+    return
+  }
+
+  err = ErrNoMatch
+  return
+}
+
+func (p *Parser) TryRareCases(agent string, result *Result) (err error) {
+  err = p.ChallengeSmartphonePatterns(agent, result)
+  if err == nil {
+    return
+  }
+
+  err = p.ChallengeSleipnir(agent, result)
+  if err == nil {
+    return
+  }
+
+  err = p.ChallengeHttpLibrary(agent, result)
+  if err == nil {
+    return
+  }
+
+  err = p.ChallengeMaybeRssReader(agent, result)
+  if err == nil {
+    return
+  }
+
+  err = p.ChallengeMaybeCrawler(agent, result)
+  if err == nil {
+    return
+  }
+
+  err = ErrNoMatch
+  return
+}
+
+func (p *Parser) ChallengeGoogle(agent string, result *Result) error {
   if ! strings.Contains(agent, "Google") {
-    return nil, ErrNoMatch
+    return ErrNoMatch
   }
 
   if strings.Contains(agent, "compatible; Googlebot") {
     if strings.Contains(agent, "compatible; Googlebot-Mobile") {
-      return p.LookupDataset("GoogleBotMobile")
+      return p.PopulateDataSet(result, "GoogleBotMobile")
     } else {
-      return p.LookupDataset("GoogleBot")
+      return p.PopulateDataSet(result, "GoogleBot")
     }
   }
 
   if strings.Contains(agent, "Googlebot-Image/") {
-    return p.LookupDataset("GoogleBot")
+    return p.PopulateDataSet(result, "GoogleBot")
   }
 
   if strings.Contains(agent, "Mediapartners-Google") {
     if strings.Contains(agent, "compatible; Mediapartners-Google") || agent == "Mediapartners-Google" {
-      return p.LookupDataset("GoogleMediaPartners")
+      return p.PopulateDataSet(result, "GoogleMediaPartners")
     }
   }
 
   if strings.Contains(agent, "Feedfetcher-Google;") {
-    return p.LookupDataset("GoogleFeedFetcher")
+    return p.PopulateDataSet(result, "GoogleFeedFetcher")
   }
 
   if strings.Contains(agent, "AppEngine-Google") {
-    return p.LookupDataset("GoogleAppEngine")
+    return p.PopulateDataSet(result, "GoogleAppEngine")
   }
 
   if strings.Contains(agent, "Google Web Preview") {
-    return p.LookupDataset("GoogleWebPreview")
+    return p.PopulateDataSet(result, "GoogleWebPreview")
   }
 
-  return nil, ErrNoMatch
+  return ErrNoMatch
 }
 
-func (p *Parser) ChallengeCrawlers(agent string) (*Result, error) {
+func (p *Parser) ChallengeCrawlers(agent string, result *Result) error {
 
   if strings.Contains(agent, "Yahoo") || strings.Contains(agent, "help.yahoo.co.jp/help/jp/") || strings.Contains(agent, "listing.yahoo.co.jp/support/faq/") {
     switch {
     case strings.Contains(agent, "compatible; Yahoo! Slurp"):
-      return p.LookupDataset("YahooSlurp")
+      return p.PopulateDataSet(result, "YahooSlurp")
     case strings.Contains(agent, "YahooFeedSeekerJp") || strings.Contains(agent, "YahooFeedSeekerBetaJp"):
-      return p.LookupDataset("YahooJP")
+      return p.PopulateDataSet(result, "YahooJP")
     case strings.Contains(agent, "crawler (http://listing.yahoo.co.jp/support/faq/") || strings.Contains(agent, "crawler (http://help.yahoo.co.jp/help/jp/"):
-      return p.LookupDataset("YahooJP")
+      return p.PopulateDataSet(result, "YahooJP")
     case strings.Contains(agent, "Yahoo Pipes"):
-      return p.LookupDataset("YahooPipes")
+      return p.PopulateDataSet(result, "YahooPipes")
     }
   }
 
   if strings.Contains(agent, "msnbot") {
-    return p.LookupDataset("msnbot")
+    return p.PopulateDataSet(result, "msnbot")
   }
 
   if strings.Contains(agent, "bingbot") {
     if strings.Contains(agent, "compatible; bingbot") {
-      return p.LookupDataset("bingbot")
+      return p.PopulateDataSet(result, "bingbot")
     }
   }
 
   if strings.Contains(agent, "Baidu") {
     if strings.Contains(agent, "compatible; Baiduspider") || strings.Contains(agent, "Baiduspider+") || strings.Contains(agent, "Baiduspider-image+") {
-      return p.LookupDataset("Baiduspider")
+      return p.PopulateDataSet(result, "Baiduspider")
     }
   }
 
   if strings.Contains(agent, "Yeti") {
     if strings.Contains(agent, "http://help.naver.com/robots") {
-      return p.LookupDataset("Yeti")
+      return p.PopulateDataSet(result, "Yeti")
     }
   }
 
   if strings.Contains(agent, "FeedBurner/") {
-    return p.LookupDataset("FeedBurner")
+    return p.PopulateDataSet(result, "FeedBurner")
   }
 
   if strings.Contains(agent, "facebookexternalhit") {
-    return p.LookupDataset("facebook")
+    return p.PopulateDataSet(result, "facebook")
   }
 
   if strings.Contains(agent, "ichiro") {
     if strings.Contains(agent, "http://help.goo.ne.jp/door/crawler.html") || strings.Contains(agent, "compatible; ichiro/mobile goo;") {
-      return p.LookupDataset("goo")
+      return p.PopulateDataSet(result, "goo")
     }
   }
 
   if strings.Contains(agent, "gooblogsearch/") {
-    return p.LookupDataset("goo")
+    return p.PopulateDataSet(result, "goo")
   }
 
   if strings.Contains(agent, "Apple-PubSub") {
-    return p.LookupDataset("ApplePubSub")
+    return p.PopulateDataSet(result, "ApplePubSub")
   }
 
   if strings.Contains(agent, "(www.radian6.com/crawler)") {
-    return p.LookupDataset("radian6")
+    return p.PopulateDataSet(result, "radian6")
   }
 
   if strings.Contains(agent, "Genieo/") {
-    return p.LookupDataset("Genieo")
+    return p.PopulateDataSet(result, "Genieo")
   }
 
   if strings.Contains(agent, "labs.topsy.com/butterfly/") {
-    return p.LookupDataset("topsyButterfly")
+    return p.PopulateDataSet(result, "topsyButterfly")
   }
 
   if strings.Contains(agent, "rogerbot/1.0 (http://www.seomoz.org/dp/rogerbot") {
-    return p.LookupDataset("rogerbot")
+    return p.PopulateDataSet(result, "rogerbot")
   }
 
   if strings.Contains(agent, "compatible; AhrefsBot/") {
-    return p.LookupDataset("AhrefsBot")
+    return p.PopulateDataSet(result, "AhrefsBot")
   }
 
   if strings.Contains(agent, "livedoor FeedFetcher") || strings.Contains(agent, "Fastladder FeedFetcher") {
-    return p.LookupDataset("livedoorFeedFetcher")
+    return p.PopulateDataSet(result, "livedoorFeedFetcher")
   }
 
   if strings.Contains(agent, "Hatena ") {
     if strings.Contains(agent, "Hatena Antenna") || strings.Contains(agent, "Hatena Pagetitle Agent") || strings.Contains(agent, "Hatena Diary RSS") {
-      return p.LookupDataset("Hatena")
+      return p.PopulateDataSet(result, "Hatena")
     }
   }
 
   if strings.Contains(agent, "mixi-check") || strings.Contains(agent, "mixi-crawler") || strings.Contains(agent, "mixi-news-crawler") {
-    return p.LookupDataset("mixi")
+    return p.PopulateDataSet(result, "mixi")
   }
 
   if strings.Contains(agent, "Indy Library") {
     if strings.Contains(agent, "compatible; Indy Library") {
-      return p.LookupDataset("IndyLibrary")
+      return p.PopulateDataSet(result, "IndyLibrary")
     }
   }
 
-  return nil, ErrNoMatch
+  return ErrNoMatch
 }
 
-func (p *Parser) ChallengeDesktopTools(agent string) (*Result, error) {
+func (p *Parser) ChallengeDesktopTools(agent string, result *Result) error {
   if strings.Contains(agent, "AppleSyndication/") {
-    return p.LookupDataset("SafariRSSReader")
+    return p.PopulateDataSet(result, "SafariRSSReader")
   }
 
   if strings.Contains(agent, "compatible; Google Desktop/") {
-    return p.LookupDataset("GoogleDesktop")
+    return p.PopulateDataSet(result, "GoogleDesktop")
   }
 
   if strings.Contains(agent, "Windows-RSS-Platform") {
-    return p.LookupDataset("WindowsRSSReader")
+    return p.PopulateDataSet(result, "WindowsRSSReader")
   }
 
-  return nil, ErrNoMatch
+  return ErrNoMatch
 }
 
-func (p *Parser) ChallengeSmartphonePatterns(agent string) (*Result, error) {
+func (p *Parser) ChallengeSmartphonePatterns(agent string, result *Result) error {
   if strings.Contains(agent, "CFNetwork/") {
     // This is like iPhone, but only Category and Name are filled
-    result, err := p.LookupDataset("iOS")
+    err := p.PopulateDataSet(result, "iOS")
     if err != nil {
-      return nil, err
+      return err
     } else {
       r := EmptyResult.Clone()
       r.Name = result.Name
       r.Category = result.Category
-      return r, nil
+      return nil
     }
   }
 
-  return nil, ErrNoMatch
+  return ErrNoMatch
 }
 
-func (p *Parser) ChallengeSleipnir (agent string) (*Result, error) {
+func (p *Parser) ChallengeSleipnir (agent string, result *Result) error {
   start := strings.Index(agent, "Sleipnir/");
   if start < 0 {
-    return nil, ErrNoMatch
+    return ErrNoMatch
   }
 
   // Absolutely refuse to use regexps
@@ -273,25 +354,24 @@ func (p *Parser) ChallengeSleipnir (agent string) (*Result, error) {
     version = VALUE_UNKNOWN
   }
 
-  result, err := p.LookupDataset("Sleipnir")
+  err := p.PopulateDataSet(result, "Sleipnir")
   if err != nil {
-    return nil, err
+    return err
   }
 
-  win, err := p.LookupDataset("Win")
+  win, err := p.LookupDataSet("Win")
   if err != nil {
-    return nil, err
+    return err
   }
 
-  r := result.Clone()
-  r.Version = version
-  r.Category = win.Category
-  r.Os = win.Name
+  result.Version  = version
+  result.Category = win.Category
+  result.Os       = win.Name
 
-  return r, nil
+  return nil
 }
 
-func (p *Parser) ChallengeHttpLibrary (agent string) (*Result, error) {
+func (p *Parser) ChallengeHttpLibrary (agent string, result *Result) error {
   var version string
 
   if strings.HasPrefix(agent, "Apache-HttpClient/") || strings.HasPrefix(agent, "Jakarta Commons-HttpClient/") || strings.HasPrefix(agent, "Java/") {
@@ -300,14 +380,14 @@ func (p *Parser) ChallengeHttpLibrary (agent string) (*Result, error) {
     // i should be greater than 0 so we can check for either "-" or " "
     // preceding the "HttpClient" string
     if i == 0 {
-      return nil, ErrNoMatch
+      return ErrNoMatch
     }
 
     switch agent[i - 1] {
     case '-', ' ':
       // OK, no op
     default:
-      return nil, ErrNoMatch
+      return ErrNoMatch
     }
 
     agent_len := len(agent)
@@ -315,7 +395,7 @@ func (p *Parser) ChallengeHttpLibrary (agent string) (*Result, error) {
       if agent[i + 11] == '/' {
         goto MATCH_JAVA_MISC
       }
-      return nil, ErrNoMatch
+      return ErrNoMatch
     }
 
 MATCH_JAVA_MISC:
@@ -335,16 +415,15 @@ MATCH_JAVA_MISC:
   }
 
   if version == "" {
-    return nil, ErrNoMatch
+    return ErrNoMatch
   }
 
-  result, err := p.LookupDataset("HTTPLibrary")
+  err := p.PopulateDataSet(result, "HTTPLibrary")
   if err != nil {
-    return nil, err
+    return err
   }
-  result = result.Clone()
   result.Version = version
-  return result, nil
+  return nil
 }
 
 var PHP_PREFIX_PATTERNS []string = []string{
@@ -405,12 +484,12 @@ func (p *Parser) isPHP(agent string) bool {
 var MAYBE_RSS_PATTERN = regexp.MustCompile(
   `(?i)rss(?:reader|bar|[-_ /;()]|[ +]*/)`,
 )
-func (p *Parser) ChallengeMaybeRssReader(agent string) (*Result, error) {
+func (p *Parser) ChallengeMaybeRssReader(agent string, result *Result) error {
   if MAYBE_RSS_PATTERN.MatchString(agent) || strings.Contains(agent, "headline-reader") || strings.Contains(agent, "cococ/") {
-    return p.LookupDataset("VariousRSSReader")
+    return p.PopulateDataSet(result, "VariousRSSReader")
   }
 
-  return nil, ErrNoMatch
+  return ErrNoMatch
 }
 
 var MAYBE_CRAWLER_PATTERN = regexp.MustCompile(
@@ -422,11 +501,11 @@ var MAYBE_FEED_PARSER_PATTERN = regexp.MustCompile(
 var MAYBE_WATCHDOG_PATTERN = regexp.MustCompile(
   `(?i)watch ?dog`,
 )
-func (p *Parser) ChallengeMaybeCrawler(agent string) (*Result, error) {
+func (p *Parser) ChallengeMaybeCrawler(agent string, result *Result) error {
   if MAYBE_CRAWLER_PATTERN.MatchString(agent) || p.hasCrawlerPrefix(agent) || MAYBE_FEED_PARSER_PATTERN.MatchString(agent) || MAYBE_WATCHDOG_PATTERN.MatchString(agent) {
-    return p.LookupDataset("VariousCrawler")
+    return p.PopulateDataSet(result, "VariousCrawler")
   }
-  return nil, ErrNoMatch
+  return ErrNoMatch
 }
 
 var CRAWLER_PREFIX_PATTERNS []string = []string{
@@ -449,3 +528,120 @@ func (p *Parser) hasCrawlerPrefix(agent string) bool {
 
   return false
 }
+
+func (p *Parser) ChallengePlaystation(agent string, result *Result) error {
+  if strings.Contains(agent, "PSP (PlayStation Portable)") {
+    return p.PopulateDataSet(result, "PSP")
+  }
+
+  if strings.Contains(agent, "PlayStation Vita") {
+    return p.PopulateDataSet(result, "PSVita")
+  }
+
+  if strings.Contains(agent, "PLAYSTATION 3 ") || strings.Contains(agent, "PLAYSTATION 3;") {
+    return p.PopulateDataSet(result, "PS3")
+  }
+
+  if strings.Contains(agent, "PlayStation 4 ") {
+    return p.PopulateDataSet(result, "PS4")
+  }
+
+  return ErrNoMatch
+}
+
+func (p *Parser) ChallengeNintendo(agent string, result *Result) error {
+  if strings.Contains(agent, "Nintendo 3DS;") {
+    return p.PopulateDataSet(result, "Nintendo3DS")
+  }
+
+  if strings.Contains(agent, "Nintendo DSi;") {
+    return p.PopulateDataSet(result, "NintendoDSi")
+  }
+
+  if strings.Contains(agent, "Nintendo Wii;") {
+    return p.PopulateDataSet(result, "NintendoWii")
+  }
+
+  if strings.Contains(agent, "(Nintendo WiiU)") {
+    return p.PopulateDataSet(result, "NintendoWiiU")
+  }
+
+  return ErrNoMatch
+}
+
+func (p *Parser) ChallengeDigitalTv(agent string, result *Result) error {
+  if strings.Contains(agent, "InettvBrowser/") {
+    return p.PopulateDataSet(result, "DigitalTV")
+  }
+
+  return ErrNoMatch
+}
+
+var WINDOWS_VERSION_PATTERN = regexp.MustCompile(
+  `Windows ([ .a-zA-Z0-9]+)[;\\)]`,
+)
+func (p *Parser) ChallengeWindows(agent string, result *Result) error {
+  if !strings.Contains(agent, "Windows") {
+    return ErrNoMatch
+  }
+
+  if strings.Contains(agent, "Xbox") {
+    if strings.Contains(agent, "Xbox; Xbox One)") {
+      return p.PopulateDataSet(result, "XboxOne")
+    } else {
+      return p.PopulateDataSet(result, "Xbox360")
+    }
+  }
+
+  win, err := p.LookupDataSet("Win")
+  if err != nil {
+    return err
+  }
+
+  match := WINDOWS_VERSION_PATTERN.FindStringSubmatchIndex(agent)
+  if match == nil {
+    result.Category = win.Category
+    result.Os       = win.Name
+    return nil
+  }
+
+  version := agent[match[2]:match[3]]
+  switch version {
+  case "NT 6.3":
+    win, err = p.LookupDataSet("Win8.1")
+  case "NT 6.2":
+    win, err = p.LookupDataSet("Win8")
+  case "NT 6.1":
+    win, err = p.LookupDataSet("Win7")
+  case "NT 6.0":
+    win, err = p.LookupDataSet("WinVista")
+  case "NT 5.1":
+    win, err = p.LookupDataSet("WinXP")
+  case "NT 5.0":
+    win, err = p.LookupDataSet("Win2000")
+  case "NT 4.0":
+    win, err = p.LookupDataSet("WinNT4")
+  case "98":
+    win, err = p.LookupDataSet("Win98")
+  case "95":
+    win, err = p.LookupDataSet("Win95")
+  case "CE":
+    win, err = p.LookupDataSet("WinCE")
+  default:
+    if strings.HasPrefix(version, "Phone OS") {
+      win, err = p.LookupDataSet("WinPhone")
+    }
+  }
+
+  if err != nil {
+    return err
+  }
+
+  result.Category = win.Category
+  result.Os       = win.Name
+
+  return nil
+}
+
+
+

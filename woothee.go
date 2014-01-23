@@ -36,26 +36,6 @@ func (r *Result) Clone() (*Result) {
   return &Result { r.Name, r.Category, r.Os, r.Type, r.Version, r.Vendor }
 }
 
-func Parse(agent string) (result *Result, err error) {
-  if agent == "" || agent == "-" {
-    result = EmptyResult
-  }
-
-  result, err = DefaultParser.TryCrawler(agent)
-  if err == nil {
-    return
-  }
-
-  result, err = DefaultParser.TryMisc(agent)
-  if err == nil {
-    return
-  }
-
-  result, err = DefaultParser.TryRareCases(agent)
-  if err == nil {
-    return
-  }
-
-  err = ErrNoMatch
-  return
+func Parse(agent string) (*Result, error) {
+  return DefaultParser.Parse(agent)
 }
