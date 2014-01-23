@@ -24,6 +24,12 @@ func (p *Parser) Parse(agent string) (result *Result, err error) {
     return
   }
 
+  err = p.TryBrowser(agent, result)
+  if err == nil {
+    p.TryOs(agent, result)
+    return
+  }
+
   err = p.TryAppliance(agent, result)
   if err == nil {
     return
@@ -86,6 +92,30 @@ func (p *Parser) TryCrawler(agent string, result *Result) (err error) {
 
   err = ErrNoMatch
   return
+}
+
+func (p *Parser) TryBrowser(agent string, result *Result) (err error) {
+  err = p.ChallengeMsie(agent, result)
+  if err == nil {
+    return
+  }
+
+  err = p.ChallengeSafariChrome(agent, result)
+  if err == nil {
+    return
+  }
+
+  err = p.ChallengeFirefox(agent, result)
+  if err == nil {
+    return
+  }
+
+  err = p.ChallengeOpera(agent, result)
+  if err == nil {
+    return
+  }
+
+  return ErrNoMatch
 }
 
 func (p *Parser) TryAppliance(agent string, result *Result) (err error) {
@@ -853,4 +883,100 @@ func (p *Parser) ChallengeAppliance(agent string, result *Result) error {
   }
 
   return ErrNoMatch
+}
+
+var MSIE_PATTERN = regexp.MustCompile(`MSIE ([.0-9]+);`)
+var TRIDENT_PATTERN = regexp.MustCompile(`Trident/([.0-9]+); rv ([.0-9]+)`)
+func (p *Parser) ChallengeMsie(agent string, result *Result) error {
+  if ! strings.Contains(agent, "compatible; MSIE") && ! strings.Contains(agent, "Trident/") {
+    return ErrNoMatch
+  }
+
+  version := VALUE_UNKNOWN
+  if match := MSIE_PATTERN.FindStringSubmatchIndex(agent); match != nil {
+    version = agent[match[2]:match[3]]
+  } else if matches := TRIDENT_PATTERN.FindAllStringSubmatchIndex(agent, -1); matches != nil {
+    second := matches[1]
+    version = agent[second[2]:second[3]]
+  }
+
+  err := p.PopulateDataSet(result, "MSIE")
+  if err != nil {
+    return err
+  }
+
+  result.Version = version
+  return nil
+}
+
+var CHROME_PATTERN = regexp.MustCompile(`(?:Chrome|CrMo|CriOS)/([.0-9]+)`)
+var SAFARI_PATTERN = regexp.MustCompile(`Version/([.0-9]+)`)
+func (p *Parser) ChallengeSafariChrome(agent string, result *Result) error {
+  if ! strings.Contains(agent, "Safari/") {
+    return ErrNoMatch
+  }
+
+  if match := CHROME_PATTERN.FindStringSubmatchIndex(agent); match != nil {
+    err := p.PopulateDataSet(result, "Chrome")
+    if err != nil {
+      return err
+    }
+    version := agent[match[2]:match[3]]
+    result.Version = version
+    return nil
+  }
+
+  version := VALUE_UNKNOWN
+  if match := SAFARI_PATTERN.FindStringSubmatchIndex(agent); match != nil {
+    version = agent[match[2]:match[3]]
+  }
+
+  err := p.PopulateDataSet(result, "Safari")
+  if err != nil {
+    return err
+  }
+  result.Version = version
+  return nil
+}
+
+var FIREFOX_PATTERN = regexp.MustCompile(`Firefox/([.0-9]+)`)
+func (p *Parser) ChallengeFirefox(agent string, result *Result) error {
+  if ! strings.Contains(agent, "Firefox/") {
+    return ErrNoMatch
+  }
+
+  version := VALUE_UNKNOWN
+  if match := FIREFOX_PATTERN.FindStringSubmatchIndex(agent); match != nil {
+    version = agent[match[2]:match[3]]
+  }
+
+  err := p.PopulateDataSet(result, "Firefox")
+  if err != nil {
+    return err
+  }
+  result.Version = version
+  return nil
+}
+
+var OPERA_VERSION_PATTERN1 = regexp.MustCompile(`Version/([.0-9]+)`)
+var OPERA_VERSION_PATTERN2 = regexp.MustCompile(`Opera[/ ]([.0-9]+)`)
+func (p *Parser) ChallengeOpera(agent string, result *Result) error {
+  if ! strings.Contains(agent, "Opera") {
+    return ErrNoMatch
+  }
+
+  version := VALUE_UNKNOWN
+  if match := OPERA_VERSION_PATTERN1.FindStringSubmatchIndex(agent); match != nil {
+    version = agent[match[2]:match[3]]
+  } else if match := OPERA_VERSION_PATTERN2.FindStringSubmatchIndex(agent); match != nil {
+    version = agent[match[2]:match[3]]
+  }
+
+  err := p.PopulateDataSet(result, "Opera")
+  if err != nil {
+    return err
+  }
+  result.Version = version
+
+  return nil
 }
