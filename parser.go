@@ -319,8 +319,9 @@ MATCH_JAVA_MISC:
     version = "ruby"
   } else if strings.HasPrefix(agent, "Python-urllib/") || strings.HasPrefix(agent, "Twisted ") {
     version = "python"
-  } else if strings.HasPrefix(agent, "PHP") || strings.HasPrefix(agent, "WordPress") || strings.HasPrefix(agent, "CakePHP") || strings.HasPrefix(agent, "PukiWiki") || strings.HasPrefix(agent, "PECL::HTTP") {
-
+  } else if p.isPHP(agent) {
+    version = "php"
+  }
 
   if version == "" {
     return nil, ErrNoMatch
@@ -333,4 +334,59 @@ MATCH_JAVA_MISC:
   result = result.Clone()
   result.Version = version
   return result, nil
+}
+
+var PHP_PREFIX_PATTERNS []string = []string{
+  "PHP",
+  "WordPress",
+  "CakePHP",
+  "PukiWiki",
+  "PECL::HTTP",
+}
+
+var PEAR_PATTERNS []string = []string {
+  "PEAR HTTP_Request",
+  "HTTP_Request",
+}
+func (p *Parser) isPHP(agent string) bool {
+  agent_len := len(agent)
+  for _, pattern := range PHP_PREFIX_PATTERNS {
+    if ! strings.HasPrefix(agent, pattern) {
+      continue
+    }
+
+    // Either this pattern is followed by "/", " ", or is exactly same
+    // as pattern
+    pattern_len := len(pattern)
+    if pattern_len == agent_len {
+      return true
+    } else if c := agent[pattern_len]; c == '/' || c == ' ' {
+      return true
+    }
+  }
+
+  // None of the above patterns matched
+  for _, pattern := range PEAR_PATTERNS {
+    i := strings.Index(agent, pattern)
+    if i == -1 {
+      continue
+    }
+
+    // match. this pattern must be followed by either
+    // " class" or "2"
+    pattern_len := len(pattern)
+    if i + pattern_len + 1 <= agent_len {
+      if agent[i + pattern_len] == '2' {
+        return true
+      }
+    }
+
+    if i + pattern_len + 6 <= agent_len {
+      if agent[i + pattern_len:i + pattern_len + 6] == " class" {
+        return true
+      }
+    }
+  }
+
+  return false
 }
