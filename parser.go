@@ -1,6 +1,7 @@
 package woothee
 
 import (
+  "regexp"
   "strings"
 )
 
@@ -63,6 +64,11 @@ func (p *Parser) TryRareCases(agent string) (result *Result, err error) {
   }
 
   result, err = p.ChallengeMaybeRssReader(agent)
+  if err == nil {
+    return
+  }
+
+  result, err = p.ChallengeMaybeCrawler(agent)
   if err == nil {
     return
   }
@@ -396,51 +402,49 @@ func (p *Parser) isPHP(agent string) bool {
   return false
 }
 
+var MAYBE_RSS_PATTERN = regexp.MustCompile(
+  `(?i)rss(?:reader|bar|[-_ /;()]|[ +]*/)`,
+)
 func (p *Parser) ChallengeMaybeRssReader(agent string) (*Result, error) {
-  if p.isRssReader(agent) || strings.Contains(agent, "headline-reader") || strings.Contains(agent, "cococ/") {
+  if MAYBE_RSS_PATTERN.MatchString(agent) || strings.Contains(agent, "headline-reader") || strings.Contains(agent, "cococ/") {
     return p.LookupDataset("VariousRSSReader")
   }
 
   return nil, ErrNoMatch
 }
 
-func (p *Parser) isRssReader(agent string) bool {
-  i := strings.Index(agent, "rss")
-  if i == -1 {
-    return false
+var MAYBE_CRAWLER_PATTERN = regexp.MustCompile(
+  `(?i)(?:bot|crawler|spider)(?:[-_ ./;@()]|$)`,
+)
+var MAYBE_FEED_PARSER_PATTERN = regexp.MustCompile(
+  `(?i)(?:feed|web) ?parser`,
+)
+var MAYBE_WATCHDOG_PATTERN = regexp.MustCompile(
+  `(?i)watch ?dog`,
+)
+func (p *Parser) ChallengeMaybeCrawler(agent string) (*Result, error) {
+  if MAYBE_CRAWLER_PATTERN.MatchString(agent) || p.hasCrawlerPrefix(agent) || MAYBE_FEED_PARSER_PATTERN.MatchString(agent) || MAYBE_WATCHDOG_PATTERN.MatchString(agent) {
+    return p.LookupDataset("VariousCrawler")
   }
+  return nil, ErrNoMatch
+}
 
-  // "rss" must be followed by one of the following
-  agent_len := len(agent)
-  if i + 3 + 6 <= agent_len {
-    if agent[i + 3:i + 3 + 6] == "reader" {
+var CRAWLER_PREFIX_PATTERNS []string = []string{
+  "Rome Client ",
+  "UnwindFetchor/",
+  "ia_archiver ",
+  "Summify ",
+  "PostRank/",
+}
+func (p *Parser) hasCrawlerPrefix(agent string) bool {
+  for _, pattern := range CRAWLER_PREFIX_PATTERNS {
+    if strings.HasPrefix(agent, pattern) {
       return true
     }
   }
 
-  if i + 3 + 3 <= agent_len {
-    if agent[i + 3:i + 3 + 3] == "bar" {
-      return true
-    }
-  }
-
-  if i + 3 + 1 <= agent_len {
-    switch agent[i+3] {
-    case '-', '_', '/', ';', '(', ')':
-      return true
-    }
-  }
-
-  // Otherwise, need to be followed by 0 or more " ", "+", followed by "/"
-  for x := i + 3; x < agent_len; x++ {
-    switch agent[x] {
-    case ' ', '+':
-      // no op
-    case '/':
-      return true
-    default:
-      break
-    }
+  if strings.Contains(agent, "ASP-Ranker Feed Crawler") {
+    return true
   }
 
   return false
