@@ -236,6 +236,11 @@ func (p *Parser) TryOs(agent string, result *Result) (err error) {
     return
   }
 
+  err = p.ChallengeMiscOs(agent, result)
+  if err == nil {
+    return
+  }
+
   err = ErrNoMatch
   return
 }
@@ -1136,4 +1141,31 @@ func (p *Parser) ChallengeMiscMobilephone(agent string, result *Result) error {
   }
 
   return ErrNoMatch
+}
+
+func (p *Parser) ChallengeMiscOs(agent string, result *Result) error {
+  var data *Result
+  var err   error
+
+  switch {
+  case strings.Contains(agent, "(Win98;"):
+    data, err = p.LookupDataSet("Win98")
+  case strings.Contains(agent, "Macintosh; U; PPC;") || strings.Contains(agent, "Mac_PowerPC"):
+    data, err = p.LookupDataSet("MacOS")
+  case strings.Contains(agent, "X11; FreeBSD "):
+    data, err = p.LookupDataSet("BSD")
+  }
+
+  if err != nil {
+    return err
+  }
+
+  if data == nil {
+    return ErrNoMatch
+  }
+
+  result.Category = data.Category
+  result.Os       = data.Name
+
+  return nil
 }
