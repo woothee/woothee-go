@@ -460,7 +460,7 @@ func (p *Parser) ChallengeSleipnir (agent string, result *Result) error {
       break
     }
   }
-  version := agent[start:end]
+  version := agent[start + 9:end]
   if version == "" {
     version = VALUE_UNKNOWN
   }
