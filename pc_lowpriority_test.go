@@ -18,11 +18,11 @@ func Test_pc_lowpriority(t *testing.T) {
         if result.Name != "Sleipnir" {
             t.Errorf("Expected result.Name to be 'Sleipnir', but got '%s'", result.Name)
         }
-        if result.Version != "2.9.9" {
-            t.Errorf("Expected result.Version to be '2.9.9', but got '%s'", result.Version)
-        }
         if result.Category != "pc" {
             t.Errorf("Expected result.Category to be 'pc', but got '%s'", result.Category)
+        }
+        if result.Version != "2.9.9" {
+            t.Errorf("Expected result.Version to be '2.9.9', but got '%s'", result.Version)
         }
     }
 }

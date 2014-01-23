@@ -87,9 +87,10 @@ EOM
 EOM
             foreach my $key (grep { !/^target$/ } keys %$e) {
                 my $uc_key = ucfirst $key;
+                my $expect = $e->{$key} || "UNKNOWN";
                 print $out <<EOM
-        if result.$uc_key != "$e->{$key}" {
-            t.Errorf("Expected result.$uc_key to be '$e->{$key}', but got '%s'", result.$uc_key)
+        if result.$uc_key != "$expect" {
+            t.Errorf("Expected result.$uc_key to be '$expect', but got '%s'", result.$uc_key)
         }
 EOM
             }
