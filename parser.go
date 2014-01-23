@@ -1101,7 +1101,7 @@ func (p *Parser) ChallengeMiscMobilephone(agent string, result *Result) error {
     return nil
   }
 
-  if strings.Contains(agent, "emobile/") || strings.Contains(agent, "OpenBrwoser") || strings.Contains(agent, "Browser/Obigo-Browser") {
+  if strings.Contains(agent, "emobile/") || strings.Contains(agent, "OpenBrowser") || strings.Contains(agent, "Browser/Obigo-Browser") {
     err := p.PopulateDataSet(result, "emobile")
     if err != nil {
       return err
