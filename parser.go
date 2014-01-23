@@ -86,12 +86,29 @@ func (p *Parser) PopulateDataSet(result *Result, label string) error {
     return err
   }
 
-  result.Name     = ds.Name
-  result.Category = ds.Category
-  result.Os       = ds.Os
-  result.Type     = ds.Type
-  result.Version  = ds.Version
-  result.Vendor   = ds.Vendor
+  if ds.Name != "" {
+    result.Name = ds.Name
+  }
+
+  if ds.Category != "" {
+    result.Category = ds.Category
+  }
+
+  if ds.Os != "" {
+    result.Os = ds.Os
+  }
+
+  if ds.Type != "" {
+    result.Type = ds.Type
+  }
+
+  if ds.Version != "" {
+    result.Version = ds.Version
+  }
+
+  if ds.Vendor != "" {
+    result.Vendor = ds.Vendor
+  }
 
   return nil
 }
