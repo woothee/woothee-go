@@ -6,24 +6,26 @@ import (
 )
 
 var (
-  CHROME_PATTERN = regexp.MustCompile(`(?:Chrome|CrMo|CriOS)/([.0-9]+)`)
-  DOCOMO_VERSION_PATTERN = regexp.MustCompile(`DoCoMo/[.0-9]+[ /]([^- /;()"']+)`)
-  FIREFOX_PATTERN = regexp.MustCompile(`Firefox/([.0-9]+)`)
-  FIREFOXOS_PATTERN = regexp.MustCompile(`^Mozilla/[.0-9]+ \(Mobile;(.*;)? rv:[.0-9]+\) Gecko/[.0-9]+ Firefox/[.0-9]+$`)
-  FOMA_VERSION_PATTERN = regexp.MustCompile(`\(([^;)]+);FOMA;`)
-  HEADLINE_READER_PATTERN = regexp.MustCompile(`(?i)headline-reader`)
-  JIG_PATTERN = regexp.MustCompile(`jig browser[^;]+; ([^);]+)`)
-  KDDI_PATTERN = regexp.MustCompile(`KDDI-([^- /;()"']+)`)
-  MAYBE_RSS_PATTERN = regexp.MustCompile(`(?i)rss(?:reader|bar|[-_ /;()]|[ +]*/)`)
-  MAYBE_CRAWLER_PATTERN = regexp.MustCompile(`(?i)(?:bot|crawler|spider)(?:[-_ ./;@()]|$)`)
-  MAYBE_FEED_PARSER_PATTERN = regexp.MustCompile(`(?i)(?:feed|web) ?parser`)
-  MAYBE_WATCHDOG_PATTERN = regexp.MustCompile(`(?i)watch ?dog`)
-  MSIE_PATTERN = regexp.MustCompile(`MSIE ([.0-9]+);`)
-  SAFARI_PATTERN = regexp.MustCompile(`Version/([.0-9]+)`)
-  SOFTBANK_PATTERN = regexp.MustCompile(`(?:SoftBank|Vodafone|J-PHONE)/[.0-9]+/([^ /;()]+)`)
-  TRIDENT_PATTERN = regexp.MustCompile(`Trident/([.0-9]+); rv ([.0-9]+)`)
-  WILLCOM_PATTERN = regexp.MustCompile(`(?:WILLCOM|DDIPOCKET);[^/]+/([^ /;()]+)`)
-  WINDOWS_VERSION_PATTERN = regexp.MustCompile(`Windows ([ .a-zA-Z0-9]+)[;\\)]`)
+  RxChromePattern = regexp.MustCompile(`(?:Chrome|CrMo|CriOS)/([.0-9]+)`)
+  RxDocomoVersionPattern = regexp.MustCompile(`DoCoMo/[.0-9]+[ /]([^- /;()"']+)`)
+  RxFirefoxPattern = regexp.MustCompile(`Firefox/([.0-9]+)`)
+  RxFirefoxOSPattern = regexp.MustCompile(`^Mozilla/[.0-9]+ \(Mobile;(.*;)? rv:[.0-9]+\) Gecko/[.0-9]+ Firefox/[.0-9]+$`)
+  RxFOMAVersionPattern = regexp.MustCompile(`\(([^;)]+);FOMA;`)
+  RxHeadlineReaderPattern = regexp.MustCompile(`(?i)headline-reader`)
+  RxJigPattern = regexp.MustCompile(`jig browser[^;]+; ([^);]+)`)
+  RxKDDIPattern = regexp.MustCompile(`KDDI-([^- /;()"']+)`)
+  RxMaybeRSSPattern = regexp.MustCompile(`(?i)rss(?:reader|bar|[-_ /;()]|[ +]*/)`)
+  RxMaybeCrawlerPattern = regexp.MustCompile(`(?i)(?:bot|crawler|spider)(?:[-_ ./;@()]|$)`)
+  RxMaybeFeedParserPattern = regexp.MustCompile(`(?i)(?:feed|web) ?parser`)
+  RxMaybeWatchdogPattern = regexp.MustCompile(`(?i)watch ?dog`)
+  RxMSIEPattern = regexp.MustCompile(`MSIE ([.0-9]+);`)
+  RxOperaVersionPattern1 = regexp.MustCompile(`Version/([.0-9]+)`)
+  RxOperaVersionPattern2 = regexp.MustCompile(`Opera[/ ]([.0-9]+)`)
+  RxSafariPattern = regexp.MustCompile(`Version/([.0-9]+)`)
+  RxSoftbankPattern = regexp.MustCompile(`(?:SoftBank|Vodafone|J-PHONE)/[.0-9]+/([^ /;()]+)`)
+  RxTridentPattern = regexp.MustCompile(`Trident/([.0-9]+); rv ([.0-9]+)`)
+  RxWillcomPattern = regexp.MustCompile(`(?:WILLCOM|DDIPOCKET);[^/]+/([^ /;()]+)`)
+  RxWindowsVersionPattern = regexp.MustCompile(`Windows ([ .a-zA-Z0-9]+)[;\\)]`)
 )
 
 type Parser struct {
@@ -273,7 +275,7 @@ func (p *Parser) TryRareCases(agent string, result *Result) (err error) {
     return
   }
 
-  err = p.ChallengeHttpLibrary(agent, result)
+  err = p.ChallengeHTTPLibrary(agent, result)
   if err == nil {
     return
   }
@@ -300,9 +302,8 @@ func (p *Parser) ChallengeGoogle(agent string, result *Result) error {
   if strings.Contains(agent, "compatible; Googlebot") {
     if strings.Contains(agent, "compatible; Googlebot-Mobile") {
       return p.PopulateDataSet(result, "GoogleBotMobile")
-    } else {
-      return p.PopulateDataSet(result, "GoogleBot")
     }
+    return p.PopulateDataSet(result, "GoogleBot")
   }
 
   if strings.Contains(agent, "Googlebot-Image/") {
@@ -471,10 +472,10 @@ func (p *Parser) ChallengeSleipnir (agent string, result *Result) error {
   }
 
   // Absolutely refuse to use regexps
-  agent_len := len(agent)
+  agentLen := len(agent)
 
   end := start + 9
-  for ; end < agent_len; end++ {
+  for ; end < agentLen; end++ {
     switch agent[end] {
     case '0','1','2','3','4','5','6','7','8','9','.':
       // no op
@@ -484,7 +485,7 @@ func (p *Parser) ChallengeSleipnir (agent string, result *Result) error {
   }
   version := agent[start + 9:end]
   if version == "" {
-    version = VALUE_UNKNOWN
+    version = ValueUnknown
   }
 
   err := p.PopulateDataSet(result, "Sleipnir")
@@ -504,7 +505,7 @@ func (p *Parser) ChallengeSleipnir (agent string, result *Result) error {
   return nil
 }
 
-func (p *Parser) ChallengeHttpLibrary (agent string, result *Result) error {
+func (p *Parser) ChallengeHTTPLibrary (agent string, result *Result) error {
   var version string
 
   if strings.HasPrefix(agent, "Apache-HttpClient/") || strings.HasPrefix(agent, "Jakarta Commons-HttpClient/") || strings.HasPrefix(agent, "Java/") {
@@ -523,8 +524,8 @@ func (p *Parser) ChallengeHttpLibrary (agent string, result *Result) error {
       return ErrNoMatch
     }
 
-    agent_len := len(agent)
-    if agent_len > i + 10 { // Longer than "...HttpClient"
+    agentLen := len(agent)
+    if agentLen > i + 10 { // Longer than "...HttpClient"
       if agent[i + 11] == '/' {
         goto MATCH_JAVA_MISC
       }
@@ -559,7 +560,7 @@ MATCH_JAVA_MISC:
   return nil
 }
 
-var PHP_PREFIX_PATTERNS []string = []string{
+var PHPPrefixPatterns = []string{
   "PHP",
   "WordPress",
   "CakePHP",
@@ -567,29 +568,29 @@ var PHP_PREFIX_PATTERNS []string = []string{
   "PECL::HTTP",
 }
 
-var PEAR_PATTERNS []string = []string {
+var PearPatterns = []string {
   "PEAR HTTP_Request",
   "HTTP_Request",
 }
 func (p *Parser) isPHP(agent string) bool {
-  agent_len := len(agent)
-  for _, pattern := range PHP_PREFIX_PATTERNS {
+  agentLen := len(agent)
+  for _, pattern := range PHPPrefixPatterns {
     if ! strings.HasPrefix(agent, pattern) {
       continue
     }
 
     // Either this pattern is followed by "/", " ", or is exactly same
     // as pattern
-    pattern_len := len(pattern)
-    if pattern_len == agent_len {
+    patternLen := len(pattern)
+    if patternLen == agentLen {
       return true
-    } else if c := agent[pattern_len]; c == '/' || c == ' ' {
+    } else if c := agent[patternLen]; c == '/' || c == ' ' {
       return true
     }
   }
 
   // None of the above patterns matched
-  for _, pattern := range PEAR_PATTERNS {
+  for _, pattern := range PearPatterns {
     i := strings.Index(agent, pattern)
     if i == -1 {
       continue
@@ -597,15 +598,15 @@ func (p *Parser) isPHP(agent string) bool {
 
     // match. this pattern must be followed by either
     // " class" or "2"
-    pattern_len := len(pattern)
-    if i + pattern_len + 6 <= agent_len {
-      if agent[i + pattern_len:i + pattern_len + 6] == " class" {
+    patternLen := len(pattern)
+    if i + patternLen + 6 <= agentLen {
+      if agent[i + patternLen:i + patternLen + 6] == " class" {
         return true
       }
     }
 
-    if i + pattern_len + 1 <= agent_len {
-      if agent[i + pattern_len] == '2' {
+    if i + patternLen + 1 <= agentLen {
+      if agent[i + patternLen] == '2' {
         return true
       }
     }
@@ -615,7 +616,7 @@ func (p *Parser) isPHP(agent string) bool {
 }
 
 func (p *Parser) ChallengeMaybeRssReader(agent string, result *Result) error {
-  if MAYBE_RSS_PATTERN.MatchString(agent) || HEADLINE_READER_PATTERN.MatchString(agent) || strings.Contains(agent, "cococ/") {
+  if RxMaybeRSSPattern.MatchString(agent) || RxHeadlineReaderPattern.MatchString(agent) || strings.Contains(agent, "cococ/") {
     return p.PopulateDataSet(result, "VariousRSSReader")
   }
 
@@ -623,13 +624,13 @@ func (p *Parser) ChallengeMaybeRssReader(agent string, result *Result) error {
 }
 
 func (p *Parser) ChallengeMaybeCrawler(agent string, result *Result) error {
-  if MAYBE_CRAWLER_PATTERN.MatchString(agent) || p.hasCrawlerPrefix(agent) || MAYBE_FEED_PARSER_PATTERN.MatchString(agent) || MAYBE_WATCHDOG_PATTERN.MatchString(agent) {
+  if RxMaybeCrawlerPattern.MatchString(agent) || p.hasCrawlerPrefix(agent) || RxMaybeFeedParserPattern.MatchString(agent) || RxMaybeWatchdogPattern.MatchString(agent) {
     return p.PopulateDataSet(result, "VariousCrawler")
   }
   return ErrNoMatch
 }
 
-var CRAWLER_PREFIX_PATTERNS []string = []string{
+var CrawlerPrefixPatterns = []string{
   "Rome Client ",
   "UnwindFetchor/",
   "ia_archiver ",
@@ -637,7 +638,7 @@ var CRAWLER_PREFIX_PATTERNS []string = []string{
   "PostRank/",
 }
 func (p *Parser) hasCrawlerPrefix(agent string) bool {
-  for _, pattern := range CRAWLER_PREFIX_PATTERNS {
+  for _, pattern := range CrawlerPrefixPatterns {
     if strings.HasPrefix(agent, pattern) {
       return true
     }
@@ -706,9 +707,8 @@ func (p *Parser) ChallengeWindows(agent string, result *Result) error {
   if strings.Contains(agent, "Xbox") {
     if strings.Contains(agent, "Xbox; Xbox One)") {
       return p.PopulateDataSet(result, "XboxOne")
-    } else {
-      return p.PopulateDataSet(result, "Xbox360")
     }
+    return p.PopulateDataSet(result, "Xbox360")
   }
 
   win, err := p.LookupDataSet("Win")
@@ -716,7 +716,7 @@ func (p *Parser) ChallengeWindows(agent string, result *Result) error {
     return err
   }
 
-  match := WINDOWS_VERSION_PATTERN.FindStringSubmatchIndex(agent)
+  match := RxWindowsVersionPattern.FindStringSubmatchIndex(agent)
   if match == nil {
     result.Category = win.Category
     result.Os       = win.Name
@@ -845,7 +845,7 @@ func (p *Parser) ChallengeSmartphone(agent string, result *Result) error {
   }
 
   if result.Name == firefox.Name {
-    if FIREFOXOS_PATTERN.MatchString(agent) {
+    if RxFirefoxOSPattern.MatchString(agent) {
       data, err = p.LookupDataSet("FirefoxOS")
       if err != nil {
         return err
@@ -865,7 +865,7 @@ func (p *Parser) ChallengeSmartphone(agent string, result *Result) error {
 
 func (p *Parser) ChallengeMobilephone(agent string, result *Result) error {
   if strings.Contains(agent, "KDDI-") {
-    if match := KDDI_PATTERN.FindStringSubmatchIndex(agent); match != nil {
+    if match := RxKDDIPattern.FindStringSubmatchIndex(agent); match != nil {
       term := agent[match[2]:match[3]]
       data, err := p.LookupDataSet("au")
       if err != nil {
@@ -879,7 +879,7 @@ func (p *Parser) ChallengeMobilephone(agent string, result *Result) error {
   }
 
   if strings.Contains(agent, "WILLCOM") || strings.Contains(agent, "DDIPOCKET") {
-    if match := WILLCOM_PATTERN.FindStringSubmatchIndex(agent); match != nil {
+    if match := RxWillcomPattern.FindStringSubmatchIndex(agent); match != nil {
       term := agent[match[2]:match[3]]
       data, err := p.LookupDataSet("willcom")
       if err != nil {
@@ -950,10 +950,10 @@ func (p *Parser) ChallengeMsie(agent string, result *Result) error {
     return ErrNoMatch
   }
 
-  version := VALUE_UNKNOWN
-  if match := MSIE_PATTERN.FindStringSubmatchIndex(agent); match != nil {
+  version := ValueUnknown
+  if match := RxMSIEPattern.FindStringSubmatchIndex(agent); match != nil {
     version = agent[match[2]:match[3]]
-  } else if matches := TRIDENT_PATTERN.FindAllStringSubmatchIndex(agent, -1); matches != nil {
+  } else if matches := RxTridentPattern.FindAllStringSubmatchIndex(agent, -1); matches != nil {
     second := matches[1]
     version = agent[second[2]:second[3]]
   }
@@ -972,7 +972,7 @@ func (p *Parser) ChallengeSafariChrome(agent string, result *Result) error {
     return ErrNoMatch
   }
 
-  if match := CHROME_PATTERN.FindStringSubmatchIndex(agent); match != nil {
+  if match := RxChromePattern.FindStringSubmatchIndex(agent); match != nil {
     err := p.PopulateDataSet(result, "Chrome")
     if err != nil {
       return err
@@ -982,8 +982,8 @@ func (p *Parser) ChallengeSafariChrome(agent string, result *Result) error {
     return nil
   }
 
-  version := VALUE_UNKNOWN
-  if match := SAFARI_PATTERN.FindStringSubmatchIndex(agent); match != nil {
+  version := ValueUnknown
+  if match := RxSafariPattern.FindStringSubmatchIndex(agent); match != nil {
     version = agent[match[2]:match[3]]
   }
 
@@ -1000,8 +1000,8 @@ func (p *Parser) ChallengeFirefox(agent string, result *Result) error {
     return ErrNoMatch
   }
 
-  version := VALUE_UNKNOWN
-  if match := FIREFOX_PATTERN.FindStringSubmatchIndex(agent); match != nil {
+  version := ValueUnknown
+  if match := RxFirefoxPattern.FindStringSubmatchIndex(agent); match != nil {
     version = agent[match[2]:match[3]]
   }
 
@@ -1013,17 +1013,15 @@ func (p *Parser) ChallengeFirefox(agent string, result *Result) error {
   return nil
 }
 
-var OPERA_VERSION_PATTERN1 = regexp.MustCompile(`Version/([.0-9]+)`)
-var OPERA_VERSION_PATTERN2 = regexp.MustCompile(`Opera[/ ]([.0-9]+)`)
 func (p *Parser) ChallengeOpera(agent string, result *Result) error {
   if ! strings.Contains(agent, "Opera") {
     return ErrNoMatch
   }
 
-  version := VALUE_UNKNOWN
-  if match := OPERA_VERSION_PATTERN1.FindStringSubmatchIndex(agent); match != nil {
+  version := ValueUnknown
+  if match := RxOperaVersionPattern1.FindStringSubmatchIndex(agent); match != nil {
     version = agent[match[2]:match[3]]
-  } else if match := OPERA_VERSION_PATTERN2.FindStringSubmatchIndex(agent); match != nil {
+  } else if match := RxOperaVersionPattern2.FindStringSubmatchIndex(agent); match != nil {
     version = agent[match[2]:match[3]]
   }
 
@@ -1041,10 +1039,10 @@ func (p *Parser) ChallengeDocomo(agent string, result *Result) error {
     return ErrNoMatch
   }
 
-  version := VALUE_UNKNOWN
-  if match := DOCOMO_VERSION_PATTERN.FindStringSubmatchIndex(agent); match != nil {
+  version := ValueUnknown
+  if match := RxDocomoVersionPattern.FindStringSubmatchIndex(agent); match != nil {
     version = agent[match[2]:match[3]]
-  } else if match := FOMA_VERSION_PATTERN.FindStringSubmatchIndex(agent); match != nil {
+  } else if match := RxFOMAVersionPattern.FindStringSubmatchIndex(agent); match != nil {
     version = agent[match[2]:match[3]]
   }
 
@@ -1061,8 +1059,8 @@ func (p *Parser) ChallengeAu(agent string, result *Result) error {
     return ErrNoMatch
   }
 
-  version := VALUE_UNKNOWN
-  if match := KDDI_PATTERN.FindStringSubmatchIndex(agent); match != nil {
+  version := ValueUnknown
+  if match := RxKDDIPattern.FindStringSubmatchIndex(agent); match != nil {
     version = agent[match[2]:match[3]]
   }
 
@@ -1079,8 +1077,8 @@ func (p *Parser) ChallengeSoftbank(agent string, result *Result) error {
     return ErrNoMatch
   }
 
-  version := VALUE_UNKNOWN
-  if match := SOFTBANK_PATTERN.FindStringSubmatchIndex(agent); match != nil {
+  version := ValueUnknown
+  if match := RxSoftbankPattern.FindStringSubmatchIndex(agent); match != nil {
     version = agent[match[2]:match[3]]
   }
 
@@ -1097,8 +1095,8 @@ func (p *Parser) ChallengeWillcom(agent string, result *Result) error {
     return ErrNoMatch
   }
 
-  version := VALUE_UNKNOWN
-  if match := WILLCOM_PATTERN.FindStringSubmatchIndex(agent); match != nil {
+  version := ValueUnknown
+  if match := RxWillcomPattern.FindStringSubmatchIndex(agent); match != nil {
     version = agent[match[2]:match[3]]
   }
 
@@ -1117,7 +1115,7 @@ func (p *Parser) ChallengeMiscMobilephone(agent string, result *Result) error {
       return err
     }
 
-    if match := JIG_PATTERN.FindStringSubmatchIndex(agent); match != nil {
+    if match := RxJigPattern.FindStringSubmatchIndex(agent); match != nil {
       result.Version = agent[match[2]:match[3]]
     }
     return nil

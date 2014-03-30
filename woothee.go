@@ -16,19 +16,19 @@ type Result struct {
 type DataSet map[string]*Result
 
 const (
-  VALUE_UNKNOWN         = "UNKNOWN"
-  CATEGORY_PC           = "pc"
-  CATEGORY_SMARTPHONE   = "smartphone"
-  CATEGORY_MOBILEPHONE  = "mobilephone"
-  CATEGORY_APPLIANCE    = "appliance"
-  CATEGORY_CRAWLER      = "crawler"
-  CATEGORY_MISC         = "misc"
+  ValueUnknown         = "UNKNOWN"
+  CategoryPC           = "pc"
+  CategorySmartphone   = "smartphone"
+  CategoryMobilephone  = "mobilephone"
+  CategoryAppliance    = "appliance"
+  CategoryCrawler      = "crawler"
+  CategoryMisc         = "misc"
 )
 
 var (
-  EmptyResult   = &Result { VALUE_UNKNOWN, VALUE_UNKNOWN, VALUE_UNKNOWN, VALUE_UNKNOWN, VALUE_UNKNOWN, VALUE_UNKNOWN }
-  ErrNoMatch    = errors.New("No match")
-  ErrNoDataSet  = errors.New("No such dataset")
+  EmptyResult   = &Result { ValueUnknown, ValueUnknown, ValueUnknown, ValueUnknown, ValueUnknown, ValueUnknown }
+  ErrNoMatch    = errors.New("no match")
+  ErrNoDataSet  = errors.New("no such dataset")
   DefaultParser = NewParser()
 )
 
@@ -36,6 +36,8 @@ func (r *Result) Clone() (*Result) {
   return &Result { r.Name, r.Category, r.Os, r.Type, r.Version, r.Vendor }
 }
 
+// Parse parses the given agent string, and returns a Result struct or
+// an error if any
 func Parse(agent string) (*Result, error) {
   return DefaultParser.Parse(agent)
 }
