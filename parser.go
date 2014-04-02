@@ -21,6 +21,7 @@ var (
   RxMSIEPattern = regexp.MustCompile(`MSIE ([.0-9]+);`)
   RxOperaVersionPattern1 = regexp.MustCompile(`Version/([.0-9]+)`)
   RxOperaVersionPattern2 = regexp.MustCompile(`Opera[/ ]([.0-9]+)`)
+  RxOperaVersionPattern3 = regexp.MustCompile(`OPR/([.0-9]+)`)
   RxSafariPattern = regexp.MustCompile(`Version/([.0-9]+)`)
   RxSoftbankPattern = regexp.MustCompile(`(?:SoftBank|Vodafone|J-PHONE)/[.0-9]+/([^ /;()]+)`)
   RxTridentPattern = regexp.MustCompile(`Trident/([.0-9]+); rv ([.0-9]+)`)
@@ -973,6 +974,17 @@ func (p *Parser) ChallengeSafariChrome(agent string, result *Result) error {
   }
 
   if match := RxChromePattern.FindStringSubmatchIndex(agent); match != nil {
+    // Work with Opera (blink)
+    if operaMatch := RxOperaVersionPattern3.FindStringSubmatchIndex(agent); operaMatch != nil {
+      version := agent[operaMatch[2]:operaMatch[3]]
+      err := p.PopulateDataSet(result, "Opera")
+      if err != nil {
+        return err
+      }
+      result.Version = version
+      return nil
+    }
+
     err := p.PopulateDataSet(result, "Chrome")
     if err != nil {
       return err
