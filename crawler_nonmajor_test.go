@@ -12,22 +12,22 @@ func Test_crawler_nonmajor(t *testing.T) {
     if err != nil {
         t.Errorf(`Failed to parse 'emBot-GalaBuzz/Nutch-1.0 (http://emining.jp/; em@galabuzz.jp)': %s`, err)
     } else {
-        if result.Name != "misc crawler" {
-            t.Errorf("Expected result.Name to be 'misc crawler', but got '%s'", result.Name)
-        }
         if result.Category != "crawler" {
             t.Errorf("Expected result.Category to be 'crawler', but got '%s'", result.Category)
+        }
+        if result.Name != "misc crawler" {
+            t.Errorf("Expected result.Name to be 'misc crawler', but got '%s'", result.Name)
         }
     }
     result, err = Parse(`Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US; aggregator VocusBot 0.4; +http://www.vocus.com/vnhs.html)`)
     if err != nil {
         t.Errorf(`Failed to parse 'Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US; aggregator VocusBot 0.4; +http://www.vocus.com/vnhs.html)': %s`, err)
     } else {
-        if result.Category != "pc" {
-            t.Errorf("Expected result.Category to be 'pc', but got '%s'", result.Category)
-        }
         if result.Os != "Windows Vista" {
             t.Errorf("Expected result.Os to be 'Windows Vista', but got '%s'", result.Os)
+        }
+        if result.Category != "pc" {
+            t.Errorf("Expected result.Category to be 'pc', but got '%s'", result.Category)
         }
         if result.Name != "UNKNOWN" {
             t.Errorf("Expected result.Name to be 'UNKNOWN', but got '%s'", result.Name)
@@ -70,11 +70,11 @@ func Test_crawler_nonmajor(t *testing.T) {
     if err != nil {
         t.Errorf(`Failed to parse '"mapion-news-bot/1.0 (http://www.mapion.co.jp/news/)"': %s`, err)
     } else {
-        if result.Category != "crawler" {
-            t.Errorf("Expected result.Category to be 'crawler', but got '%s'", result.Category)
-        }
         if result.Name != "misc crawler" {
             t.Errorf("Expected result.Name to be 'misc crawler', but got '%s'", result.Name)
+        }
+        if result.Category != "crawler" {
+            t.Errorf("Expected result.Category to be 'crawler', but got '%s'", result.Category)
         }
     }
     result, err = Parse(`Mozilla/5.0 (compatible; MJ12bot/v1.4.0; http://www.majestic12.co.uk/bot.php?+)`)
@@ -92,22 +92,22 @@ func Test_crawler_nonmajor(t *testing.T) {
     if err != nil {
         t.Errorf(`Failed to parse 'Mozilla/5.0 (compatible; TweetmemeBot/2.11; +http://tweetmeme.com/)': %s`, err)
     } else {
-        if result.Category != "crawler" {
-            t.Errorf("Expected result.Category to be 'crawler', but got '%s'", result.Category)
-        }
         if result.Name != "misc crawler" {
             t.Errorf("Expected result.Name to be 'misc crawler', but got '%s'", result.Name)
+        }
+        if result.Category != "crawler" {
+            t.Errorf("Expected result.Category to be 'crawler', but got '%s'", result.Category)
         }
     }
     result, err = Parse(`Mozilla/5.0 (compatible; PaperLiBot/2.1; http://support.paper.li/entries/20023257-what-is-paper-li)`)
     if err != nil {
         t.Errorf(`Failed to parse 'Mozilla/5.0 (compatible; PaperLiBot/2.1; http://support.paper.li/entries/20023257-what-is-paper-li)': %s`, err)
     } else {
-        if result.Name != "misc crawler" {
-            t.Errorf("Expected result.Name to be 'misc crawler', but got '%s'", result.Name)
-        }
         if result.Category != "crawler" {
             t.Errorf("Expected result.Category to be 'crawler', but got '%s'", result.Category)
+        }
+        if result.Name != "misc crawler" {
+            t.Errorf("Expected result.Name to be 'misc crawler', but got '%s'", result.Name)
         }
     }
     result, err = Parse(`SearQuBot/SearQuBot v1.0`)
@@ -125,55 +125,55 @@ func Test_crawler_nonmajor(t *testing.T) {
     if err != nil {
         t.Errorf(`Failed to parse 'Mozilla/5.0 (compatible; ADJUSTbot/2.0; +http://www.ad-just.jp/)': %s`, err)
     } else {
-        if result.Category != "crawler" {
-            t.Errorf("Expected result.Category to be 'crawler', but got '%s'", result.Category)
-        }
         if result.Name != "misc crawler" {
             t.Errorf("Expected result.Name to be 'misc crawler', but got '%s'", result.Name)
+        }
+        if result.Category != "crawler" {
+            t.Errorf("Expected result.Category to be 'crawler', but got '%s'", result.Category)
         }
     }
     result, err = Parse(`FTRF: Friendly robot/1.3`)
     if err != nil {
         t.Errorf(`Failed to parse 'FTRF: Friendly robot/1.3': %s`, err)
     } else {
-        if result.Category != "crawler" {
-            t.Errorf("Expected result.Category to be 'crawler', but got '%s'", result.Category)
-        }
         if result.Name != "misc crawler" {
             t.Errorf("Expected result.Name to be 'misc crawler', but got '%s'", result.Name)
+        }
+        if result.Category != "crawler" {
+            t.Errorf("Expected result.Category to be 'crawler', but got '%s'", result.Category)
         }
     }
     result, err = Parse(`kizasi-spider/1.0 (+http://kizasi.jp/)`)
     if err != nil {
         t.Errorf(`Failed to parse 'kizasi-spider/1.0 (+http://kizasi.jp/)': %s`, err)
     } else {
-        if result.Category != "crawler" {
-            t.Errorf("Expected result.Category to be 'crawler', but got '%s'", result.Category)
-        }
         if result.Name != "misc crawler" {
             t.Errorf("Expected result.Name to be 'misc crawler', but got '%s'", result.Name)
+        }
+        if result.Category != "crawler" {
+            t.Errorf("Expected result.Category to be 'crawler', but got '%s'", result.Category)
         }
     }
     result, err = Parse(`BlogramCrawler/1.0.1(+http://blogram.jp/)`)
     if err != nil {
         t.Errorf(`Failed to parse 'BlogramCrawler/1.0.1(+http://blogram.jp/)': %s`, err)
     } else {
-        if result.Name != "misc crawler" {
-            t.Errorf("Expected result.Name to be 'misc crawler', but got '%s'", result.Name)
-        }
         if result.Category != "crawler" {
             t.Errorf("Expected result.Category to be 'crawler', but got '%s'", result.Category)
+        }
+        if result.Name != "misc crawler" {
+            t.Errorf("Expected result.Name to be 'misc crawler', but got '%s'", result.Name)
         }
     }
     result, err = Parse(`www2.apserver.net ASP-Ranker Feed Crawler`)
     if err != nil {
         t.Errorf(`Failed to parse 'www2.apserver.net ASP-Ranker Feed Crawler': %s`, err)
     } else {
-        if result.Name != "misc crawler" {
-            t.Errorf("Expected result.Name to be 'misc crawler', but got '%s'", result.Name)
-        }
         if result.Category != "crawler" {
             t.Errorf("Expected result.Category to be 'crawler', but got '%s'", result.Category)
+        }
+        if result.Name != "misc crawler" {
+            t.Errorf("Expected result.Name to be 'misc crawler', but got '%s'", result.Name)
         }
     }
     result, err = Parse(`Rome Client (http://tinyurl.com/64t5n)`)
@@ -202,11 +202,11 @@ func Test_crawler_nonmajor(t *testing.T) {
     if err != nil {
         t.Errorf(`Failed to parse 'ia_archiver (+http://www.alexa.com/site/help/webmasters; crawler@alexa.com)': %s`, err)
     } else {
-        if result.Category != "crawler" {
-            t.Errorf("Expected result.Category to be 'crawler', but got '%s'", result.Category)
-        }
         if result.Name != "misc crawler" {
             t.Errorf("Expected result.Name to be 'misc crawler', but got '%s'", result.Name)
+        }
+        if result.Category != "crawler" {
+            t.Errorf("Expected result.Category to be 'crawler', but got '%s'", result.Category)
         }
     }
     result, err = Parse(`Summify (Summify/1.0.1; +http://summify.com)`)
@@ -224,11 +224,11 @@ func Test_crawler_nonmajor(t *testing.T) {
     if err != nil {
         t.Errorf(`Failed to parse 'PostRank/2.0 (postrank.com; 1 subscribers)': %s`, err)
     } else {
-        if result.Name != "misc crawler" {
-            t.Errorf("Expected result.Name to be 'misc crawler', but got '%s'", result.Name)
-        }
         if result.Category != "crawler" {
             t.Errorf("Expected result.Category to be 'crawler', but got '%s'", result.Category)
+        }
+        if result.Name != "misc crawler" {
+            t.Errorf("Expected result.Name to be 'misc crawler', but got '%s'", result.Name)
         }
     }
     result, err = Parse(`cloudforecastbot`)
@@ -257,11 +257,11 @@ func Test_crawler_nonmajor(t *testing.T) {
     if err != nil {
         t.Errorf(`Failed to parse 'Rainmeter WebParser plugin': %s`, err)
     } else {
-        if result.Category != "crawler" {
-            t.Errorf("Expected result.Category to be 'crawler', but got '%s'", result.Category)
-        }
         if result.Name != "misc crawler" {
             t.Errorf("Expected result.Name to be 'misc crawler', but got '%s'", result.Name)
+        }
+        if result.Category != "crawler" {
+            t.Errorf("Expected result.Category to be 'crawler', but got '%s'", result.Category)
         }
     }
     result, err = Parse(`Data-Hotel-Watchdog/1.1`)

@@ -12,6 +12,9 @@ func Test_pc_lowpriority(t *testing.T) {
     if err != nil {
         t.Errorf(`Failed to parse 'Sleipnir/2.9.9': %s`, err)
     } else {
+        if result.Version != "2.9.9" {
+            t.Errorf("Expected result.Version to be '2.9.9', but got '%s'", result.Version)
+        }
         if result.Os != "Windows UNKNOWN Ver" {
             t.Errorf("Expected result.Os to be 'Windows UNKNOWN Ver', but got '%s'", result.Os)
         }
@@ -20,9 +23,6 @@ func Test_pc_lowpriority(t *testing.T) {
         }
         if result.Category != "pc" {
             t.Errorf("Expected result.Category to be 'pc', but got '%s'", result.Category)
-        }
-        if result.Version != "2.9.9" {
-            t.Errorf("Expected result.Version to be '2.9.9', but got '%s'", result.Version)
         }
     }
 }
