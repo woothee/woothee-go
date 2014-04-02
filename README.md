@@ -1,4 +1,4 @@
-go-woothee
+go-wootheeg
 ==========
 
 [![Build Status](https://travis-ci.org/woothee/woothee-go.png?branch=master)](https://travis-ci.org/woothee/woothee-go)
@@ -29,3 +29,28 @@ func main() {
     */
 }
 ```
+
+# Working with the source code
+
+Note: You need to have GOROOT, GOPATH et al set correctly
+
+## Fetching the source
+
+```
+go get github.com/woothee/woothee-go
+```
+
+## Running Tests
+
+```
+go test -v ./...
+```
+
+## Updating woothee definition
+
+```
+cpanm YAML
+perl maint/gendataset.pl
+```
+
+This updates the dataset.go and other tests
