@@ -9,7 +9,7 @@ var (
   RxChromePattern = regexp.MustCompile(`(?:Chrome|CrMo|CriOS)/([.0-9]+)`)
   RxDocomoVersionPattern = regexp.MustCompile(`DoCoMo/[.0-9]+[ /]([^- /;()"']+)`)
   RxFirefoxPattern = regexp.MustCompile(`Firefox/([.0-9]+)`)
-  RxFirefoxOSPattern = regexp.MustCompile(`^Mozilla/[.0-9]+ \(Mobile;(.*;)? rv:[.0-9]+\) Gecko/[.0-9]+ Firefox/[.0-9]+$`)
+  RxFirefoxOSPattern = regexp.MustCompile(`^Mozilla/[.0-9]+ \((Mobile|Tablet);(.*;)? rv:[.0-9]+\) Gecko/[.0-9]+ Firefox/[.0-9]+$`)
   RxFOMAVersionPattern = regexp.MustCompile(`\(([^;)]+);FOMA;`)
   RxHeadlineReaderPattern = regexp.MustCompile(`(?i)headline-reader`)
   RxJigPattern = regexp.MustCompile(`jig browser[^;]+; ([^);]+)`)
@@ -778,7 +778,7 @@ func (p *Parser) ChallengeOsx(agent string, result *Result) error {
       data, err = p.LookupDataSet("iPhone")
     case strings.Contains(agent, "iPad;"):
       data, err = p.LookupDataSet("iPad")
-    case strings.Contains(agent, "iPod;"):
+    case strings.Contains(agent, "iPod"):
       data, err = p.LookupDataSet("iPod")
     }
     if err != nil {
@@ -840,6 +840,7 @@ func (p *Parser) ChallengeSmartphone(agent string, result *Result) error {
 
   // Firefox OS specific pattern
   // http://lawrencemandel.com/2012/07/27/decision-made-firefox-os-user-agent-string/
+  // https://github.com/woothee/woothee/issues/2
   firefox, err := p.LookupDataSet("Firefox")
   if err != nil {
     return err
@@ -1181,6 +1182,8 @@ func (p *Parser) ChallengeMiscOs(agent string, result *Result) error {
     data, err = p.LookupDataSet("MacOS")
   case strings.Contains(agent, "X11; FreeBSD "):
     data, err = p.LookupDataSet("BSD")
+  case strings.Contains(agent, "X11; CrOS "):
+    data, err = p.LookupDataSet("ChromeOS")
   }
 
   if err != nil {
