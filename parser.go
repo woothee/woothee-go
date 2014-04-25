@@ -778,7 +778,7 @@ func (p *Parser) ChallengeOsx(agent string, result *Result) error {
       data, err = p.LookupDataSet("iPhone")
     case strings.Contains(agent, "iPad;"):
       data, err = p.LookupDataSet("iPad")
-    case strings.Contains(agent, "iPod;"):
+    case strings.Contains(agent, "iPod"):
       data, err = p.LookupDataSet("iPod")
     }
     if err != nil {
