@@ -117,6 +117,11 @@ var DefaultDataSet DataSet = DataSet {
     Type:     "pc",
     Category: "pc",
   },
+  "ChromeOS": &Result {
+    Name:     "ChromeOS",
+    Type:     "pc",
+    Category: "pc",
+  },
   "Android": &Result {
     Name:     "Android",
     Type:     "smartphone",
