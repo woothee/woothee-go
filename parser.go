@@ -1181,6 +1181,8 @@ func (p *Parser) ChallengeMiscOs(agent string, result *Result) error {
     data, err = p.LookupDataSet("MacOS")
   case strings.Contains(agent, "X11; FreeBSD "):
     data, err = p.LookupDataSet("BSD")
+  case strings.Contains(agent, "X11; CrOS "):
+    data, err = p.LookupDataSet("ChromeOS")
   }
 
   if err != nil {
