@@ -9,7 +9,7 @@ var (
   RxChromePattern = regexp.MustCompile(`(?:Chrome|CrMo|CriOS)/([.0-9]+)`)
   RxDocomoVersionPattern = regexp.MustCompile(`DoCoMo/[.0-9]+[ /]([^- /;()"']+)`)
   RxFirefoxPattern = regexp.MustCompile(`Firefox/([.0-9]+)`)
-  RxFirefoxOSPattern = regexp.MustCompile(`^Mozilla/[.0-9]+ \(Mobile;(.*;)? rv:[.0-9]+\) Gecko/[.0-9]+ Firefox/[.0-9]+$`)
+  RxFirefoxOSPattern = regexp.MustCompile(`^Mozilla/[.0-9]+ \((Mobile|Tablet);(.*;)? rv:[.0-9]+\) Gecko/[.0-9]+ Firefox/[.0-9]+$`)
   RxFOMAVersionPattern = regexp.MustCompile(`\(([^;)]+);FOMA;`)
   RxHeadlineReaderPattern = regexp.MustCompile(`(?i)headline-reader`)
   RxJigPattern = regexp.MustCompile(`jig browser[^;]+; ([^);]+)`)
@@ -840,6 +840,7 @@ func (p *Parser) ChallengeSmartphone(agent string, result *Result) error {
 
   // Firefox OS specific pattern
   // http://lawrencemandel.com/2012/07/27/decision-made-firefox-os-user-agent-string/
+  // https://github.com/woothee/woothee/issues/2
   firefox, err := p.LookupDataSet("Firefox")
   if err != nil {
     return err
