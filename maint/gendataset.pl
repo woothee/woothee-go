@@ -57,7 +57,7 @@ EOM
 }
 
 sub write_testset {
-    foreach my $file (glob("woothee/testsets/*.yaml")) {
+    foreach my $file (sort glob("woothee/testsets/*.yaml")) {
         my $basename = File::Basename::basename($file);
         my $testname = $basename;
         $testname =~ s/\.yaml//;
@@ -78,14 +78,14 @@ func Test_$testname(t *testing.T) {
     var err     error
 
 EOM
-        foreach my $e (@$testset) {
+        foreach my $e (sort { $a->{target} <=> $b->{target} } @$testset) {
             print $out <<EOM;
     result, err = Parse(`$e->{target}`)
     if err != nil {
         t.Errorf(`Failed to parse '$e->{target}': %s`, err)
     } else {
 EOM
-            foreach my $key (grep { !/^target$/ } keys %$e) {
+            foreach my $key (sort grep { !/^target$/ } keys %$e) {
                 my $uc_key = ucfirst $key;
                 my $expect = $e->{$key} || "UNKNOWN";
                 print $out <<EOM
