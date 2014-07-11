@@ -24,7 +24,7 @@ var (
 	RxOperaVersionPattern3   = regexp.MustCompile(`OPR/([.0-9]+)`)
 	RxSafariPattern          = regexp.MustCompile(`Version/([.0-9]+)`)
 	RxSoftbankPattern        = regexp.MustCompile(`(?:SoftBank|Vodafone|J-PHONE)/[.0-9]+/([^ /;()]+)`)
-	RxTridentPattern         = regexp.MustCompile(`Trident/([.0-9]+);(?: BOIE[0-9]+;[A-Z]+;)? rv ([.0-9]+)`)
+	RxTridentPattern         = regexp.MustCompile(`Trident/([.0-9]+);(?: BOIE[0-9]+;[A-Z]+;)? rv:([.0-9]+)`)
 	RxWillcomPattern         = regexp.MustCompile(`(?:WILLCOM|DDIPOCKET);[^/]+/([^ /;()]+)`)
 	RxWindowsVersionPattern  = regexp.MustCompile(`Windows ([ .a-zA-Z0-9]+)[;\\)]`)
 )
@@ -959,9 +959,8 @@ func (p *Parser) ChallengeMsie(agent string, result *Result) error {
 	version := ValueUnknown
 	if match := RxMSIEPattern.FindStringSubmatchIndex(agent); match != nil {
 		version = agent[match[2]:match[3]]
-	} else if matches := RxTridentPattern.FindAllStringSubmatchIndex(agent, -1); matches != nil {
-		second := matches[1]
-		version = agent[second[2]:second[3]]
+	} else if match := RxTridentPattern.FindStringSubmatchIndex(agent); match != nil {
+		version = agent[match[4]:match[5]]
 	}
 
 	err := p.PopulateDataSet(result, "MSIE")
