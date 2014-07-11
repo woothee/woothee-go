@@ -342,6 +342,8 @@ func (p *Parser) ChallengeCrawlers(agent string, result *Result) error {
 			return p.PopulateDataSet(result, "YahooJP")
 		case strings.Contains(agent, "crawler (http://listing.yahoo.co.jp/support/faq/") || strings.Contains(agent, "crawler (http://help.yahoo.co.jp/help/jp/"):
 			return p.PopulateDataSet(result, "YahooJP")
+		case strings.Contains(agent, "Y!J-BRZ/YATSHA crawler") || strings.Contains(agent, "Y!J-BRY/YATSH crawler"):
+			return p.PopulateDataSet(result, "YahooJP")
 		case strings.Contains(agent, "Yahoo Pipes"):
 			return p.PopulateDataSet(result, "YahooPipes")
 		}
