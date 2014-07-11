@@ -1,4 +1,4 @@
-go-wootheeg
+woothee-go
 ==========
 
 [![Build Status](https://travis-ci.org/woothee/woothee-go.png?branch=master)](https://travis-ci.org/woothee/woothee-go)
