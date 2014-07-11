@@ -24,7 +24,7 @@ var (
 	RxOperaVersionPattern3   = regexp.MustCompile(`OPR/([.0-9]+)`)
 	RxSafariPattern          = regexp.MustCompile(`Version/([.0-9]+)`)
 	RxSoftbankPattern        = regexp.MustCompile(`(?:SoftBank|Vodafone|J-PHONE)/[.0-9]+/([^ /;()]+)`)
-	RxTridentPattern         = regexp.MustCompile(`Trident/([.0-9]+); rv ([.0-9]+)`)
+	RxTridentPattern         = regexp.MustCompile(`Trident/([.0-9]+);(?: BOIE[0-9]+;[A-Z]+;)? rv ([.0-9]+)`)
 	RxWillcomPattern         = regexp.MustCompile(`(?:WILLCOM|DDIPOCKET);[^/]+/([^ /;()]+)`)
 	RxWindowsVersionPattern  = regexp.MustCompile(`Windows ([ .a-zA-Z0-9]+)[;\\)]`)
 )
