@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func Test_pc_windows(t *testing.T) {
+func Test_pc_win(t *testing.T) {
 	var result *Result
 	var err error
 

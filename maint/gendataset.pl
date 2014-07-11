@@ -10,6 +10,7 @@ sub main {
     }
     write_dataset();
     write_testset();
+    system("go", "fmt", ".")
 }
 
 sub write_dataset {
@@ -60,6 +61,7 @@ sub write_testset {
     foreach my $file (sort glob("woothee/testsets/*.yaml")) {
         my $basename = File::Basename::basename($file);
         my $testname = $basename;
+        $testname =~ s/_windows/_win/;
         $testname =~ s/\.yaml//;
         my $out_file = "${testname}_test.go";
 
