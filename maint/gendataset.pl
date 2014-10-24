@@ -89,6 +89,7 @@ EOM
 EOM
             foreach my $key (sort grep { !/^target$/ } keys %$e) {
                 my $uc_key = ucfirst $key;
+                $uc_key =~ s/_(.)/uc $1/ge;
                 my $expect = $e->{$key} || "UNKNOWN";
                 print $out <<EOM
         if result.$uc_key != "$expect" {

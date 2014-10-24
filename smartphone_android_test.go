@@ -22,6 +22,9 @@ func Test_smartphone_android(t *testing.T) {
 		if result.Os != "Android" {
 			t.Errorf("Expected result.Os to be 'Android', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "2.3.5" {
+			t.Errorf("Expected result.OsVersion to be '2.3.5', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "4.0" {
 			t.Errorf("Expected result.Version to be '4.0', but got '%s'", result.Version)
 		}
@@ -39,6 +42,9 @@ func Test_smartphone_android(t *testing.T) {
 		if result.Os != "Android" {
 			t.Errorf("Expected result.Os to be 'Android', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "3.1" {
+			t.Errorf("Expected result.OsVersion to be '3.1', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "4.0" {
 			t.Errorf("Expected result.Version to be '4.0', but got '%s'", result.Version)
 		}
@@ -55,6 +61,9 @@ func Test_smartphone_android(t *testing.T) {
 		}
 		if result.Os != "Android" {
 			t.Errorf("Expected result.Os to be 'Android', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "4.0.3" {
+			t.Errorf("Expected result.OsVersion to be '4.0.3', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "16.0.912.75" {
 			t.Errorf("Expected result.Version to be '16.0.912.75', but got '%s'", result.Version)
@@ -89,6 +98,9 @@ func Test_smartphone_android(t *testing.T) {
 		}
 		if result.Os != "Android" {
 			t.Errorf("Expected result.Os to be 'Android', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "4.2.2" {
+			t.Errorf("Expected result.OsVersion to be '4.2.2', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "20.0.1396.73172" {
 			t.Errorf("Expected result.Version to be '20.0.1396.73172', but got '%s'", result.Version)
@@ -140,6 +152,9 @@ func Test_smartphone_android(t *testing.T) {
 		}
 		if result.Os != "Android" {
 			t.Errorf("Expected result.Os to be 'Android', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "2.3.4" {
+			t.Errorf("Expected result.OsVersion to be '2.3.4', but got '%s'", result.OsVersion)
 		}
 	}
 	result, err = Parse(`LDNReader/2.0.1 (Android)`)

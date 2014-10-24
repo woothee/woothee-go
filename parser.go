@@ -6,27 +6,38 @@ import (
 )
 
 var (
-	RxChromePattern          = regexp.MustCompile(`(?:Chrome|CrMo|CriOS)/([.0-9]+)`)
-	RxDocomoVersionPattern   = regexp.MustCompile(`DoCoMo/[.0-9]+[ /]([^- /;()"']+)`)
-	RxFirefoxPattern         = regexp.MustCompile(`Firefox/([.0-9]+)`)
-	RxFirefoxOSPattern       = regexp.MustCompile(`^Mozilla/[.0-9]+ \((Mobile|Tablet);(.*;)? rv:[.0-9]+\) Gecko/[.0-9]+ Firefox/[.0-9]+$`)
-	RxFOMAVersionPattern     = regexp.MustCompile(`\(([^;)]+);FOMA;`)
-	RxHeadlineReaderPattern  = regexp.MustCompile(`(?i)headline-reader`)
-	RxJigPattern             = regexp.MustCompile(`jig browser[^;]+; ([^);]+)`)
-	RxKDDIPattern            = regexp.MustCompile(`KDDI-([^- /;()"']+)`)
-	RxMaybeRSSPattern        = regexp.MustCompile(`(?i)rss(?:reader|bar|[-_ /;()]|[ +]*/)`)
-	RxMaybeCrawlerPattern    = regexp.MustCompile(`(?i)(?:bot|crawler|spider)(?:[-_ ./;@()]|$)`)
-	RxMaybeFeedParserPattern = regexp.MustCompile(`(?i)(?:feed|web) ?parser`)
-	RxMaybeWatchdogPattern   = regexp.MustCompile(`(?i)watch ?dog`)
-	RxMSIEPattern            = regexp.MustCompile(`MSIE ([.0-9]+);`)
-	RxOperaVersionPattern1   = regexp.MustCompile(`Version/([.0-9]+)`)
-	RxOperaVersionPattern2   = regexp.MustCompile(`Opera[/ ]([.0-9]+)`)
-	RxOperaVersionPattern3   = regexp.MustCompile(`OPR/([.0-9]+)`)
-	RxSafariPattern          = regexp.MustCompile(`Version/([.0-9]+)`)
-	RxSoftbankPattern        = regexp.MustCompile(`(?:SoftBank|Vodafone|J-PHONE)/[.0-9]+/([^ /;()]+)`)
-	RxTridentPattern         = regexp.MustCompile(`Trident/([.0-9]+);(?: BOIE[0-9]+;[A-Z]+;)? rv:([.0-9]+)`)
-	RxWillcomPattern         = regexp.MustCompile(`(?:WILLCOM|DDIPOCKET);[^/]+/([^ /;()]+)`)
-	RxWindowsVersionPattern  = regexp.MustCompile(`Windows ([ .a-zA-Z0-9]+)[;\\)]`)
+	rxChromePattern          = regexp.MustCompile(`(?:Chrome|CrMo|CriOS)/([.0-9]+)`)
+	rxDocomoVersionPattern   = regexp.MustCompile(`DoCoMo/[.0-9]+[ /]([^- /;()"']+)`)
+	rxFirefoxPattern         = regexp.MustCompile(`Firefox/([.0-9]+)`)
+	rxFirefoxOSPattern       = regexp.MustCompile(`^Mozilla/[.0-9]+ \((?:Mobile|Tablet);(?:.*;)? rv:([.0-9]+)\) Gecko/[.0-9]+ Firefox/[.0-9]+$`)
+	rxFOMAVersionPattern     = regexp.MustCompile(`\(([^;)]+);FOMA;`)
+	rxHeadlineReaderPattern  = regexp.MustCompile(`(?i)headline-reader`)
+	rxJigPattern             = regexp.MustCompile(`jig browser[^;]+; ([^);]+)`)
+	rxKDDIPattern            = regexp.MustCompile(`KDDI-([^- /;()"']+)`)
+	rxMaybeRSSPattern        = regexp.MustCompile(`(?i)rss(?:reader|bar|[-_ /;()]|[ +]*/)`)
+	rxMaybeCrawlerPattern    = regexp.MustCompile(`(?i)(?:bot|crawler|spider)(?:[-_ ./;@()]|$)`)
+	rxMaybeFeedParserPattern = regexp.MustCompile(`(?i)(?:feed|web) ?parser`)
+	rxMaybeWatchdogPattern   = regexp.MustCompile(`(?i)watch ?dog`)
+	rxMSIEPattern            = regexp.MustCompile(`MSIE ([.0-9]+);`)
+	rxOperaVersionPattern1   = regexp.MustCompile(`Version/([.0-9]+)`)
+	rxOperaVersionPattern2   = regexp.MustCompile(`Opera[/ ]([.0-9]+)`)
+	rxOperaVersionPattern3   = regexp.MustCompile(`OPR/([.0-9]+)`)
+	rxSafariPattern          = regexp.MustCompile(`Version/([.0-9]+)`)
+	rxSoftbankPattern        = regexp.MustCompile(`(?:SoftBank|Vodafone|J-PHONE)/[.0-9]+/([^ /;()]+)`)
+	rxTridentPattern         = regexp.MustCompile(`Trident/([.0-9]+);(?: BOIE[0-9]+;[A-Z]+;)? rv:([.0-9]+)`)
+	rxIEMobilePattern        = regexp.MustCompile(`IEMobile/([.0-9]+);`)
+	rxWillcomPattern         = regexp.MustCompile(`(?:WILLCOM|DDIPOCKET);[^/]+/([^ /;()]+)`)
+	rxWindowsVersionPattern  = regexp.MustCompile(`Windows ([ .a-zA-Z0-9]+)[;\\)]`)
+	rxWinPhone               = regexp.MustCompile(`^Phone(?: OS)? ([.0-9]+)`)
+	rxPPCOsVersion           = regexp.MustCompile(`rv:(\d+\.\d+\.\d+)`)
+	rxFreeBSDOsVersion       = regexp.MustCompile(`FreeBSD ([^;\)]+);`)
+	rxChromeOSOsVersion      = regexp.MustCompile(`CrOS ([^\)]+)\)`)
+	rxAndroidOSOsVersion     = regexp.MustCompile(`Android[- ](\d+\.\d+(?:\.\d+)?)`)
+	rxPSPOsVersion           = regexp.MustCompile(`PSP \(PlayStation Portable\); ([.0-9]+)\)`)
+	rxPS3OsVersion           = regexp.MustCompile(`PLAYSTATION 3;? ([.0-9]+)\)`)
+	rxPSVitaOsVersion        = regexp.MustCompile(`PlayStation Vita ([.0-9]+)\)`)
+	rxPS4OsVersion           = regexp.MustCompile(`PlayStation 4 ([.0-9]+)\)`)
+	rxBlackBerryOsVersion    = regexp.MustCompile(`BlackBerry(?:\d+)/([.0-9]+) `)
 )
 
 type Parser struct {
@@ -83,35 +94,38 @@ func (p *Parser) Parse(agent string) (result *Result, err error) {
 	return
 }
 
+func (r *Result) populateWith(ds *Result) {
+	if ds.Name != "" {
+		r.Name = ds.Name
+	}
+
+	if ds.Category != "" {
+		r.Category = ds.Category
+	}
+
+	if ds.Os != "" {
+		r.Os = ds.Os
+	}
+
+	if ds.Type != "" {
+		r.Type = ds.Type
+	}
+
+	if ds.Version != "" {
+		r.Version = ds.Version
+	}
+
+	if ds.Vendor != "" {
+		r.Vendor = ds.Vendor
+	}
+}
+
 func (p *Parser) PopulateDataSet(result *Result, label string) error {
 	ds, err := p.LookupDataSet(label)
 	if err != nil {
 		return err
 	}
-
-	if ds.Name != "" {
-		result.Name = ds.Name
-	}
-
-	if ds.Category != "" {
-		result.Category = ds.Category
-	}
-
-	if ds.Os != "" {
-		result.Os = ds.Os
-	}
-
-	if ds.Type != "" {
-		result.Type = ds.Type
-	}
-
-	if ds.Version != "" {
-		result.Version = ds.Version
-	}
-
-	if ds.Vendor != "" {
-		result.Vendor = ds.Vendor
-	}
+	result.populateWith(ds)
 
 	return nil
 }
@@ -620,7 +634,7 @@ func (p *Parser) isPHP(agent string) bool {
 }
 
 func (p *Parser) ChallengeMaybeRssReader(agent string, result *Result) error {
-	if RxMaybeRSSPattern.MatchString(agent) || RxHeadlineReaderPattern.MatchString(agent) || strings.Contains(agent, "cococ/") {
+	if rxMaybeRSSPattern.MatchString(agent) || rxHeadlineReaderPattern.MatchString(agent) || strings.Contains(agent, "cococ/") {
 		return p.PopulateDataSet(result, "VariousRSSReader")
 	}
 
@@ -628,7 +642,7 @@ func (p *Parser) ChallengeMaybeRssReader(agent string, result *Result) error {
 }
 
 func (p *Parser) ChallengeMaybeCrawler(agent string, result *Result) error {
-	if RxMaybeCrawlerPattern.MatchString(agent) || p.hasCrawlerPrefix(agent) || RxMaybeFeedParserPattern.MatchString(agent) || RxMaybeWatchdogPattern.MatchString(agent) {
+	if rxMaybeCrawlerPattern.MatchString(agent) || p.hasCrawlerPrefix(agent) || rxMaybeFeedParserPattern.MatchString(agent) || rxMaybeWatchdogPattern.MatchString(agent) {
 		return p.PopulateDataSet(result, "VariousCrawler")
 	}
 	return ErrNoMatch
@@ -657,23 +671,45 @@ func (p *Parser) hasCrawlerPrefix(agent string) bool {
 }
 
 func (p *Parser) ChallengePlaystation(agent string, result *Result) error {
-	if strings.Contains(agent, "PSP (PlayStation Portable)") {
-		return p.PopulateDataSet(result, "PSP")
+	var data *Result
+	var err error
+	var osVersion string
+
+	switch {
+	case strings.Contains(agent, "PSP (PlayStation Portable)"):
+		data, err = p.LookupDataSet("PSP")
+		if matches := rxPSPOsVersion.FindStringSubmatch(agent); matches != nil {
+			osVersion = matches[1]
+		}
+	case strings.Contains(agent, "PlayStation Vita"):
+		data, err = p.LookupDataSet("PSVita")
+		if matches := rxPSVitaOsVersion.FindStringSubmatch(agent); matches != nil {
+			osVersion = matches[1]
+		}
+	case strings.Contains(agent, "PLAYSTATION 3 ") || strings.Contains(agent, "PLAYSTATION 3;"):
+		data, err = p.LookupDataSet("PS3")
+		if matches := rxPS3OsVersion.FindStringSubmatch(agent); matches != nil {
+			osVersion = matches[1]
+		}
+	case strings.Contains(agent, "PlayStation 4 "):
+		data, err = p.LookupDataSet("PS4")
+		if matches := rxPS4OsVersion.FindStringSubmatch(agent); matches != nil {
+			osVersion = matches[1]
+		}
+	default:
+		return ErrNoMatch
 	}
 
-	if strings.Contains(agent, "PlayStation Vita") {
-		return p.PopulateDataSet(result, "PSVita")
+	if err != nil {
+		return err
 	}
 
-	if strings.Contains(agent, "PLAYSTATION 3 ") || strings.Contains(agent, "PLAYSTATION 3;") {
-		return p.PopulateDataSet(result, "PS3")
+	result.populateWith(data)
+	if osVersion != "" {
+		result.OsVersion = osVersion
 	}
 
-	if strings.Contains(agent, "PlayStation 4 ") {
-		return p.PopulateDataSet(result, "PS4")
-	}
-
-	return ErrNoMatch
+	return nil
 }
 
 func (p *Parser) ChallengeNintendo(agent string, result *Result) error {
@@ -721,7 +757,7 @@ func (p *Parser) ChallengeWindows(agent string, result *Result) error {
 		return err
 	}
 
-	match := RxWindowsVersionPattern.FindStringSubmatchIndex(agent)
+	match := rxWindowsVersionPattern.FindStringSubmatchIndex(agent)
 	if match == nil {
 		result.Category = win.Category
 		result.Os = win.Name
@@ -751,7 +787,8 @@ func (p *Parser) ChallengeWindows(agent string, result *Result) error {
 	case "CE":
 		win, err = p.LookupDataSet("WinCE")
 	default:
-		if strings.HasPrefix(version, "Phone OS") {
+		if matches := rxWinPhone.FindStringSubmatch(version); matches != nil {
+			version = matches[1]
 			win, err = p.LookupDataSet("WinPhone")
 		}
 	}
@@ -762,14 +799,20 @@ func (p *Parser) ChallengeWindows(agent string, result *Result) error {
 
 	result.Category = win.Category
 	result.Os = win.Name
+	result.OsVersion = version
 
 	return nil
 }
+
+var reOSXiPhoneOsVersion = regexp.MustCompile(`; CPU(?: iPhone)? OS (\d+\_\d+(?:_\d+)?) like Mac OS X`)
+var reOSXOsVersion = regexp.MustCompile(`Mac OS X (10[._]\d+(?:[._]\d+)?)(?:\)|;)`)
 
 func (p *Parser) ChallengeOsx(agent string, result *Result) error {
 	if !strings.Contains(agent, "Mac OS X") {
 		return ErrNoMatch
 	}
+
+	version := ""
 
 	data, err := p.LookupDataSet("OSX")
 	if err != nil {
@@ -788,10 +831,21 @@ func (p *Parser) ChallengeOsx(agent string, result *Result) error {
 		if err != nil {
 			return err
 		}
+
+		if matches := reOSXiPhoneOsVersion.FindStringSubmatchIndex(agent); matches != nil {
+			version = strings.Replace(agent[matches[2]:matches[3]], "_", ".", -1)
+		}
+	} else {
+		if matches := reOSXOsVersion.FindStringSubmatchIndex(agent); matches != nil {
+			version = strings.Replace(agent[matches[2]:matches[3]], "_", ".", -1)
+		}
 	}
 
 	result.Category = data.Category
 	result.Os = data.Name
+	if version != "" {
+		result.OsVersion = version
+	}
 
 	return nil
 }
@@ -803,8 +857,12 @@ func (p *Parser) ChallengeLinux(agent string, result *Result) error {
 
 	var data *Result
 	var err error
+	var osVersion string
 	if strings.Contains(agent, "Android") {
 		data, err = p.LookupDataSet("Android")
+		if matches := rxAndroidOSOsVersion.FindStringSubmatch(agent); matches != nil {
+			osVersion = matches[1]
+		}
 	} else {
 		data, err = p.LookupDataSet("Linux")
 	}
@@ -815,6 +873,7 @@ func (p *Parser) ChallengeLinux(agent string, result *Result) error {
 
 	result.Category = data.Category
 	result.Os = data.Name
+	result.OsVersion = osVersion
 
 	return nil
 }
@@ -822,6 +881,7 @@ func (p *Parser) ChallengeLinux(agent string, result *Result) error {
 func (p *Parser) ChallengeSmartphone(agent string, result *Result) error {
 	var data *Result
 	var err error
+	var osVersion string
 
 	switch {
 	case strings.Contains(agent, "iPhone"):
@@ -835,6 +895,9 @@ func (p *Parser) ChallengeSmartphone(agent string, result *Result) error {
 	case strings.Contains(agent, "CFNetwork"):
 		data, err = p.LookupDataSet("iOS")
 	case strings.Contains(agent, "BlackBerry"):
+		if matches := rxBlackBerryOsVersion.FindStringSubmatch(agent); matches != nil {
+			osVersion = matches[1]
+		}
 		data, err = p.LookupDataSet("BlackBerry")
 	}
 
@@ -842,19 +905,19 @@ func (p *Parser) ChallengeSmartphone(agent string, result *Result) error {
 		return err
 	}
 
-	// Firefox OS specific pattern
-	// http://lawrencemandel.com/2012/07/27/decision-made-firefox-os-user-agent-string/
-	// https://github.com/woothee/woothee/issues/2
 	firefox, err := p.LookupDataSet("Firefox")
 	if err != nil {
 		return err
 	}
 
 	if result.Name == firefox.Name {
-		if RxFirefoxOSPattern.MatchString(agent) {
-			data, err = p.LookupDataSet("FirefoxOS")
-			if err != nil {
-				return err
+		// Firefox OS specific pattern
+		// http://lawrencemandel.com/2012/07/27/decision-made-firefox-os-user-agent-string/
+		// https://github.com/woothee/woothee/issues/2
+		if matches := rxFirefoxOSPattern.FindStringSubmatch(agent); matches != nil {
+			if len(matches) > 1 {
+				data, err = p.LookupDataSet("FirefoxOS")
+				osVersion = matches[1]
 			}
 		}
 	}
@@ -865,13 +928,16 @@ func (p *Parser) ChallengeSmartphone(agent string, result *Result) error {
 
 	result.Category = data.Category
 	result.Os = data.Name
+	if osVersion != "" {
+		result.OsVersion = osVersion
+	}
 
 	return nil
 }
 
 func (p *Parser) ChallengeMobilephone(agent string, result *Result) error {
 	if strings.Contains(agent, "KDDI-") {
-		if match := RxKDDIPattern.FindStringSubmatchIndex(agent); match != nil {
+		if match := rxKDDIPattern.FindStringSubmatchIndex(agent); match != nil {
 			term := agent[match[2]:match[3]]
 			data, err := p.LookupDataSet("au")
 			if err != nil {
@@ -885,7 +951,7 @@ func (p *Parser) ChallengeMobilephone(agent string, result *Result) error {
 	}
 
 	if strings.Contains(agent, "WILLCOM") || strings.Contains(agent, "DDIPOCKET") {
-		if match := RxWillcomPattern.FindStringSubmatchIndex(agent); match != nil {
+		if match := rxWillcomPattern.FindStringSubmatchIndex(agent); match != nil {
 			term := agent[match[2]:match[3]]
 			data, err := p.LookupDataSet("willcom")
 			if err != nil {
@@ -957,10 +1023,12 @@ func (p *Parser) ChallengeMsie(agent string, result *Result) error {
 	}
 
 	version := ValueUnknown
-	if match := RxMSIEPattern.FindStringSubmatchIndex(agent); match != nil {
-		version = agent[match[2]:match[3]]
-	} else if match := RxTridentPattern.FindStringSubmatchIndex(agent); match != nil {
-		version = agent[match[4]:match[5]]
+	if matches := rxMSIEPattern.FindStringSubmatch(agent); matches != nil {
+		version = matches[1]
+	} else if matches := rxTridentPattern.FindStringSubmatch(agent); matches != nil {
+		version = matches[2]
+	} else if matches := rxIEMobilePattern.FindStringSubmatch(agent); matches != nil {
+		version = matches[1]
 	}
 
 	err := p.PopulateDataSet(result, "MSIE")
@@ -977,9 +1045,9 @@ func (p *Parser) ChallengeSafariChrome(agent string, result *Result) error {
 		return ErrNoMatch
 	}
 
-	if match := RxChromePattern.FindStringSubmatchIndex(agent); match != nil {
+	if match := rxChromePattern.FindStringSubmatchIndex(agent); match != nil {
 		// Work with Opera (blink)
-		if operaMatch := RxOperaVersionPattern3.FindStringSubmatchIndex(agent); operaMatch != nil {
+		if operaMatch := rxOperaVersionPattern3.FindStringSubmatchIndex(agent); operaMatch != nil {
 			version := agent[operaMatch[2]:operaMatch[3]]
 			err := p.PopulateDataSet(result, "Opera")
 			if err != nil {
@@ -999,7 +1067,7 @@ func (p *Parser) ChallengeSafariChrome(agent string, result *Result) error {
 	}
 
 	version := ValueUnknown
-	if match := RxSafariPattern.FindStringSubmatchIndex(agent); match != nil {
+	if match := rxSafariPattern.FindStringSubmatchIndex(agent); match != nil {
 		version = agent[match[2]:match[3]]
 	}
 
@@ -1017,7 +1085,7 @@ func (p *Parser) ChallengeFirefox(agent string, result *Result) error {
 	}
 
 	version := ValueUnknown
-	if match := RxFirefoxPattern.FindStringSubmatchIndex(agent); match != nil {
+	if match := rxFirefoxPattern.FindStringSubmatchIndex(agent); match != nil {
 		version = agent[match[2]:match[3]]
 	}
 
@@ -1035,9 +1103,9 @@ func (p *Parser) ChallengeOpera(agent string, result *Result) error {
 	}
 
 	version := ValueUnknown
-	if match := RxOperaVersionPattern1.FindStringSubmatchIndex(agent); match != nil {
+	if match := rxOperaVersionPattern1.FindStringSubmatchIndex(agent); match != nil {
 		version = agent[match[2]:match[3]]
-	} else if match := RxOperaVersionPattern2.FindStringSubmatchIndex(agent); match != nil {
+	} else if match := rxOperaVersionPattern2.FindStringSubmatchIndex(agent); match != nil {
 		version = agent[match[2]:match[3]]
 	}
 
@@ -1056,9 +1124,9 @@ func (p *Parser) ChallengeDocomo(agent string, result *Result) error {
 	}
 
 	version := ValueUnknown
-	if match := RxDocomoVersionPattern.FindStringSubmatchIndex(agent); match != nil {
+	if match := rxDocomoVersionPattern.FindStringSubmatchIndex(agent); match != nil {
 		version = agent[match[2]:match[3]]
-	} else if match := RxFOMAVersionPattern.FindStringSubmatchIndex(agent); match != nil {
+	} else if match := rxFOMAVersionPattern.FindStringSubmatchIndex(agent); match != nil {
 		version = agent[match[2]:match[3]]
 	}
 
@@ -1076,7 +1144,7 @@ func (p *Parser) ChallengeAu(agent string, result *Result) error {
 	}
 
 	version := ValueUnknown
-	if match := RxKDDIPattern.FindStringSubmatchIndex(agent); match != nil {
+	if match := rxKDDIPattern.FindStringSubmatchIndex(agent); match != nil {
 		version = agent[match[2]:match[3]]
 	}
 
@@ -1094,7 +1162,7 @@ func (p *Parser) ChallengeSoftbank(agent string, result *Result) error {
 	}
 
 	version := ValueUnknown
-	if match := RxSoftbankPattern.FindStringSubmatchIndex(agent); match != nil {
+	if match := rxSoftbankPattern.FindStringSubmatchIndex(agent); match != nil {
 		version = agent[match[2]:match[3]]
 	}
 
@@ -1112,7 +1180,7 @@ func (p *Parser) ChallengeWillcom(agent string, result *Result) error {
 	}
 
 	version := ValueUnknown
-	if match := RxWillcomPattern.FindStringSubmatchIndex(agent); match != nil {
+	if match := rxWillcomPattern.FindStringSubmatchIndex(agent); match != nil {
 		version = agent[match[2]:match[3]]
 	}
 
@@ -1131,7 +1199,7 @@ func (p *Parser) ChallengeMiscMobilephone(agent string, result *Result) error {
 			return err
 		}
 
-		if match := RxJigPattern.FindStringSubmatchIndex(agent); match != nil {
+		if match := rxJigPattern.FindStringSubmatchIndex(agent); match != nil {
 			result.Version = agent[match[2]:match[3]]
 		}
 		return nil
@@ -1181,12 +1249,22 @@ func (p *Parser) ChallengeMiscOs(agent string, result *Result) error {
 	switch {
 	case strings.Contains(agent, "(Win98;"):
 		data, err = p.LookupDataSet("Win98")
+		result.OsVersion = "98"
 	case strings.Contains(agent, "Macintosh; U; PPC;") || strings.Contains(agent, "Mac_PowerPC"):
 		data, err = p.LookupDataSet("MacOS")
+		if matches := rxPPCOsVersion.FindStringSubmatch(agent); matches != nil {
+			result.OsVersion = matches[1]
+		}
 	case strings.Contains(agent, "X11; FreeBSD "):
 		data, err = p.LookupDataSet("BSD")
+		if matches := rxFreeBSDOsVersion.FindStringSubmatch(agent); matches != nil {
+			result.OsVersion = matches[1]
+		}
 	case strings.Contains(agent, "X11; CrOS "):
 		data, err = p.LookupDataSet("ChromeOS")
+		if matches := rxChromeOSOsVersion.FindStringSubmatch(agent); matches != nil {
+			result.OsVersion = matches[1]
+		}
 	}
 
 	if err != nil {

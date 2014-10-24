@@ -22,6 +22,9 @@ func Test_pc_win(t *testing.T) {
 		if result.Os != "Windows 2000" {
 			t.Errorf("Expected result.Os to be 'Windows 2000', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "NT 5.0" {
+			t.Errorf("Expected result.OsVersion to be 'NT 5.0', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "6.0" {
 			t.Errorf("Expected result.Version to be '6.0', but got '%s'", result.Version)
 		}
@@ -38,6 +41,9 @@ func Test_pc_win(t *testing.T) {
 		}
 		if result.Os != "Windows XP" {
 			t.Errorf("Expected result.Os to be 'Windows XP', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "NT 5.1" {
+			t.Errorf("Expected result.OsVersion to be 'NT 5.1', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "7.0" {
 			t.Errorf("Expected result.Version to be '7.0', but got '%s'", result.Version)
@@ -56,6 +62,9 @@ func Test_pc_win(t *testing.T) {
 		if result.Os != "Windows XP" {
 			t.Errorf("Expected result.Os to be 'Windows XP', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "NT 5.1" {
+			t.Errorf("Expected result.OsVersion to be 'NT 5.1', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "8.0" {
 			t.Errorf("Expected result.Version to be '8.0', but got '%s'", result.Version)
 		}
@@ -72,6 +81,9 @@ func Test_pc_win(t *testing.T) {
 		}
 		if result.Os != "Windows XP" {
 			t.Errorf("Expected result.Os to be 'Windows XP', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "NT 5.1" {
+			t.Errorf("Expected result.OsVersion to be 'NT 5.1', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "8.0" {
 			t.Errorf("Expected result.Version to be '8.0', but got '%s'", result.Version)
@@ -90,6 +102,9 @@ func Test_pc_win(t *testing.T) {
 		if result.Os != "Windows Vista" {
 			t.Errorf("Expected result.Os to be 'Windows Vista', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "NT 6.0" {
+			t.Errorf("Expected result.OsVersion to be 'NT 6.0', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "8.0" {
 			t.Errorf("Expected result.Version to be '8.0', but got '%s'", result.Version)
 		}
@@ -106,6 +121,9 @@ func Test_pc_win(t *testing.T) {
 		}
 		if result.Os != "Windows 7" {
 			t.Errorf("Expected result.Os to be 'Windows 7', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "NT 6.1" {
+			t.Errorf("Expected result.OsVersion to be 'NT 6.1', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "8.0" {
 			t.Errorf("Expected result.Version to be '8.0', but got '%s'", result.Version)
@@ -124,6 +142,9 @@ func Test_pc_win(t *testing.T) {
 		if result.Os != "Windows 7" {
 			t.Errorf("Expected result.Os to be 'Windows 7', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "NT 6.1" {
+			t.Errorf("Expected result.OsVersion to be 'NT 6.1', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "9.0" {
 			t.Errorf("Expected result.Version to be '9.0', but got '%s'", result.Version)
 		}
@@ -140,6 +161,9 @@ func Test_pc_win(t *testing.T) {
 		}
 		if result.Os != "Windows 8" {
 			t.Errorf("Expected result.Os to be 'Windows 8', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "NT 6.2" {
+			t.Errorf("Expected result.OsVersion to be 'NT 6.2', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "10.0" {
 			t.Errorf("Expected result.Version to be '10.0', but got '%s'", result.Version)
@@ -158,6 +182,9 @@ func Test_pc_win(t *testing.T) {
 		if result.Os != "Windows 7" {
 			t.Errorf("Expected result.Os to be 'Windows 7', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "NT 6.1" {
+			t.Errorf("Expected result.OsVersion to be 'NT 6.1', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "11.0" {
 			t.Errorf("Expected result.Version to be '11.0', but got '%s'", result.Version)
 		}
@@ -174,6 +201,9 @@ func Test_pc_win(t *testing.T) {
 		}
 		if result.Os != "Windows 8.1" {
 			t.Errorf("Expected result.Os to be 'Windows 8.1', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "NT 6.3" {
+			t.Errorf("Expected result.OsVersion to be 'NT 6.3', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "11.0" {
 			t.Errorf("Expected result.Version to be '11.0', but got '%s'", result.Version)
@@ -192,6 +222,9 @@ func Test_pc_win(t *testing.T) {
 		if result.Os != "Windows 98" {
 			t.Errorf("Expected result.Os to be 'Windows 98', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "98" {
+			t.Errorf("Expected result.OsVersion to be '98', but got '%s'", result.OsVersion)
+		}
 	}
 	result, err = Parse(`Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/534+ (KHTML, like Gecko)`)
 	if err != nil {
@@ -206,6 +239,9 @@ func Test_pc_win(t *testing.T) {
 		if result.Os != "Windows 7" {
 			t.Errorf("Expected result.Os to be 'Windows 7', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "NT 6.1" {
+			t.Errorf("Expected result.OsVersion to be 'NT 6.1', but got '%s'", result.OsVersion)
+		}
 	}
 	result, err = Parse(`Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.2.149.27 Safari/525.13`)
 	if err != nil {
@@ -219,6 +255,9 @@ func Test_pc_win(t *testing.T) {
 		}
 		if result.Os != "Windows XP" {
 			t.Errorf("Expected result.Os to be 'Windows XP', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "NT 5.1" {
+			t.Errorf("Expected result.OsVersion to be 'NT 5.1', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "0.2.149.27" {
 			t.Errorf("Expected result.Version to be '0.2.149.27', but got '%s'", result.Version)
@@ -237,6 +276,9 @@ func Test_pc_win(t *testing.T) {
 		if result.Os != "Windows Vista" {
 			t.Errorf("Expected result.Os to be 'Windows Vista', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "NT 6.0" {
+			t.Errorf("Expected result.OsVersion to be 'NT 6.0', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "9.0.1" {
 			t.Errorf("Expected result.Version to be '9.0.1', but got '%s'", result.Version)
 		}
@@ -253,6 +295,9 @@ func Test_pc_win(t *testing.T) {
 		}
 		if result.Os != "Windows XP" {
 			t.Errorf("Expected result.Os to be 'Windows XP', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "NT 5.1" {
+			t.Errorf("Expected result.OsVersion to be 'NT 5.1', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "5.1.2" {
 			t.Errorf("Expected result.Version to be '5.1.2', but got '%s'", result.Version)
@@ -271,6 +316,9 @@ func Test_pc_win(t *testing.T) {
 		if result.Os != "Windows XP" {
 			t.Errorf("Expected result.Os to be 'Windows XP', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "NT 5.1" {
+			t.Errorf("Expected result.OsVersion to be 'NT 5.1', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "9.52" {
 			t.Errorf("Expected result.Version to be '9.52', but got '%s'", result.Version)
 		}
@@ -287,6 +335,9 @@ func Test_pc_win(t *testing.T) {
 		}
 		if result.Os != "Windows 8.1" {
 			t.Errorf("Expected result.Os to be 'Windows 8.1', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "NT 6.3" {
+			t.Errorf("Expected result.OsVersion to be 'NT 6.3', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "20.0.1387.64" {
 			t.Errorf("Expected result.Version to be '20.0.1387.64', but got '%s'", result.Version)
@@ -305,6 +356,9 @@ func Test_pc_win(t *testing.T) {
 		if result.Os != "Windows XP" {
 			t.Errorf("Expected result.Os to be 'Windows XP', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "NT 5.1" {
+			t.Errorf("Expected result.OsVersion to be 'NT 5.1', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "6.0" {
 			t.Errorf("Expected result.Version to be '6.0', but got '%s'", result.Version)
 		}
@@ -322,6 +376,9 @@ func Test_pc_win(t *testing.T) {
 		if result.Os != "Windows Vista" {
 			t.Errorf("Expected result.Os to be 'Windows Vista', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "NT 6.0" {
+			t.Errorf("Expected result.OsVersion to be 'NT 6.0', but got '%s'", result.OsVersion)
+		}
 	}
 	result, err = Parse(`Mozilla/5.0 (Windows NT 5.1; rv:8.0) Gecko/20111105 Thunderbird/8.0`)
 	if err != nil {
@@ -335,6 +392,9 @@ func Test_pc_win(t *testing.T) {
 		}
 		if result.Os != "Windows XP" {
 			t.Errorf("Expected result.Os to be 'Windows XP', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "NT 5.1" {
+			t.Errorf("Expected result.OsVersion to be 'NT 5.1', but got '%s'", result.OsVersion)
 		}
 	}
 }

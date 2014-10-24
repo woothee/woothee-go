@@ -84,6 +84,9 @@ func Test_appliance(t *testing.T) {
 		if result.Os != "PlayStation 3" {
 			t.Errorf("Expected result.Os to be 'PlayStation 3', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "1.00" {
+			t.Errorf("Expected result.OsVersion to be '1.00', but got '%s'", result.OsVersion)
+		}
 	}
 	result, err = Parse(`Mozilla/5.0 (PLAYSTATION 3 4.31) AppleWebKit/531.22.8 (KHTML, like Gecko)`)
 	if err != nil {
@@ -97,6 +100,9 @@ func Test_appliance(t *testing.T) {
 		}
 		if result.Os != "PlayStation 3" {
 			t.Errorf("Expected result.Os to be 'PlayStation 3', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "4.31" {
+			t.Errorf("Expected result.OsVersion to be '4.31', but got '%s'", result.OsVersion)
 		}
 	}
 	result, err = Parse(`Mozilla/5.0 (PlayStation 4 1.000) AppleWebKit/536.26 (KHTML, like Gecko)`)
@@ -112,6 +118,9 @@ func Test_appliance(t *testing.T) {
 		if result.Os != "PlayStation 4" {
 			t.Errorf("Expected result.Os to be 'PlayStation 4', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "1.000" {
+			t.Errorf("Expected result.OsVersion to be '1.000', but got '%s'", result.OsVersion)
+		}
 	}
 	result, err = Parse(`Mozilla/4.0 (PSP (PlayStation Portable); 2.00)`)
 	if err != nil {
@@ -126,6 +135,9 @@ func Test_appliance(t *testing.T) {
 		if result.Os != "PlayStation Portable" {
 			t.Errorf("Expected result.Os to be 'PlayStation Portable', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "2.00" {
+			t.Errorf("Expected result.OsVersion to be '2.00', but got '%s'", result.OsVersion)
+		}
 	}
 	result, err = Parse(`Mozilla/5.0 (PlayStation Vita 1.51) AppleWebKit/531.22.8 (KHTML, like Gecko) Silk/3.2`)
 	if err != nil {
@@ -139,6 +151,9 @@ func Test_appliance(t *testing.T) {
 		}
 		if result.Os != "PlayStation Vita" {
 			t.Errorf("Expected result.Os to be 'PlayStation Vita', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "1.51" {
+			t.Errorf("Expected result.OsVersion to be '1.51', but got '%s'", result.OsVersion)
 		}
 	}
 	result, err = Parse(`Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0; Xbox)`)

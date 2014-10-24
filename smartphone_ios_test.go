@@ -22,6 +22,9 @@ func Test_smartphone_ios(t *testing.T) {
 		if result.Os != "iPhone" {
 			t.Errorf("Expected result.Os to be 'iPhone', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "5.0.1" {
+			t.Errorf("Expected result.OsVersion to be '5.0.1', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "5.1" {
 			t.Errorf("Expected result.Version to be '5.1', but got '%s'", result.Version)
 		}
@@ -38,6 +41,9 @@ func Test_smartphone_ios(t *testing.T) {
 		}
 		if result.Os != "iPad" {
 			t.Errorf("Expected result.Os to be 'iPad', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "4.3.2" {
+			t.Errorf("Expected result.OsVersion to be '4.3.2', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "5.0.2" {
 			t.Errorf("Expected result.Version to be '5.0.2', but got '%s'", result.Version)
@@ -56,6 +62,9 @@ func Test_smartphone_ios(t *testing.T) {
 		if result.Os != "iPod" {
 			t.Errorf("Expected result.Os to be 'iPod', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "5.0.1" {
+			t.Errorf("Expected result.OsVersion to be '5.0.1', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "5.1" {
 			t.Errorf("Expected result.Version to be '5.1', but got '%s'", result.Version)
 		}
@@ -72,6 +81,9 @@ func Test_smartphone_ios(t *testing.T) {
 		}
 		if result.Os != "iPod" {
 			t.Errorf("Expected result.Os to be 'iPod', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "7.0" {
+			t.Errorf("Expected result.OsVersion to be '7.0', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "7.0" {
 			t.Errorf("Expected result.Version to be '7.0', but got '%s'", result.Version)
@@ -90,6 +102,9 @@ func Test_smartphone_ios(t *testing.T) {
 		if result.Os != "iPhone" {
 			t.Errorf("Expected result.Os to be 'iPhone', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "5.1.1" {
+			t.Errorf("Expected result.OsVersion to be '5.1.1', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "19.0.1084.60" {
 			t.Errorf("Expected result.Version to be '19.0.1084.60', but got '%s'", result.Version)
 		}
@@ -106,6 +121,9 @@ func Test_smartphone_ios(t *testing.T) {
 		}
 		if result.Os != "iPhone" {
 			t.Errorf("Expected result.Os to be 'iPhone', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "5.0.1" {
+			t.Errorf("Expected result.OsVersion to be '5.0.1', but got '%s'", result.OsVersion)
 		}
 	}
 	result, err = Parse(`Girls/2.0 (livedoor Co.,Ltd.; Peachy 2.1; iPhone; RSS Version 2.0; +http://girls.livedoor.com/)`)

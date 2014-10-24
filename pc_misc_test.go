@@ -22,6 +22,9 @@ func Test_pc_misc(t *testing.T) {
 		if result.Os != "Mac OSX" {
 			t.Errorf("Expected result.Os to be 'Mac OSX', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "10.5.4" {
+			t.Errorf("Expected result.OsVersion to be '10.5.4', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "3.1.2" {
 			t.Errorf("Expected result.Version to be '3.1.2', but got '%s'", result.Version)
 		}
@@ -38,6 +41,9 @@ func Test_pc_misc(t *testing.T) {
 		}
 		if result.Os != "Mac OSX" {
 			t.Errorf("Expected result.Os to be 'Mac OSX', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "10.7.5" {
+			t.Errorf("Expected result.OsVersion to be '10.7.5', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "27.0.1453.93" {
 			t.Errorf("Expected result.Version to be '27.0.1453.93', but got '%s'", result.Version)
@@ -56,6 +62,9 @@ func Test_pc_misc(t *testing.T) {
 		if result.Os != "Mac OSX" {
 			t.Errorf("Expected result.Os to be 'Mac OSX', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "10.7" {
+			t.Errorf("Expected result.OsVersion to be '10.7', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "21.0" {
 			t.Errorf("Expected result.Version to be '21.0', but got '%s'", result.Version)
 		}
@@ -73,6 +82,9 @@ func Test_pc_misc(t *testing.T) {
 		if result.Os != "Mac OSX" {
 			t.Errorf("Expected result.Os to be 'Mac OSX', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "10.8.3" {
+			t.Errorf("Expected result.OsVersion to be '10.8.3', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "12.15" {
 			t.Errorf("Expected result.Version to be '12.15', but got '%s'", result.Version)
 		}
@@ -89,6 +101,9 @@ func Test_pc_misc(t *testing.T) {
 		}
 		if result.Os != "Mac OSX" {
 			t.Errorf("Expected result.Os to be 'Mac OSX', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "10.9.2" {
+			t.Errorf("Expected result.OsVersion to be '10.9.2', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "20.0.1387.82" {
 			t.Errorf("Expected result.Version to be '20.0.1387.82', but got '%s'", result.Version)
@@ -121,6 +136,9 @@ func Test_pc_misc(t *testing.T) {
 		if result.Os != "Mac OSX" {
 			t.Errorf("Expected result.Os to be 'Mac OSX', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "10.5" {
+			t.Errorf("Expected result.OsVersion to be '10.5', but got '%s'", result.OsVersion)
+		}
 	}
 	result, err = Parse(`Mozilla/5.0 (Macintosh; U; PPC; en-US; mimic; rv:9.2.1) (mimic Gecko/20100722 Firefox/3.6.8) Classilla/CFM`)
 	if err != nil {
@@ -134,6 +152,9 @@ func Test_pc_misc(t *testing.T) {
 		}
 		if result.Os != "Mac OS Classic" {
 			t.Errorf("Expected result.Os to be 'Mac OS Classic', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "9.2.1" {
+			t.Errorf("Expected result.OsVersion to be '9.2.1', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "3.6.8" {
 			t.Errorf("Expected result.Version to be '3.6.8', but got '%s'", result.Version)
@@ -262,6 +283,9 @@ func Test_pc_misc(t *testing.T) {
 		if result.Os != "BSD" {
 			t.Errorf("Expected result.Os to be 'BSD', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "8.2-RELEASE-p3 amd64" {
+			t.Errorf("Expected result.OsVersion to be '8.2-RELEASE-p3 amd64', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "11.52" {
 			t.Errorf("Expected result.Version to be '11.52', but got '%s'", result.Version)
 		}
@@ -278,6 +302,9 @@ func Test_pc_misc(t *testing.T) {
 		}
 		if result.Os != "ChromeOS" {
 			t.Errorf("Expected result.Os to be 'ChromeOS', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "x86_64 5116.115.4" {
+			t.Errorf("Expected result.OsVersion to be 'x86_64 5116.115.4', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "33.0.1750.152" {
 			t.Errorf("Expected result.Version to be '33.0.1750.152', but got '%s'", result.Version)

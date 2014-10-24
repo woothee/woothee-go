@@ -39,6 +39,9 @@ func Test_smartphone_misc(t *testing.T) {
 		if result.Os != "Firefox OS" {
 			t.Errorf("Expected result.Os to be 'Firefox OS', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "26.0" {
+			t.Errorf("Expected result.OsVersion to be '26.0', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "26.0" {
 			t.Errorf("Expected result.Version to be '26.0', but got '%s'", result.Version)
 		}
@@ -56,8 +59,31 @@ func Test_smartphone_misc(t *testing.T) {
 		if result.Os != "Windows Phone OS" {
 			t.Errorf("Expected result.Os to be 'Windows Phone OS', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "7.5" {
+			t.Errorf("Expected result.OsVersion to be '7.5', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "7.0" {
 			t.Errorf("Expected result.Version to be '7.0', but got '%s'", result.Version)
+		}
+	}
+	result, err = Parse(`Mozilla/5.0 (Windows Phone 8.1; ARM; Trident/7.0; Touch; rv:11.0; IEMobile/11.0; NOKIA; Lumia 930) like Gecko`)
+	if err != nil {
+		t.Errorf(`Failed to parse 'Mozilla/5.0 (Windows Phone 8.1; ARM; Trident/7.0; Touch; rv:11.0; IEMobile/11.0; NOKIA; Lumia 930) like Gecko': %s`, err)
+	} else {
+		if result.Category != "smartphone" {
+			t.Errorf("Expected result.Category to be 'smartphone', but got '%s'", result.Category)
+		}
+		if result.Name != "Internet Explorer" {
+			t.Errorf("Expected result.Name to be 'Internet Explorer', but got '%s'", result.Name)
+		}
+		if result.Os != "Windows Phone OS" {
+			t.Errorf("Expected result.Os to be 'Windows Phone OS', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "8.1" {
+			t.Errorf("Expected result.OsVersion to be '8.1', but got '%s'", result.OsVersion)
+		}
+		if result.Version != "11.0" {
+			t.Errorf("Expected result.Version to be '11.0', but got '%s'", result.Version)
 		}
 	}
 	result, err = Parse(`Mozilla/4.0 (compatible; MSIE 6.0; Windows CE; IEMobile 7.7) S12HT`)
@@ -106,6 +132,9 @@ func Test_smartphone_misc(t *testing.T) {
 		}
 		if result.Os != "BlackBerry" {
 			t.Errorf("Expected result.Os to be 'BlackBerry', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "5.0.0.1014" {
+			t.Errorf("Expected result.OsVersion to be '5.0.0.1014', but got '%s'", result.OsVersion)
 		}
 	}
 }
