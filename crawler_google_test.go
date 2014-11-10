@@ -8,7 +8,6 @@ import (
 func Test_crawler_google(t *testing.T) {
 	var result *Result
 	var err error
-
 	result, err = Parse(`Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)`)
 	if err != nil {
 		t.Errorf(`Failed to parse 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)': %s`, err)
@@ -21,6 +20,9 @@ func Test_crawler_google(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
 	}
 	result, err = Parse(`Googlebot-Image/1.0`)
@@ -36,6 +38,9 @@ func Test_crawler_google(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
 	result, err = Parse(`DoCoMo/2.0 N905i(c100;TB;W24H16) (compatible; Googlebot-Mobile/2.1; +http://www.google.com/bot.html)`)
 	if err != nil {
@@ -49,6 +54,9 @@ func Test_crawler_google(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
 	}
 	result, err = Parse(`SAMSUNG-SGH-E250/1.0 Profile/MIDP-2.0 Configuration/CLDC-1.1 UP.Browser/6.2.3.3.c.1.101 (GUI) MMP/2.0 (compatible; Googlebot-Mobile/2.1; +http://www.google.com/bot.html)`)
@@ -64,6 +72,9 @@ func Test_crawler_google(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
 	result, err = Parse(`DoCoMo/2.0 SH905i(c100;TB;W24H16) (compatible; Mediapartners-Google/2.1; +http://www.google.com/bot.html)`)
 	if err != nil {
@@ -77,6 +88,9 @@ func Test_crawler_google(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
 	}
 	result, err = Parse(`Mediapartners-Google`)
@@ -92,6 +106,9 @@ func Test_crawler_google(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
 	result, err = Parse(`Feedfetcher-Google; (+http://www.google.com/feedfetcher.html; feed-id=000000000000000000)`)
 	if err != nil {
@@ -105,6 +122,9 @@ func Test_crawler_google(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
 	}
 	result, err = Parse(`AppEngine-Google`)
@@ -120,6 +140,9 @@ func Test_crawler_google(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
 	result, err = Parse(`Mozilla/5.0 (en-us) AppleWebKit/525.13 (KHTML, like Gecko; Google Web Preview) Version/3.1 Safari/525.13`)
 	if err != nil {
@@ -133,6 +156,9 @@ func Test_crawler_google(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
 	}
 	result, err = Parse(`FeedBurner/1.0 (http://www.FeedBurner.com)`)
@@ -148,5 +174,9 @@ func Test_crawler_google(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
+
 }

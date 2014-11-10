@@ -8,7 +8,6 @@ import (
 func Test_pc_misc(t *testing.T) {
 	var result *Result
 	var err error
-
 	result, err = Parse(`Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; ja-jp) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1`)
 	if err != nil {
 		t.Errorf(`Failed to parse 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; ja-jp) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1': %s`, err)
@@ -122,6 +121,9 @@ func Test_pc_misc(t *testing.T) {
 		if result.Os != "Mac OSX" {
 			t.Errorf("Expected result.Os to be 'Mac OSX', but got '%s'", result.Os)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
 	result, err = Parse(`Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10.5; ja-JP-mac; rv:1.9.1.19) Gecko/20110420 SeaMonkey/2.0.14`)
 	if err != nil {
@@ -138,6 +140,9 @@ func Test_pc_misc(t *testing.T) {
 		}
 		if result.OsVersion != "10.5" {
 			t.Errorf("Expected result.OsVersion to be '10.5', but got '%s'", result.OsVersion)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
 	}
 	result, err = Parse(`Mozilla/5.0 (Macintosh; U; PPC; en-US; mimic; rv:9.2.1) (mimic Gecko/20100722 Firefox/3.6.8) Classilla/CFM`)
@@ -224,6 +229,9 @@ func Test_pc_misc(t *testing.T) {
 		if result.Os != "Linux" {
 			t.Errorf("Expected result.Os to be 'Linux', but got '%s'", result.Os)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
 	result, err = Parse(`Mozilla/5.0 (X11; U; Linux i686; ja-JP; rv:1.8.1.23) Gecko/20090910 SeaMonkey/1.1.18`)
 	if err != nil {
@@ -238,6 +246,9 @@ func Test_pc_misc(t *testing.T) {
 		if result.Os != "Linux" {
 			t.Errorf("Expected result.Os to be 'Linux', but got '%s'", result.Os)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
 	result, err = Parse(`Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.0.3) Gecko/2008092814 Iceweasel/3.0.3 (Debian-3.0.3-3)`)
 	if err != nil {
@@ -251,6 +262,9 @@ func Test_pc_misc(t *testing.T) {
 		}
 		if result.Os != "Linux" {
 			t.Errorf("Expected result.Os to be 'Linux', but got '%s'", result.Os)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
 	}
 	result, err = Parse(`Mozilla/5.0 (X11; FreeBSD amd64; rv:8.0) Gecko/20100101 Firefox/8.0`)
@@ -310,4 +324,5 @@ func Test_pc_misc(t *testing.T) {
 			t.Errorf("Expected result.Version to be '33.0.1750.152', but got '%s'", result.Version)
 		}
 	}
+
 }

@@ -8,7 +8,6 @@ import (
 func Test_pc_lowpriority(t *testing.T) {
 	var result *Result
 	var err error
-
 	result, err = Parse(`Sleipnir/2.9.9`)
 	if err != nil {
 		t.Errorf(`Failed to parse 'Sleipnir/2.9.9': %s`, err)
@@ -26,4 +25,5 @@ func Test_pc_lowpriority(t *testing.T) {
 			t.Errorf("Expected result.Version to be '2.9.9', but got '%s'", result.Version)
 		}
 	}
+
 }

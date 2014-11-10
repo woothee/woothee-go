@@ -8,7 +8,6 @@ import (
 func Test_mobilephone_misc(t *testing.T) {
 	var result *Result
 	var err error
-
 	result, err = Parse(`Mozilla/5.0 (jig browser core; SH03B)`)
 	if err != nil {
 		t.Errorf(`Failed to parse 'Mozilla/5.0 (jig browser core; SH03B)': %s`, err)
@@ -73,6 +72,9 @@ func Test_mobilephone_misc(t *testing.T) {
 		if result.Os != "emobile" {
 			t.Errorf("Expected result.Os to be 'emobile', but got '%s'", result.Os)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
 	result, err = Parse(`IAC/1.0 (H31IA;like Gecko;OpenBrowser) WWW Browser/ver1.0`)
 	if err != nil {
@@ -86,6 +88,9 @@ func Test_mobilephone_misc(t *testing.T) {
 		}
 		if result.Os != "emobile" {
 			t.Errorf("Expected result.Os to be 'emobile', but got '%s'", result.Os)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
 	}
 	result, err = Parse(`Mozilla/5.0 (H11T; like Gecko; OpenBrowser) NetFront/3.4`)
@@ -101,6 +106,9 @@ func Test_mobilephone_misc(t *testing.T) {
 		if result.Os != "emobile" {
 			t.Errorf("Expected result.Os to be 'emobile', but got '%s'", result.Os)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
 	result, err = Parse(`Huawei/1.0/H12HW/B000 Browser/Obigo-Browser/Q04A`)
 	if err != nil {
@@ -114,6 +122,9 @@ func Test_mobilephone_misc(t *testing.T) {
 		}
 		if result.Os != "emobile" {
 			t.Errorf("Expected result.Os to be 'emobile', but got '%s'", result.Os)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
 	}
 	result, err = Parse(`Mozilla/5.0 (SymbianOS/9.2; U; Series60/3.1 NokiaE66-1/500.21.009; Profile/MIDP-2.0 Configuration/CLDC-1.1 ) AppleWebKit/413 (KHTML, like Gecko) Safari/413`)
@@ -167,4 +178,5 @@ func Test_mobilephone_misc(t *testing.T) {
 			t.Errorf("Expected result.Version to be 'livedoor', but got '%s'", result.Version)
 		}
 	}
+
 }

@@ -8,7 +8,6 @@ import (
 func Test_pc_win(t *testing.T) {
 	var result *Result
 	var err error
-
 	result, err = Parse(`Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0; InfoPath.1)`)
 	if err != nil {
 		t.Errorf(`Failed to parse 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0; InfoPath.1)': %s`, err)
@@ -225,6 +224,9 @@ func Test_pc_win(t *testing.T) {
 		if result.OsVersion != "98" {
 			t.Errorf("Expected result.OsVersion to be '98', but got '%s'", result.OsVersion)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
 	result, err = Parse(`Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/534+ (KHTML, like Gecko)`)
 	if err != nil {
@@ -241,6 +243,9 @@ func Test_pc_win(t *testing.T) {
 		}
 		if result.OsVersion != "NT 6.1" {
 			t.Errorf("Expected result.OsVersion to be 'NT 6.1', but got '%s'", result.OsVersion)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
 	}
 	result, err = Parse(`Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.2.149.27 Safari/525.13`)
@@ -379,6 +384,9 @@ func Test_pc_win(t *testing.T) {
 		if result.OsVersion != "NT 6.0" {
 			t.Errorf("Expected result.OsVersion to be 'NT 6.0', but got '%s'", result.OsVersion)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
 	result, err = Parse(`Mozilla/5.0 (Windows NT 5.1; rv:8.0) Gecko/20111105 Thunderbird/8.0`)
 	if err != nil {
@@ -396,5 +404,9 @@ func Test_pc_win(t *testing.T) {
 		if result.OsVersion != "NT 5.1" {
 			t.Errorf("Expected result.OsVersion to be 'NT 5.1', but got '%s'", result.OsVersion)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
+
 }

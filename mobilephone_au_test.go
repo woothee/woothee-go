@@ -8,7 +8,6 @@ import (
 func Test_mobilephone_au(t *testing.T) {
 	var result *Result
 	var err error
-
 	result, err = Parse(`KDDI-TS3V UP.Browser/6.2_7.2.7.1.K.6.210 (GUI) MMP/2.0`)
 	if err != nil {
 		t.Errorf(`Failed to parse 'KDDI-TS3V UP.Browser/6.2_7.2.7.1.K.6.210 (GUI) MMP/2.0': %s`, err)
@@ -77,4 +76,5 @@ func Test_mobilephone_au(t *testing.T) {
 			t.Errorf("Expected result.Version to be 'CA3B', but got '%s'", result.Version)
 		}
 	}
+
 }

@@ -8,7 +8,6 @@ import (
 func Test_smartphone_misc(t *testing.T) {
 	var result *Result
 	var err error
-
 	result, err = Parse(`Mozilla/5.0 (Mobile; rv:18.0) Gecko/18.0 Firefox/18.0`)
 	if err != nil {
 		t.Errorf(`Failed to parse 'Mozilla/5.0 (Mobile; rv:18.0) Gecko/18.0 Firefox/18.0': %s`, err)
@@ -136,5 +135,9 @@ func Test_smartphone_misc(t *testing.T) {
 		if result.OsVersion != "5.0.0.1014" {
 			t.Errorf("Expected result.OsVersion to be '5.0.0.1014', but got '%s'", result.OsVersion)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
+
 }

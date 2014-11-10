@@ -8,7 +8,6 @@ import (
 func Test_mobilephone_docomo(t *testing.T) {
 	var result *Result
 	var err error
-
 	result, err = Parse(`DoCoMo/2.0 SH01A(c100;TB;W24H16)`)
 	if err != nil {
 		t.Errorf(`Failed to parse 'DoCoMo/2.0 SH01A(c100;TB;W24H16)': %s`, err)
@@ -111,4 +110,5 @@ func Test_mobilephone_docomo(t *testing.T) {
 			t.Errorf("Expected result.Version to be 'F02B', but got '%s'", result.Version)
 		}
 	}
+
 }

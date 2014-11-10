@@ -8,7 +8,6 @@ import (
 func Test_mobilephone_willcom(t *testing.T) {
 	var result *Result
 	var err error
-
 	result, err = Parse(`Mozilla/3.0(WILLCOM;TOSHIBA/WX320T/2;1/1/C128) NetFront/3.4`)
 	if err != nil {
 		t.Errorf(`Failed to parse 'Mozilla/3.0(WILLCOM;TOSHIBA/WX320T/2;1/1/C128) NetFront/3.4': %s`, err)
@@ -94,4 +93,5 @@ func Test_mobilephone_willcom(t *testing.T) {
 			t.Errorf("Expected result.Version to be 'AH-K3001V', but got '%s'", result.Version)
 		}
 	}
+
 }

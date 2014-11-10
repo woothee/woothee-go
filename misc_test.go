@@ -8,7 +8,6 @@ import (
 func Test_misc(t *testing.T) {
 	var result *Result
 	var err error
-
 	result, err = Parse(`AppleSyndication/56.1`)
 	if err != nil {
 		t.Errorf(`Failed to parse 'AppleSyndication/56.1': %s`, err)
@@ -21,6 +20,9 @@ func Test_misc(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
 	}
 	result, err = Parse(`Mozilla/5.0 (compatible; Google Desktop/5.9.1005.12335; http://desktop.google.com/)`)
@@ -36,6 +38,9 @@ func Test_misc(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
 	result, err = Parse(`Windows-RSS-Platform/2.0 (MSIE 9.0; Windows NT 6.0)`)
 	if err != nil {
@@ -46,6 +51,12 @@ func Test_misc(t *testing.T) {
 		}
 		if result.Name != "Windows RSSReader" {
 			t.Errorf("Expected result.Name to be 'Windows RSSReader', but got '%s'", result.Name)
+		}
+		if result.Os != "UNKNOWN" {
+			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
 	}
 	result, err = Parse(`RssBar/1.29 (RssBar for unDonut 1.35)`)
@@ -61,6 +72,9 @@ func Test_misc(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
 	result, err = Parse(`MagpieRSS/0.61 (+http://magpierss.sf.net)`)
 	if err != nil {
@@ -74,6 +88,9 @@ func Test_misc(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
 	}
 	result, err = Parse(`gooRSSreader3.7 - build20090410`)
@@ -89,6 +106,9 @@ func Test_misc(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
 	result, err = Parse(`Fenrir Headline-Reader Plugin`)
 	if err != nil {
@@ -102,6 +122,9 @@ func Test_misc(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
 	}
 	result, err = Parse(`jsRSS++/3.15`)
@@ -117,6 +140,9 @@ func Test_misc(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
 	result, err = Parse(`cococ/1.06`)
 	if err != nil {
@@ -130,6 +156,9 @@ func Test_misc(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
 	}
 	result, err = Parse(`Wget/1.12 (linux-gnu)`)
@@ -557,4 +586,5 @@ func Test_misc(t *testing.T) {
 			t.Errorf("Expected result.Version to be 'php', but got '%s'", result.Version)
 		}
 	}
+
 }

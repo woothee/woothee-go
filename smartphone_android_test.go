@@ -8,7 +8,6 @@ import (
 func Test_smartphone_android(t *testing.T) {
 	var result *Result
 	var err error
-
 	result, err = Parse(`Mozilla/5.0 (Linux; U; Android 2.3.5; ja-jp; ISW11F Build/FGK500) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1`)
 	if err != nil {
 		t.Errorf(`Failed to parse 'Mozilla/5.0 (Linux; U; Android 2.3.5; ja-jp; ISW11F Build/FGK500) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1': %s`, err)
@@ -156,6 +155,9 @@ func Test_smartphone_android(t *testing.T) {
 		if result.OsVersion != "2.3.4" {
 			t.Errorf("Expected result.OsVersion to be '2.3.4', but got '%s'", result.OsVersion)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
 	result, err = Parse(`LDNReader/2.0.1 (Android)`)
 	if err != nil {
@@ -170,5 +172,9 @@ func Test_smartphone_android(t *testing.T) {
 		if result.Os != "Android" {
 			t.Errorf("Expected result.Os to be 'Android', but got '%s'", result.Os)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
+
 }

@@ -8,7 +8,6 @@ import (
 func Test_crawler(t *testing.T) {
 	var result *Result
 	var err error
-
 	result, err = Parse(`Mozilla/5.0 (compatible; Yahoo! Slurp; http://help.yahoo.com/help/us/ysearch/slurp)`)
 	if err != nil {
 		t.Errorf(`Failed to parse 'Mozilla/5.0 (compatible; Yahoo! Slurp; http://help.yahoo.com/help/us/ysearch/slurp)': %s`, err)
@@ -21,6 +20,9 @@ func Test_crawler(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
 	}
 	result, err = Parse(`Mozilla/5.0 (compatible; Yahoo! Slurp/3.0; http://help.yahoo.com/help/us/ysearch/slurp)`)
@@ -36,6 +38,9 @@ func Test_crawler(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
 	result, err = Parse(`Y!J-BRO/YFSJ crawler (compatible; Mozilla 4.0; MSIE 5.5; http://help.yahoo.co.jp/help/jp/search/indexing/indexing-15.html; YahooFeedSeekerJp/2.0; users 0; views 248)`)
 	if err != nil {
@@ -49,6 +54,9 @@ func Test_crawler(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
 	}
 	result, err = Parse(`Y!J-BRP/YFSBJ crawler (compatible; Mozilla 4.0; MSIE 5.5; http://help.yahoo.co.jp/help/jp/search/indexing/indexing-15.html; YahooFeedSeekerBetaJp/2.0; users 0; views 80)`)
@@ -64,6 +72,9 @@ func Test_crawler(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
 	result, err = Parse(`Y!J-BRJ/YATS crawler (http://listing.yahoo.co.jp/support/faq/int/other/other_001.html)`)
 	if err != nil {
@@ -77,6 +88,9 @@ func Test_crawler(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
 	}
 	result, err = Parse(`Y!J-BRJ/YATS crawler (http://help.yahoo.co.jp/help/jp/search/indexing/indexing-15.html)`)
@@ -92,6 +106,9 @@ func Test_crawler(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
 	result, err = Parse(`Y!J-BSC/1.0 crawler (http://help.yahoo.co.jp/help/jp/blog-search/)`)
 	if err != nil {
@@ -105,6 +122,9 @@ func Test_crawler(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
 	}
 	result, err = Parse(`Mozilla/5.0 (Linux; U; Android 2.3.3; ja-jp; sdk Build/GRI34; Y!J-BRZ/YATSHA crawler; http://help.yahoo.co.jp/help/jp/search/indexing/indexing-15.html) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1`)
@@ -120,6 +140,9 @@ func Test_crawler(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
 	result, err = Parse(`Mozilla/5.0 (iPhone; Y!J-BRY/YATSH crawler; http://help.yahoo.co.jp/help/jp/search/indexing/indexing-15.html)`)
 	if err != nil {
@@ -133,6 +156,9 @@ func Test_crawler(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
 	}
 	result, err = Parse(`Yahoo Pipes 2.0`)
@@ -148,6 +174,9 @@ func Test_crawler(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
 	result, err = Parse(`Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)`)
 	if err != nil {
@@ -161,6 +190,9 @@ func Test_crawler(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
 	}
 	result, err = Parse(`Baiduspider+(+http://www.baidu.jp/spider/)`)
@@ -176,6 +208,9 @@ func Test_crawler(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
 	result, err = Parse(`Baiduspider-image+(+http://www.baidu.com/search/spider.htm)`)
 	if err != nil {
@@ -189,6 +224,9 @@ func Test_crawler(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
 	}
 	result, err = Parse(`msnbot/1.1 (+http://search.msn.com/msnbot.htm)`)
@@ -204,6 +242,9 @@ func Test_crawler(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
 	result, err = Parse(`msnbot-UDiscovery/2.0b (+http://search.msn.com/msnbot.htm)`)
 	if err != nil {
@@ -217,6 +258,9 @@ func Test_crawler(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
 	}
 	result, err = Parse(`msnbot/2.0b (+http://search.msn.com/msnbot.htm)._`)
@@ -232,6 +276,9 @@ func Test_crawler(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
 	result, err = Parse(`"msnbot-NewsBlogs/2.0b (+http://search.msn.com/msnbot.htm)`)
 	if err != nil {
@@ -245,6 +292,9 @@ func Test_crawler(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
 	}
 	result, err = Parse(`msnbot-media/1.1 (+http://search.msn.com/msnbot.htm)`)
@@ -260,6 +310,9 @@ func Test_crawler(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
 	result, err = Parse(`Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)`)
 	if err != nil {
@@ -273,6 +326,9 @@ func Test_crawler(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
 	}
 	result, err = Parse(`Yeti/1.0 (NHN Corp.; http://help.naver.com/robots/)`)
@@ -288,6 +344,9 @@ func Test_crawler(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
 	result, err = Parse(`Mozilla/3.0 (compatible; Indy Library)`)
 	if err != nil {
@@ -301,6 +360,9 @@ func Test_crawler(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
 	}
 	result, err = Parse(`Apple-PubSub/65.28`)
@@ -316,6 +378,9 @@ func Test_crawler(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
 	result, err = Parse(`R6_CommentReader(www.radian6.com/crawler)`)
 	if err != nil {
@@ -329,6 +394,9 @@ func Test_crawler(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
 	}
 	result, err = Parse(`R6_FeedFetcher(www.radian6.com/crawler)`)
@@ -344,6 +412,9 @@ func Test_crawler(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
 	result, err = Parse(`Mozilla/5.0 (compatible; Genieo/1.0 http://www.genieo.com/webfilter.html)`)
 	if err != nil {
@@ -357,6 +428,9 @@ func Test_crawler(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
 	}
 	result, err = Parse(`Mozilla/5.0 (compatible; Butterfly/1.0; +http://labs.topsy.com/butterfly/) Gecko/2009032608 Firefox/3.0.8`)
@@ -372,6 +446,9 @@ func Test_crawler(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
 	result, err = Parse(`rogerbot/1.0 (http://www.seomoz.org/dp/rogerbot, rogerbot-crawler@seomoz.org)`)
 	if err != nil {
@@ -385,6 +462,9 @@ func Test_crawler(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
 	}
 	result, err = Parse(`rogerbot/1.0 (http://www.seomoz.org/dp/rogerbot, rogerbot-crawler+shiny@seomoz.org)`)
@@ -400,6 +480,9 @@ func Test_crawler(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
 	result, err = Parse(`Mozilla/5.0 (compatible; AhrefsBot/4.0; +http://ahrefs.com/robot/)`)
 	if err != nil {
@@ -413,6 +496,9 @@ func Test_crawler(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
 	}
 	result, err = Parse(`Hatena Antenna/0.5 (http://a.hatena.ne.jp/help)`)
@@ -428,6 +514,9 @@ func Test_crawler(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
 	result, err = Parse(`Hatena Pagetitle Agent/1.0`)
 	if err != nil {
@@ -441,6 +530,9 @@ func Test_crawler(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
 	}
 	result, err = Parse(`Hatena Diary RSS Module (http://d.hatena.ne.jp/help#rssmodule)`)
@@ -456,6 +548,9 @@ func Test_crawler(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
 	result, err = Parse(`ichiro/3.0 (http://help.goo.ne.jp/door/crawler.html)`)
 	if err != nil {
@@ -469,6 +564,9 @@ func Test_crawler(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
 	}
 	result, err = Parse(`DoCoMo/2.0 P900i(c100;TB;W24H11) (compatible; ichiro/mobile goo; +http://help.goo.ne.jp/help/article/1142/)`)
@@ -484,6 +582,9 @@ func Test_crawler(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
 	result, err = Parse(`gooblogsearch/2.0 (http://search.goo.ne.jp/option/use/sub4/sub4-1/)`)
 	if err != nil {
@@ -497,6 +598,9 @@ func Test_crawler(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
 	}
 	result, err = Parse(`livedoor FeedFetcher/0.01 (http://reader.livedoor.com/; 999 subscribers)`)
@@ -512,6 +616,9 @@ func Test_crawler(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
 	result, err = Parse(`Fastladder FeedFetcher/0.01 (http://fastladder.com/; 27 subscribers)`)
 	if err != nil {
@@ -525,6 +632,9 @@ func Test_crawler(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
 	}
 	result, err = Parse(`facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)`)
@@ -540,6 +650,9 @@ func Test_crawler(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
 	result, err = Parse(`mixi-check/1.0 (http://mixi.jp/)`)
 	if err != nil {
@@ -553,6 +666,9 @@ func Test_crawler(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
 	}
 	result, err = Parse(`mixi-news-crawler/1.00 (http://mixi.jp/)`)
@@ -568,6 +684,9 @@ func Test_crawler(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
 	result, err = Parse(`mixi-crawler/2.00 (http://mixi.jp/)`)
 	if err != nil {
@@ -582,5 +701,9 @@ func Test_crawler(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
+
 }

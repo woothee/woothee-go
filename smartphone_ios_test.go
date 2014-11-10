@@ -8,7 +8,6 @@ import (
 func Test_smartphone_ios(t *testing.T) {
 	var result *Result
 	var err error
-
 	result, err = Parse(`Mozilla/5.0 (iPhone; CPU iPhone OS 5_0_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A405 Safari/7534.48.3`)
 	if err != nil {
 		t.Errorf(`Failed to parse 'Mozilla/5.0 (iPhone; CPU iPhone OS 5_0_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A405 Safari/7534.48.3': %s`, err)
@@ -125,6 +124,9 @@ func Test_smartphone_ios(t *testing.T) {
 		if result.OsVersion != "5.0.1" {
 			t.Errorf("Expected result.OsVersion to be '5.0.1', but got '%s'", result.OsVersion)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
 	result, err = Parse(`Girls/2.0 (livedoor Co.,Ltd.; Peachy 2.1; iPhone; RSS Version 2.0; +http://girls.livedoor.com/)`)
 	if err != nil {
@@ -138,6 +140,9 @@ func Test_smartphone_ios(t *testing.T) {
 		}
 		if result.Os != "iPhone" {
 			t.Errorf("Expected result.Os to be 'iPhone', but got '%s'", result.Os)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
 	}
 	result, err = Parse(`MobileSafari/7534.48.3 CFNetwork/548.0.4 Darwin/11.0.0`)
@@ -170,5 +175,9 @@ func Test_smartphone_ios(t *testing.T) {
 		if result.Os != "iOS" {
 			t.Errorf("Expected result.Os to be 'iOS', but got '%s'", result.Os)
 		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
+		}
 	}
+
 }

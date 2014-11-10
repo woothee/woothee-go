@@ -8,7 +8,6 @@ import (
 func Test_mobilephone_softbank(t *testing.T) {
 	var result *Result
 	var err error
-
 	result, err = Parse(`SoftBank/1.0/841SH/SHJ001/SN000000000000000 Browser/NetFront/3.5 Profile/MIDP-2.0 Configuration/CLDC-1.1`)
 	if err != nil {
 		t.Errorf(`Failed to parse 'SoftBank/1.0/841SH/SHJ001/SN000000000000000 Browser/NetFront/3.5 Profile/MIDP-2.0 Configuration/CLDC-1.1': %s`, err)
@@ -128,4 +127,5 @@ func Test_mobilephone_softbank(t *testing.T) {
 			t.Errorf("Expected result.Version to be 'J-T51', but got '%s'", result.Version)
 		}
 	}
+
 }
