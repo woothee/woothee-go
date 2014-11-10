@@ -1,3 +1,5 @@
+//go:generate go get gopkg.in/yaml.v2
+//go:generate go run maint/gendataset.go
 package woothee
 
 import (
