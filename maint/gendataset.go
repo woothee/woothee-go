@@ -136,10 +136,10 @@ func Test_{{.TestName}}(t *testing.T) {
 `
 
 	for _, field := range []string{"Category", "Name", "Os", "OsVersion", "Version"} {
-		tmpl += fmt.Sprintf(`{{with .%s}}		if result.%s != "{{.}}" {
-			t.Errorf("Expected result.%s to be '{{.}}', but got '%%s'", result.%s)
+		tmpl += fmt.Sprintf(`		if result.%s != "{{.%s}}" {
+			t.Errorf("Expected result.%s to be '{{.%s}}', but got '%%s'", result.%s)
 		}
-{{end}}`, field, field, field, field)
+`, field, field, field, field, field)
 	}
 
 	tmpl += `	}
@@ -214,6 +214,12 @@ fmt.Println(tmpl)
 			}
 			if d.Os == "" {
 				d.Os = "UNKNOWN"
+			}
+			if d.Version == "" {
+				d.Version = "UNKNOWN"
+			}
+			if d.OsVersion == "" {
+				d.OsVersion = "UNKNOWN"
 			}
 			if d.Version == "" {
 				d.Version = "UNKNOWN"
