@@ -29,7 +29,15 @@ const (
 )
 
 var (
-	EmptyResult   = &Result{ValueUnknown, ValueUnknown, ValueUnknown, ValueUnknown, ValueUnknown, ValueUnknown, ValueUnknown}
+	EmptyResult = &Result{
+		Name:      ValueUnknown,
+		Category:  ValueUnknown,
+		Os:        ValueUnknown,
+		OsVersion: ValueUnknown,
+		Type:      ValueUnknown,
+		Version:   ValueUnknown,
+		Vendor:    ValueUnknown,
+	}
 	ErrNoMatch    = errors.New("no match")
 	ErrNoDataSet  = errors.New("no such dataset")
 	DefaultParser = NewParser()
