@@ -21,6 +21,9 @@ func Test_mobilephone_willcom(t *testing.T) {
 		if result.Os != "WILLCOM" {
 			t.Errorf("Expected result.Os to be 'WILLCOM', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "WX320T" {
 			t.Errorf("Expected result.Version to be 'WX320T', but got '%s'", result.Version)
 		}
@@ -37,6 +40,9 @@ func Test_mobilephone_willcom(t *testing.T) {
 		}
 		if result.Os != "WILLCOM" {
 			t.Errorf("Expected result.Os to be 'WILLCOM', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "WX310SA" {
 			t.Errorf("Expected result.Version to be 'WX310SA', but got '%s'", result.Version)
@@ -55,6 +61,9 @@ func Test_mobilephone_willcom(t *testing.T) {
 		if result.Os != "WILLCOM" {
 			t.Errorf("Expected result.Os to be 'WILLCOM', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "WX331K" {
 			t.Errorf("Expected result.Version to be 'WX331K', but got '%s'", result.Version)
 		}
@@ -72,6 +81,9 @@ func Test_mobilephone_willcom(t *testing.T) {
 		if result.Os != "WILLCOM" {
 			t.Errorf("Expected result.Os to be 'WILLCOM', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "AH-J3001V,AH-J3002V" {
 			t.Errorf("Expected result.Version to be 'AH-J3001V,AH-J3002V', but got '%s'", result.Version)
 		}
@@ -88,6 +100,9 @@ func Test_mobilephone_willcom(t *testing.T) {
 		}
 		if result.Os != "WILLCOM" {
 			t.Errorf("Expected result.Os to be 'WILLCOM', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "AH-K3001V" {
 			t.Errorf("Expected result.Version to be 'AH-K3001V', but got '%s'", result.Version)

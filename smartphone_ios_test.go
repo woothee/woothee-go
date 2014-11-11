@@ -141,6 +141,9 @@ func Test_smartphone_ios(t *testing.T) {
 		if result.Os != "iPhone" {
 			t.Errorf("Expected result.Os to be 'iPhone', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
@@ -158,6 +161,9 @@ func Test_smartphone_ios(t *testing.T) {
 		if result.Os != "iOS" {
 			t.Errorf("Expected result.Os to be 'iOS', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
@@ -174,6 +180,9 @@ func Test_smartphone_ios(t *testing.T) {
 		}
 		if result.Os != "iOS" {
 			t.Errorf("Expected result.Os to be 'iOS', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)

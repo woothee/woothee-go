@@ -21,6 +21,9 @@ func Test_pc_lowpriority(t *testing.T) {
 		if result.Os != "Windows UNKNOWN Ver" {
 			t.Errorf("Expected result.Os to be 'Windows UNKNOWN Ver', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "2.9.9" {
 			t.Errorf("Expected result.Version to be '2.9.9', but got '%s'", result.Version)
 		}

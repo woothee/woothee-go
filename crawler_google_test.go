@@ -21,6 +21,9 @@ func Test_crawler_google(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
@@ -37,6 +40,9 @@ func Test_crawler_google(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
@@ -55,6 +61,9 @@ func Test_crawler_google(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
@@ -71,6 +80,9 @@ func Test_crawler_google(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
@@ -89,6 +101,9 @@ func Test_crawler_google(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
@@ -105,6 +120,9 @@ func Test_crawler_google(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
@@ -123,6 +141,9 @@ func Test_crawler_google(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
@@ -139,6 +160,9 @@ func Test_crawler_google(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
@@ -157,6 +181,9 @@ func Test_crawler_google(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
@@ -173,6 +200,9 @@ func Test_crawler_google(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)

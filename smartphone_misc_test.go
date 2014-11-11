@@ -21,6 +21,9 @@ func Test_smartphone_misc(t *testing.T) {
 		if result.Os != "Firefox OS" {
 			t.Errorf("Expected result.Os to be 'Firefox OS', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "18.0" {
 			t.Errorf("Expected result.Version to be '18.0', but got '%s'", result.Version)
 		}
@@ -98,6 +101,9 @@ func Test_smartphone_misc(t *testing.T) {
 		if result.Os != "Windows CE" {
 			t.Errorf("Expected result.Os to be 'Windows CE', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "6.0" {
 			t.Errorf("Expected result.Version to be '6.0', but got '%s'", result.Version)
 		}
@@ -114,6 +120,9 @@ func Test_smartphone_misc(t *testing.T) {
 		}
 		if result.Os != "BlackBerry" {
 			t.Errorf("Expected result.Os to be 'BlackBerry', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "10.54" {
 			t.Errorf("Expected result.Version to be '10.54', but got '%s'", result.Version)

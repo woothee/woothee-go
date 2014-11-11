@@ -21,6 +21,9 @@ func Test_mobilephone_softbank(t *testing.T) {
 		if result.Os != "SoftBank" {
 			t.Errorf("Expected result.Os to be 'SoftBank', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "841SH" {
 			t.Errorf("Expected result.Version to be '841SH', but got '%s'", result.Version)
 		}
@@ -37,6 +40,9 @@ func Test_mobilephone_softbank(t *testing.T) {
 		}
 		if result.Os != "SoftBank" {
 			t.Errorf("Expected result.Os to be 'SoftBank', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "004SH" {
 			t.Errorf("Expected result.Version to be '004SH', but got '%s'", result.Version)
@@ -55,6 +61,9 @@ func Test_mobilephone_softbank(t *testing.T) {
 		if result.Os != "SoftBank" {
 			t.Errorf("Expected result.Os to be 'SoftBank', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "944SH" {
 			t.Errorf("Expected result.Version to be '944SH', but got '%s'", result.Version)
 		}
@@ -71,6 +80,9 @@ func Test_mobilephone_softbank(t *testing.T) {
 		}
 		if result.Os != "SoftBank" {
 			t.Errorf("Expected result.Os to be 'SoftBank', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "821SC" {
 			t.Errorf("Expected result.Version to be '821SC', but got '%s'", result.Version)
@@ -89,6 +101,9 @@ func Test_mobilephone_softbank(t *testing.T) {
 		if result.Os != "SoftBank" {
 			t.Errorf("Expected result.Os to be 'SoftBank', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "V905SH" {
 			t.Errorf("Expected result.Version to be 'V905SH', but got '%s'", result.Version)
 		}
@@ -106,6 +121,9 @@ func Test_mobilephone_softbank(t *testing.T) {
 		if result.Os != "SoftBank" {
 			t.Errorf("Expected result.Os to be 'SoftBank', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "V804SH" {
 			t.Errorf("Expected result.Version to be 'V804SH', but got '%s'", result.Version)
 		}
@@ -122,6 +140,9 @@ func Test_mobilephone_softbank(t *testing.T) {
 		}
 		if result.Os != "SoftBank" {
 			t.Errorf("Expected result.Os to be 'SoftBank', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "J-T51" {
 			t.Errorf("Expected result.Version to be 'J-T51', but got '%s'", result.Version)

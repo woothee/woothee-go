@@ -21,6 +21,9 @@ func Test_misc(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
@@ -37,6 +40,9 @@ func Test_misc(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
@@ -55,6 +61,9 @@ func Test_misc(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
@@ -71,6 +80,9 @@ func Test_misc(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
@@ -89,6 +101,9 @@ func Test_misc(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
@@ -105,6 +120,9 @@ func Test_misc(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
@@ -123,6 +141,9 @@ func Test_misc(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
@@ -139,6 +160,9 @@ func Test_misc(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
@@ -157,6 +181,9 @@ func Test_misc(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
@@ -173,6 +200,9 @@ func Test_misc(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "wget" {
 			t.Errorf("Expected result.Version to be 'wget', but got '%s'", result.Version)
@@ -191,6 +221,9 @@ func Test_misc(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "Java" {
 			t.Errorf("Expected result.Version to be 'Java', but got '%s'", result.Version)
 		}
@@ -207,6 +240,9 @@ func Test_misc(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "Java" {
 			t.Errorf("Expected result.Version to be 'Java', but got '%s'", result.Version)
@@ -225,6 +261,9 @@ func Test_misc(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "Java" {
 			t.Errorf("Expected result.Version to be 'Java', but got '%s'", result.Version)
 		}
@@ -241,6 +280,9 @@ func Test_misc(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "Java" {
 			t.Errorf("Expected result.Version to be 'Java', but got '%s'", result.Version)
@@ -259,6 +301,9 @@ func Test_misc(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "Java" {
 			t.Errorf("Expected result.Version to be 'Java', but got '%s'", result.Version)
 		}
@@ -275,6 +320,9 @@ func Test_misc(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "perl" {
 			t.Errorf("Expected result.Version to be 'perl', but got '%s'", result.Version)
@@ -293,6 +341,9 @@ func Test_misc(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "perl" {
 			t.Errorf("Expected result.Version to be 'perl', but got '%s'", result.Version)
 		}
@@ -309,6 +360,9 @@ func Test_misc(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "perl" {
 			t.Errorf("Expected result.Version to be 'perl', but got '%s'", result.Version)
@@ -327,6 +381,9 @@ func Test_misc(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "perl" {
 			t.Errorf("Expected result.Version to be 'perl', but got '%s'", result.Version)
 		}
@@ -343,6 +400,9 @@ func Test_misc(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "perl" {
 			t.Errorf("Expected result.Version to be 'perl', but got '%s'", result.Version)
@@ -361,6 +421,9 @@ func Test_misc(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "ruby" {
 			t.Errorf("Expected result.Version to be 'ruby', but got '%s'", result.Version)
 		}
@@ -377,6 +440,9 @@ func Test_misc(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "ruby" {
 			t.Errorf("Expected result.Version to be 'ruby', but got '%s'", result.Version)
@@ -395,6 +461,9 @@ func Test_misc(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "ruby" {
 			t.Errorf("Expected result.Version to be 'ruby', but got '%s'", result.Version)
 		}
@@ -411,6 +480,9 @@ func Test_misc(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "python" {
 			t.Errorf("Expected result.Version to be 'python', but got '%s'", result.Version)
@@ -429,6 +501,9 @@ func Test_misc(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "python" {
 			t.Errorf("Expected result.Version to be 'python', but got '%s'", result.Version)
 		}
@@ -445,6 +520,9 @@ func Test_misc(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "php" {
 			t.Errorf("Expected result.Version to be 'php', but got '%s'", result.Version)
@@ -463,6 +541,9 @@ func Test_misc(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "php" {
 			t.Errorf("Expected result.Version to be 'php', but got '%s'", result.Version)
 		}
@@ -479,6 +560,9 @@ func Test_misc(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "php" {
 			t.Errorf("Expected result.Version to be 'php', but got '%s'", result.Version)
@@ -497,6 +581,9 @@ func Test_misc(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "php" {
 			t.Errorf("Expected result.Version to be 'php', but got '%s'", result.Version)
 		}
@@ -513,6 +600,9 @@ func Test_misc(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "php" {
 			t.Errorf("Expected result.Version to be 'php', but got '%s'", result.Version)
@@ -531,6 +621,9 @@ func Test_misc(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "php" {
 			t.Errorf("Expected result.Version to be 'php', but got '%s'", result.Version)
 		}
@@ -547,6 +640,9 @@ func Test_misc(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "php" {
 			t.Errorf("Expected result.Version to be 'php', but got '%s'", result.Version)
@@ -565,6 +661,9 @@ func Test_misc(t *testing.T) {
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "php" {
 			t.Errorf("Expected result.Version to be 'php', but got '%s'", result.Version)
 		}
@@ -581,6 +680,9 @@ func Test_misc(t *testing.T) {
 		}
 		if result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os to be 'UNKNOWN', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "php" {
 			t.Errorf("Expected result.Version to be 'php', but got '%s'", result.Version)

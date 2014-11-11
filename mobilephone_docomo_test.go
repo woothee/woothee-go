@@ -21,6 +21,9 @@ func Test_mobilephone_docomo(t *testing.T) {
 		if result.Os != "docomo" {
 			t.Errorf("Expected result.Os to be 'docomo', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "SH01A" {
 			t.Errorf("Expected result.Version to be 'SH01A', but got '%s'", result.Version)
 		}
@@ -37,6 +40,9 @@ func Test_mobilephone_docomo(t *testing.T) {
 		}
 		if result.Os != "docomo" {
 			t.Errorf("Expected result.Os to be 'docomo', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "N07B" {
 			t.Errorf("Expected result.Version to be 'N07B', but got '%s'", result.Version)
@@ -55,6 +61,9 @@ func Test_mobilephone_docomo(t *testing.T) {
 		if result.Os != "docomo" {
 			t.Errorf("Expected result.Os to be 'docomo', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "D505i" {
 			t.Errorf("Expected result.Version to be 'D505i', but got '%s'", result.Version)
 		}
@@ -71,6 +80,9 @@ func Test_mobilephone_docomo(t *testing.T) {
 		}
 		if result.Os != "docomo" {
 			t.Errorf("Expected result.Os to be 'docomo', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "N505i" {
 			t.Errorf("Expected result.Version to be 'N505i', but got '%s'", result.Version)
@@ -89,6 +101,9 @@ func Test_mobilephone_docomo(t *testing.T) {
 		if result.Os != "docomo" {
 			t.Errorf("Expected result.Os to be 'docomo', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "N905imyu_W" {
 			t.Errorf("Expected result.Version to be 'N905imyu_W', but got '%s'", result.Version)
 		}
@@ -105,6 +120,9 @@ func Test_mobilephone_docomo(t *testing.T) {
 		}
 		if result.Os != "docomo" {
 			t.Errorf("Expected result.Os to be 'docomo', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "F02B" {
 			t.Errorf("Expected result.Version to be 'F02B', but got '%s'", result.Version)

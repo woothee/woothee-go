@@ -21,6 +21,9 @@ func Test_mobilephone_misc(t *testing.T) {
 		if result.Os != "jig" {
 			t.Errorf("Expected result.Os to be 'jig', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "SH03B" {
 			t.Errorf("Expected result.Version to be 'SH03B', but got '%s'", result.Version)
 		}
@@ -37,6 +40,9 @@ func Test_mobilephone_misc(t *testing.T) {
 		}
 		if result.Os != "jig" {
 			t.Errorf("Expected result.Os to be 'jig', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "F10B" {
 			t.Errorf("Expected result.Version to be 'F10B', but got '%s'", result.Version)
@@ -55,6 +61,9 @@ func Test_mobilephone_misc(t *testing.T) {
 		if result.Os != "jig" {
 			t.Errorf("Expected result.Os to be 'jig', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
@@ -71,6 +80,9 @@ func Test_mobilephone_misc(t *testing.T) {
 		}
 		if result.Os != "emobile" {
 			t.Errorf("Expected result.Os to be 'emobile', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
@@ -89,6 +101,9 @@ func Test_mobilephone_misc(t *testing.T) {
 		if result.Os != "emobile" {
 			t.Errorf("Expected result.Os to be 'emobile', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
@@ -105,6 +120,9 @@ func Test_mobilephone_misc(t *testing.T) {
 		}
 		if result.Os != "emobile" {
 			t.Errorf("Expected result.Os to be 'emobile', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
@@ -123,6 +141,9 @@ func Test_mobilephone_misc(t *testing.T) {
 		if result.Os != "emobile" {
 			t.Errorf("Expected result.Os to be 'emobile', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
@@ -139,6 +160,9 @@ func Test_mobilephone_misc(t *testing.T) {
 		}
 		if result.Os != "SymbianOS" {
 			t.Errorf("Expected result.Os to be 'SymbianOS', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
@@ -157,6 +181,9 @@ func Test_mobilephone_misc(t *testing.T) {
 		if result.Os != "Mobile Transcoder" {
 			t.Errorf("Expected result.Os to be 'Mobile Transcoder', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "Google" {
 			t.Errorf("Expected result.Version to be 'Google', but got '%s'", result.Version)
 		}
@@ -173,6 +200,9 @@ func Test_mobilephone_misc(t *testing.T) {
 		}
 		if result.Os != "Mobile Transcoder" {
 			t.Errorf("Expected result.Os to be 'Mobile Transcoder', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "livedoor" {
 			t.Errorf("Expected result.Version to be 'livedoor', but got '%s'", result.Version)

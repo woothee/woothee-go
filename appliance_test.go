@@ -21,6 +21,9 @@ func Test_appliance(t *testing.T) {
 		if result.Os != "Nintendo 3DS" {
 			t.Errorf("Expected result.Os to be 'Nintendo 3DS', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
@@ -37,6 +40,9 @@ func Test_appliance(t *testing.T) {
 		}
 		if result.Os != "Nintendo DSi" {
 			t.Errorf("Expected result.Os to be 'Nintendo DSi', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "9.50" {
 			t.Errorf("Expected result.Version to be '9.50', but got '%s'", result.Version)
@@ -55,6 +61,9 @@ func Test_appliance(t *testing.T) {
 		if result.Os != "Nintendo Wii" {
 			t.Errorf("Expected result.Os to be 'Nintendo Wii', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "9.30" {
 			t.Errorf("Expected result.Version to be '9.30', but got '%s'", result.Version)
 		}
@@ -71,6 +80,9 @@ func Test_appliance(t *testing.T) {
 		}
 		if result.Os != "Nintendo Wii U" {
 			t.Errorf("Expected result.Os to be 'Nintendo Wii U', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
@@ -189,6 +201,9 @@ func Test_appliance(t *testing.T) {
 		if result.Os != "Xbox 360" {
 			t.Errorf("Expected result.Os to be 'Xbox 360', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "9.0" {
 			t.Errorf("Expected result.Version to be '9.0', but got '%s'", result.Version)
 		}
@@ -205,6 +220,9 @@ func Test_appliance(t *testing.T) {
 		}
 		if result.Os != "Xbox One" {
 			t.Errorf("Expected result.Os to be 'Xbox One', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "10.0" {
 			t.Errorf("Expected result.Version to be '10.0', but got '%s'", result.Version)
@@ -223,6 +241,9 @@ func Test_appliance(t *testing.T) {
 		if result.Os != "DigitalTV" {
 			t.Errorf("Expected result.Os to be 'DigitalTV', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
@@ -239,6 +260,9 @@ func Test_appliance(t *testing.T) {
 		}
 		if result.Os != "DigitalTV" {
 			t.Errorf("Expected result.Os to be 'DigitalTV', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
@@ -257,6 +281,9 @@ func Test_appliance(t *testing.T) {
 		if result.Os != "DigitalTV" {
 			t.Errorf("Expected result.Os to be 'DigitalTV', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)
 		}
@@ -273,6 +300,9 @@ func Test_appliance(t *testing.T) {
 		}
 		if result.Os != "DigitalTV" {
 			t.Errorf("Expected result.Os to be 'DigitalTV', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version to be 'UNKNOWN', but got '%s'", result.Version)

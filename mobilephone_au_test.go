@@ -21,6 +21,9 @@ func Test_mobilephone_au(t *testing.T) {
 		if result.Os != "au" {
 			t.Errorf("Expected result.Os to be 'au', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "TS3V" {
 			t.Errorf("Expected result.Version to be 'TS3V', but got '%s'", result.Version)
 		}
@@ -37,6 +40,9 @@ func Test_mobilephone_au(t *testing.T) {
 		}
 		if result.Os != "au" {
 			t.Errorf("Expected result.Os to be 'au', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "CA3H" {
 			t.Errorf("Expected result.Version to be 'CA3H', but got '%s'", result.Version)
@@ -55,6 +61,9 @@ func Test_mobilephone_au(t *testing.T) {
 		if result.Os != "au" {
 			t.Errorf("Expected result.Os to be 'au', but got '%s'", result.Os)
 		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+		}
 		if result.Version != "SH3F" {
 			t.Errorf("Expected result.Version to be 'SH3F', but got '%s'", result.Version)
 		}
@@ -71,6 +80,9 @@ func Test_mobilephone_au(t *testing.T) {
 		}
 		if result.Os != "au" {
 			t.Errorf("Expected result.Os to be 'au', but got '%s'", result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
 		}
 		if result.Version != "CA3B" {
 			t.Errorf("Expected result.Version to be 'CA3B', but got '%s'", result.Version)
