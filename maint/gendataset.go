@@ -147,7 +147,6 @@ func Test_{{.TestName}}(t *testing.T) {
 }
 `
 
-fmt.Println(tmpl)
 	t, err := template.New("testset").Parse(tmpl)
 	if err != nil {
 		return err
