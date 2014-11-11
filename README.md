@@ -48,9 +48,22 @@ go test -v ./...
 
 ## Updating woothee definition
 
+If you live on the bleeding edge (i.e. go 1.4 and up):
+
 ```
-cpanm YAML
-perl maint/gendataset.pl
+go generate
+```
+
+Otherwise:
+
+```
+go get gopkg.in/yaml.v2
+```
+
+then
+
+```
+go run maint/gendataset.go
 ```
 
 This updates the dataset.go and other tests

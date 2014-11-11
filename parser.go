@@ -799,7 +799,9 @@ func (p *Parser) ChallengeWindows(agent string, result *Result) error {
 
 	result.Category = win.Category
 	result.Os = win.Name
-	result.OsVersion = version
+	if version != "" {
+		result.OsVersion = version
+	}
 
 	return nil
 }
@@ -873,7 +875,9 @@ func (p *Parser) ChallengeLinux(agent string, result *Result) error {
 
 	result.Category = data.Category
 	result.Os = data.Name
-	result.OsVersion = osVersion
+	if osVersion != "" {
+		result.OsVersion = osVersion
+	}
 
 	return nil
 }
