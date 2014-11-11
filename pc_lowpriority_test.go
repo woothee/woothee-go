@@ -13,19 +13,19 @@ func Test_pc_lowpriority(t *testing.T) {
 		t.Errorf(`Failed to parse 'Sleipnir/2.9.9': %s`, err)
 	} else {
 		if result.Category != "pc" {
-			t.Errorf("Expected result.Category to be 'pc', but got '%s'", result.Category)
+			t.Errorf("Expected result.Category for '%s' to be 'pc', but got '%s'", `Sleipnir/2.9.9`, result.Category)
 		}
 		if result.Name != "Sleipnir" {
-			t.Errorf("Expected result.Name to be 'Sleipnir', but got '%s'", result.Name)
+			t.Errorf("Expected result.Name for '%s' to be 'Sleipnir', but got '%s'", `Sleipnir/2.9.9`, result.Name)
 		}
 		if result.Os != "Windows UNKNOWN Ver" {
-			t.Errorf("Expected result.Os to be 'Windows UNKNOWN Ver', but got '%s'", result.Os)
+			t.Errorf("Expected result.Os for '%s' to be 'Windows UNKNOWN Ver', but got '%s'", `Sleipnir/2.9.9`, result.Os)
 		}
 		if result.OsVersion != "UNKNOWN" {
-			t.Errorf("Expected result.OsVersion to be 'UNKNOWN', but got '%s'", result.OsVersion)
+			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `Sleipnir/2.9.9`, result.OsVersion)
 		}
 		if result.Version != "2.9.9" {
-			t.Errorf("Expected result.Version to be '2.9.9', but got '%s'", result.Version)
+			t.Errorf("Expected result.Version for '%s' to be '2.9.9', but got '%s'", `Sleipnir/2.9.9`, result.Version)
 		}
 	}
 

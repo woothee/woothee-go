@@ -137,7 +137,7 @@ func Test_{{.TestName}}(t *testing.T) {
 
 	for _, field := range []string{"Category", "Name", "Os", "OsVersion", "Version"} {
 		tmpl += fmt.Sprintf(`		if result.%s != "{{.%s}}" {
-			t.Errorf("Expected result.%s to be '{{.%s}}', but got '%%s'", result.%s)
+			t.Errorf("Expected result.%s for '%%s' to be '{{.%s}}', but got '%%s'", ` + "`{{.Target}}`" + `, result.%s)
 		}
 `, field, field, field, field, field)
 	}
