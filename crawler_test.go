@@ -748,6 +748,26 @@ func Test_crawler(t *testing.T) {
 			t.Errorf("Expected result.Version for '%s' to be 'UNKNOWN', but got '%s'", `Fastladder FeedFetcher/0.01 (http://fastladder.com/; 27 subscribers)`, result.Version)
 		}
 	}
+	result, err = Parse(`Twitterbot/1.0`)
+	if err != nil {
+		t.Errorf(`Failed to parse 'Twitterbot/1.0': %s`, err)
+	} else {
+		if result.Category != "crawler" {
+			t.Errorf("Expected result.Category for '%s' to be 'crawler', but got '%s'", `Twitterbot/1.0`, result.Category)
+		}
+		if result.Name != "twitter" {
+			t.Errorf("Expected result.Name for '%s' to be 'twitter', but got '%s'", `Twitterbot/1.0`, result.Name)
+		}
+		if result.Os != "UNKNOWN" {
+			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `Twitterbot/1.0`, result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `Twitterbot/1.0`, result.OsVersion)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version for '%s' to be 'UNKNOWN', but got '%s'", `Twitterbot/1.0`, result.Version)
+		}
+	}
 	result, err = Parse(`facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)`)
 	if err != nil {
 		t.Errorf(`Failed to parse 'facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)': %s`, err)
