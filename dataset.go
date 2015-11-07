@@ -7,6 +7,11 @@ var DefaultDataSet DataSet = DataSet{
 		Type:   "",
 		Vendor: "Microsoft",
 	},
+	"Edge": &Result{
+		Name:   "Edge",
+		Type:   "",
+		Vendor: "Microsoft",
+	},
 	"Chrome": &Result{
 		Name:   "Chrome",
 		Type:   "",
@@ -32,8 +37,18 @@ var DefaultDataSet DataSet = DataSet{
 		Type:   "",
 		Vendor: "Fenrir Inc.",
 	},
+	"Webview": &Result{
+		Name:   "Webview",
+		Type:   "",
+		Vendor: "OS vendor",
+	},
 	"Win": &Result{
 		Name:     "Windows UNKNOWN Ver",
+		Type:     "pc",
+		Category: "pc",
+	},
+	"Win10": &Result{
+		Name:     "Windows 10",
 		Type:     "pc",
 		Category: "pc",
 	},
@@ -154,6 +169,11 @@ var DefaultDataSet DataSet = DataSet{
 	},
 	"BlackBerry": &Result{
 		Name:     "BlackBerry",
+		Type:     "smartphone",
+		Category: "smartphone",
+	},
+	"BlackBerry10": &Result{
+		Name:     "BlackBerry 10",
 		Type:     "smartphone",
 		Category: "smartphone",
 	},
@@ -425,6 +445,13 @@ var DefaultDataSet DataSet = DataSet{
 	},
 	"facebook": &Result{
 		Name:     "facebook",
+		Type:     "crawler",
+		Vendor:   "",
+		Category: "crawler",
+		Os:       "UNKNOWN",
+	},
+	"twitter": &Result{
+		Name:     "twitter",
 		Type:     "crawler",
 		Vendor:   "",
 		Category: "crawler",

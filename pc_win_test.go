@@ -208,6 +208,86 @@ func Test_pc_win(t *testing.T) {
 			t.Errorf("Expected result.Version for '%s' to be '11.0', but got '%s'", `Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko`, result.Version)
 		}
 	}
+	result, err = Parse(`Mozilla/5.0 (Windows NT 6.1; Trident/7.0; MALCJS; rv:11.0) like Gecko`)
+	if err != nil {
+		t.Errorf(`Failed to parse 'Mozilla/5.0 (Windows NT 6.1; Trident/7.0; MALCJS; rv:11.0) like Gecko': %s`, err)
+	} else {
+		if result.Category != "pc" {
+			t.Errorf("Expected result.Category for '%s' to be 'pc', but got '%s'", `Mozilla/5.0 (Windows NT 6.1; Trident/7.0; MALCJS; rv:11.0) like Gecko`, result.Category)
+		}
+		if result.Name != "Internet Explorer" {
+			t.Errorf("Expected result.Name for '%s' to be 'Internet Explorer', but got '%s'", `Mozilla/5.0 (Windows NT 6.1; Trident/7.0; MALCJS; rv:11.0) like Gecko`, result.Name)
+		}
+		if result.Os != "Windows 7" {
+			t.Errorf("Expected result.Os for '%s' to be 'Windows 7', but got '%s'", `Mozilla/5.0 (Windows NT 6.1; Trident/7.0; MALCJS; rv:11.0) like Gecko`, result.Os)
+		}
+		if result.OsVersion != "NT 6.1" {
+			t.Errorf("Expected result.OsVersion for '%s' to be 'NT 6.1', but got '%s'", `Mozilla/5.0 (Windows NT 6.1; Trident/7.0; MALCJS; rv:11.0) like Gecko`, result.OsVersion)
+		}
+		if result.Version != "11.0" {
+			t.Errorf("Expected result.Version for '%s' to be '11.0', but got '%s'", `Mozilla/5.0 (Windows NT 6.1; Trident/7.0; MALCJS; rv:11.0) like Gecko`, result.Version)
+		}
+	}
+	result, err = Parse(`Mozilla/5.0 (Windows NT 6.1; Win64; x64; Trident/7.0; MASPJS; rv:11.0) like Gecko`)
+	if err != nil {
+		t.Errorf(`Failed to parse 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; Trident/7.0; MASPJS; rv:11.0) like Gecko': %s`, err)
+	} else {
+		if result.Category != "pc" {
+			t.Errorf("Expected result.Category for '%s' to be 'pc', but got '%s'", `Mozilla/5.0 (Windows NT 6.1; Win64; x64; Trident/7.0; MASPJS; rv:11.0) like Gecko`, result.Category)
+		}
+		if result.Name != "Internet Explorer" {
+			t.Errorf("Expected result.Name for '%s' to be 'Internet Explorer', but got '%s'", `Mozilla/5.0 (Windows NT 6.1; Win64; x64; Trident/7.0; MASPJS; rv:11.0) like Gecko`, result.Name)
+		}
+		if result.Os != "Windows 7" {
+			t.Errorf("Expected result.Os for '%s' to be 'Windows 7', but got '%s'", `Mozilla/5.0 (Windows NT 6.1; Win64; x64; Trident/7.0; MASPJS; rv:11.0) like Gecko`, result.Os)
+		}
+		if result.OsVersion != "NT 6.1" {
+			t.Errorf("Expected result.OsVersion for '%s' to be 'NT 6.1', but got '%s'", `Mozilla/5.0 (Windows NT 6.1; Win64; x64; Trident/7.0; MASPJS; rv:11.0) like Gecko`, result.OsVersion)
+		}
+		if result.Version != "11.0" {
+			t.Errorf("Expected result.Version for '%s' to be '11.0', but got '%s'", `Mozilla/5.0 (Windows NT 6.1; Win64; x64; Trident/7.0; MASPJS; rv:11.0) like Gecko`, result.Version)
+		}
+	}
+	result, err = Parse(`Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko`)
+	if err != nil {
+		t.Errorf(`Failed to parse 'Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko': %s`, err)
+	} else {
+		if result.Category != "pc" {
+			t.Errorf("Expected result.Category for '%s' to be 'pc', but got '%s'", `Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko`, result.Category)
+		}
+		if result.Name != "Internet Explorer" {
+			t.Errorf("Expected result.Name for '%s' to be 'Internet Explorer', but got '%s'", `Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko`, result.Name)
+		}
+		if result.Os != "Windows 8.1" {
+			t.Errorf("Expected result.Os for '%s' to be 'Windows 8.1', but got '%s'", `Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko`, result.Os)
+		}
+		if result.OsVersion != "NT 6.3" {
+			t.Errorf("Expected result.OsVersion for '%s' to be 'NT 6.3', but got '%s'", `Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko`, result.OsVersion)
+		}
+		if result.Version != "11.0" {
+			t.Errorf("Expected result.Version for '%s' to be '11.0', but got '%s'", `Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko`, result.Version)
+		}
+	}
+	result, err = Parse(`Mozilla/5.0 (Windows NT 6.3; Win64; x64; Trident/7.0; Touch; rv:11.0) like Gecko`)
+	if err != nil {
+		t.Errorf(`Failed to parse 'Mozilla/5.0 (Windows NT 6.3; Win64; x64; Trident/7.0; Touch; rv:11.0) like Gecko': %s`, err)
+	} else {
+		if result.Category != "pc" {
+			t.Errorf("Expected result.Category for '%s' to be 'pc', but got '%s'", `Mozilla/5.0 (Windows NT 6.3; Win64; x64; Trident/7.0; Touch; rv:11.0) like Gecko`, result.Category)
+		}
+		if result.Name != "Internet Explorer" {
+			t.Errorf("Expected result.Name for '%s' to be 'Internet Explorer', but got '%s'", `Mozilla/5.0 (Windows NT 6.3; Win64; x64; Trident/7.0; Touch; rv:11.0) like Gecko`, result.Name)
+		}
+		if result.Os != "Windows 8.1" {
+			t.Errorf("Expected result.Os for '%s' to be 'Windows 8.1', but got '%s'", `Mozilla/5.0 (Windows NT 6.3; Win64; x64; Trident/7.0; Touch; rv:11.0) like Gecko`, result.Os)
+		}
+		if result.OsVersion != "NT 6.3" {
+			t.Errorf("Expected result.OsVersion for '%s' to be 'NT 6.3', but got '%s'", `Mozilla/5.0 (Windows NT 6.3; Win64; x64; Trident/7.0; Touch; rv:11.0) like Gecko`, result.OsVersion)
+		}
+		if result.Version != "11.0" {
+			t.Errorf("Expected result.Version for '%s' to be '11.0', but got '%s'", `Mozilla/5.0 (Windows NT 6.3; Win64; x64; Trident/7.0; Touch; rv:11.0) like Gecko`, result.Version)
+		}
+	}
 	result, err = Parse(`Mozilla/4.78 [ja] (Win98; U)`)
 	if err != nil {
 		t.Errorf(`Failed to parse 'Mozilla/4.78 [ja] (Win98; U)': %s`, err)
@@ -246,6 +326,26 @@ func Test_pc_win(t *testing.T) {
 		}
 		if result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version for '%s' to be 'UNKNOWN', but got '%s'", `Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/534+ (KHTML, like Gecko)`, result.Version)
+		}
+	}
+	result, err = Parse(`Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240`)
+	if err != nil {
+		t.Errorf(`Failed to parse 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240': %s`, err)
+	} else {
+		if result.Category != "pc" {
+			t.Errorf("Expected result.Category for '%s' to be 'pc', but got '%s'", `Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240`, result.Category)
+		}
+		if result.Name != "Edge" {
+			t.Errorf("Expected result.Name for '%s' to be 'Edge', but got '%s'", `Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240`, result.Name)
+		}
+		if result.Os != "Windows 10" {
+			t.Errorf("Expected result.Os for '%s' to be 'Windows 10', but got '%s'", `Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240`, result.Os)
+		}
+		if result.OsVersion != "NT 10.0" {
+			t.Errorf("Expected result.OsVersion for '%s' to be 'NT 10.0', but got '%s'", `Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240`, result.OsVersion)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version for '%s' to be 'UNKNOWN', but got '%s'", `Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240`, result.Version)
 		}
 	}
 	result, err = Parse(`Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.2.149.27 Safari/525.13`)
