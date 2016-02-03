@@ -10,6 +10,7 @@ var (
 	rxDocomoVersionPattern   = regexp.MustCompile(`DoCoMo/[.0-9]+[ /]([^- /;()"']+)`)
 	rxFirefoxPattern         = regexp.MustCompile(`Firefox/([.0-9]+)`)
 	rxFirefoxOSPattern       = regexp.MustCompile(`^Mozilla/[.0-9]+ \((?:Mobile|Tablet);(?:.*;)? rv:([.0-9]+)\) Gecko/[.0-9]+ Firefox/[.0-9]+$`)
+	rxFirefoxiOSPattern      = regexp.MustCompile(`FxiOS/([.0-9]+)`)
 	rxFOMAVersionPattern     = regexp.MustCompile(`\(([^;)]+);FOMA;`)
 	rxHeadlineReaderPattern  = regexp.MustCompile(`(?i)headline-reader`)
 	rxJigPattern             = regexp.MustCompile(`jig browser[^;]+; ([^);]+)`)
@@ -166,6 +167,11 @@ func (p *Parser) TryBrowser(agent string, result *Result) (err error) {
 	}
 
 	err = p.ChallengeMsEdge(agent, result)
+	if err == nil {
+		return
+	}
+
+	err = p.ChallengeFirefoxiOS(agent, result)
 	if err == nil {
 		return
 	}
@@ -1079,6 +1085,20 @@ func (p *Parser) ChallengeMsEdge(agent string, result *Result) error {
 	}
 
 	err := p.PopulateDataSet(result, "Edge")
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (p *Parser) ChallengeFirefoxiOS(agent string, result *Result) error {
+	if matches := rxFirefoxiOSPattern.FindStringSubmatch(agent); matches != nil {
+		result.Version = matches[1]
+	} else {
+		return ErrNoMatch
+	}
+
+	err := p.PopulateDataSet(result, "Firefox")
 	if err != nil {
 		return err
 	}
