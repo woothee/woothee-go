@@ -428,6 +428,26 @@ func Test_pc_win(t *testing.T) {
 			t.Errorf("Expected result.Version for '%s' to be '9.52', but got '%s'", `Opera/9.52 (Windows NT 5.1; U; ja)`, result.Version)
 		}
 	}
+	result, err = Parse(`Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.88 Safari/537.36 Vivaldi/1.0.380.2`)
+	if err != nil {
+		t.Errorf(`Failed to parse 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.88 Safari/537.36 Vivaldi/1.0.380.2': %s`, err)
+	} else {
+		if result.Category != "pc" {
+			t.Errorf("Expected result.Category for '%s' to be 'pc', but got '%s'", `Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.88 Safari/537.36 Vivaldi/1.0.380.2`, result.Category)
+		}
+		if result.Name != "Vivaldi" {
+			t.Errorf("Expected result.Name for '%s' to be 'Vivaldi', but got '%s'", `Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.88 Safari/537.36 Vivaldi/1.0.380.2`, result.Name)
+		}
+		if result.Os != "Windows 10" {
+			t.Errorf("Expected result.Os for '%s' to be 'Windows 10', but got '%s'", `Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.88 Safari/537.36 Vivaldi/1.0.380.2`, result.Os)
+		}
+		if result.OsVersion != "NT 10.0" {
+			t.Errorf("Expected result.OsVersion for '%s' to be 'NT 10.0', but got '%s'", `Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.88 Safari/537.36 Vivaldi/1.0.380.2`, result.OsVersion)
+		}
+		if result.Version != "1.0.380.2" {
+			t.Errorf("Expected result.Version for '%s' to be '1.0.380.2', but got '%s'", `Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.88 Safari/537.36 Vivaldi/1.0.380.2`, result.Version)
+		}
+	}
 	result, err = Parse(`Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.117 Safari/537.36 OPR/20.0.1387.64`)
 	if err != nil {
 		t.Errorf(`Failed to parse 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.117 Safari/537.36 OPR/20.0.1387.64': %s`, err)

@@ -24,6 +24,7 @@ var (
 	rxOperaVersionPattern1   = regexp.MustCompile(`Version/([.0-9]+)`)
 	rxOperaVersionPattern2   = regexp.MustCompile(`Opera[/ ]([.0-9]+)`)
 	rxOperaVersionPattern3   = regexp.MustCompile(`OPR/([.0-9]+)`)
+	rxVivaldiPattern         = regexp.MustCompile(`Vivaldi/([.0-9]+)`)
 	rxSafariPattern          = regexp.MustCompile(`Version/([.0-9]+)`)
 	rxSoftbankPattern        = regexp.MustCompile(`(?:SoftBank|Vodafone|J-PHONE)/[.0-9]+/([^ /;()]+)`)
 	rxTridentPattern         = regexp.MustCompile(`Trident/([.0-9]+);(?: BOIE[0-9]+;[A-Z]+;)? rv:([.0-9]+)`)
@@ -167,6 +168,11 @@ func (p *Parser) TryBrowser(agent string, result *Result) (err error) {
 	}
 
 	err = p.ChallengeMsEdge(agent, result)
+	if err == nil {
+		return
+	}
+
+	err = p.ChallengeVivaldi(agent, result)
 	if err == nil {
 		return
 	}
@@ -1088,6 +1094,22 @@ func (p *Parser) ChallengeMsEdge(agent string, result *Result) error {
 	if err != nil {
 		return err
 	}
+	return nil
+}
+
+func (p *Parser) ChallengeVivaldi(agent string, result *Result) error {
+	version := ValueUnknown
+	if matches := rxVivaldiPattern.FindStringSubmatch(agent); matches != nil {
+		version = matches[1]
+	} else {
+		return ErrNoMatch
+	}
+
+	err := p.PopulateDataSet(result, "Vivaldi")
+	if err != nil {
+		return err
+	}
+	result.Version = version
 	return nil
 }
 

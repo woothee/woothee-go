@@ -108,6 +108,26 @@ func Test_pc_misc(t *testing.T) {
 			t.Errorf("Expected result.Version for '%s' to be '20.0.1387.82', but got '%s'", `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36 OPR/20.0.1387.82`, result.Version)
 		}
 	}
+	result, err = Parse(`Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36 Vivaldi/1.1.453.52`)
+	if err != nil {
+		t.Errorf(`Failed to parse 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36 Vivaldi/1.1.453.52': %s`, err)
+	} else {
+		if result.Category != "pc" {
+			t.Errorf("Expected result.Category for '%s' to be 'pc', but got '%s'", `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36 Vivaldi/1.1.453.52`, result.Category)
+		}
+		if result.Name != "Vivaldi" {
+			t.Errorf("Expected result.Name for '%s' to be 'Vivaldi', but got '%s'", `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36 Vivaldi/1.1.453.52`, result.Name)
+		}
+		if result.Os != "Mac OSX" {
+			t.Errorf("Expected result.Os for '%s' to be 'Mac OSX', but got '%s'", `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36 Vivaldi/1.1.453.52`, result.Os)
+		}
+		if result.OsVersion != "10.11.4" {
+			t.Errorf("Expected result.OsVersion for '%s' to be '10.11.4', but got '%s'", `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36 Vivaldi/1.1.453.52`, result.OsVersion)
+		}
+		if result.Version != "1.1.453.52" {
+			t.Errorf("Expected result.Version for '%s' to be '1.1.453.52', but got '%s'", `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36 Vivaldi/1.1.453.52`, result.Version)
+		}
+	}
 	result, err = Parse(`Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.50 (KHTML, like Gecko) Version/5.1 Instapaper/4.0 (+http://www.instapaper.com/)`)
 	if err != nil {
 		t.Errorf(`Failed to parse 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.50 (KHTML, like Gecko) Version/5.1 Instapaper/4.0 (+http://www.instapaper.com/)': %s`, err)
@@ -227,6 +247,26 @@ func Test_pc_misc(t *testing.T) {
 		}
 		if result.Version != "16.0.912.75" {
 			t.Errorf("Expected result.Version for '%s' to be '16.0.912.75', but got '%s'", `Mozilla/5.0 (X11; Linux i686) AppleWebKit/535.7 (KHTML, like Gecko) Chrome/16.0.912.75 Safari/535.7`, result.Version)
+		}
+	}
+	result, err = Parse(`Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.99 Safari/537.36 Vivaldi/1.0.321.3`)
+	if err != nil {
+		t.Errorf(`Failed to parse 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.99 Safari/537.36 Vivaldi/1.0.321.3': %s`, err)
+	} else {
+		if result.Category != "pc" {
+			t.Errorf("Expected result.Category for '%s' to be 'pc', but got '%s'", `Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.99 Safari/537.36 Vivaldi/1.0.321.3`, result.Category)
+		}
+		if result.Name != "Vivaldi" {
+			t.Errorf("Expected result.Name for '%s' to be 'Vivaldi', but got '%s'", `Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.99 Safari/537.36 Vivaldi/1.0.321.3`, result.Name)
+		}
+		if result.Os != "Linux" {
+			t.Errorf("Expected result.Os for '%s' to be 'Linux', but got '%s'", `Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.99 Safari/537.36 Vivaldi/1.0.321.3`, result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.99 Safari/537.36 Vivaldi/1.0.321.3`, result.OsVersion)
+		}
+		if result.Version != "1.0.321.3" {
+			t.Errorf("Expected result.Version for '%s' to be '1.0.321.3', but got '%s'", `Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.99 Safari/537.36 Vivaldi/1.0.321.3`, result.Version)
 		}
 	}
 	result, err = Parse(`Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.2.24) Gecko cXense`)
