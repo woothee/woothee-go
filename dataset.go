@@ -32,6 +32,11 @@ var DefaultDataSet DataSet = DataSet{
 		Type:   "",
 		Vendor: "Opera",
 	},
+	"Vivaldi": &Result{
+		Name:   "Vivaldi",
+		Type:   "",
+		Vendor: "Vivaldi Technologies",
+	},
 	"Sleipnir": &Result{
 		Name:   "Sleipnir",
 		Type:   "",
