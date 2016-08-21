@@ -434,6 +434,13 @@ var DefaultDataSet DataSet = DataSet{
 		Category: "crawler",
 		Os:       "UNKNOWN",
 	},
+	"BingPreview": &Result{
+		Name:     "BingPreview",
+		Type:     "crawler",
+		Vendor:   "",
+		Category: "crawler",
+		Os:       "UNKNOWN",
+	},
 	"Yeti": &Result{
 		Name:     "Naver Yeti",
 		Type:     "crawler",
