@@ -400,6 +400,10 @@ func (p *Parser) ChallengeCrawlers(agent string, result *Result) error {
 		}
 	}
 
+	if strings.Contains(agent, "BingPreview") {
+		return p.PopulateDataSet(result, "BingPreview")
+	}
+
 	if strings.Contains(agent, "Baidu") {
 		if strings.Contains(agent, "compatible; Baiduspider") || strings.Contains(agent, "Baiduspider+") || strings.Contains(agent, "Baiduspider-image+") {
 			return p.PopulateDataSet(result, "Baiduspider")

@@ -388,6 +388,26 @@ func Test_crawler(t *testing.T) {
 			t.Errorf("Expected result.Version for '%s' to be 'UNKNOWN', but got '%s'", `Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)`, result.Version)
 		}
 	}
+	result, err = Parse(`Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/534+ (KHTML, like Gecko) BingPreview/1.0b`)
+	if err != nil {
+		t.Errorf(`Failed to parse 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/534+ (KHTML, like Gecko) BingPreview/1.0b': %s`, err)
+	} else {
+		if result.Category != "crawler" {
+			t.Errorf("Expected result.Category for '%s' to be 'crawler', but got '%s'", `Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/534+ (KHTML, like Gecko) BingPreview/1.0b`, result.Category)
+		}
+		if result.Name != "BingPreview" {
+			t.Errorf("Expected result.Name for '%s' to be 'BingPreview', but got '%s'", `Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/534+ (KHTML, like Gecko) BingPreview/1.0b`, result.Name)
+		}
+		if result.Os != "UNKNOWN" {
+			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/534+ (KHTML, like Gecko) BingPreview/1.0b`, result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/534+ (KHTML, like Gecko) BingPreview/1.0b`, result.OsVersion)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version for '%s' to be 'UNKNOWN', but got '%s'", `Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/534+ (KHTML, like Gecko) BingPreview/1.0b`, result.Version)
+		}
+	}
 	result, err = Parse(`Yeti/1.0 (NHN Corp.; http://help.naver.com/robots/)`)
 	if err != nil {
 		t.Errorf(`Failed to parse 'Yeti/1.0 (NHN Corp.; http://help.naver.com/robots/)': %s`, err)
