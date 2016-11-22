@@ -7,7 +7,7 @@ go:
     - 1.5
     - tip
 install:
-    - echo "Do Nothing, please"
+    - go get -v
 script:
     - go test -v .
 after_success:
