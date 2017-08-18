@@ -688,5 +688,25 @@ func Test_misc(t *testing.T) {
 			t.Errorf("Expected result.Version for '%s' to be 'php', but got '%s'", `Mozilla/5.0 (compatible; PEAR HTTP_Request class;)`, result.Version)
 		}
 	}
+	result, err = Parse(`curl/7.19.7 (x86_64-redhat-linux-gnu) libcurl/7.19.7 NSS/3.19.1 Basic ECC zlib/1.2.3 libidn/1.18 libssh2/1.4.2`)
+	if err != nil {
+		t.Errorf(`Failed to parse 'curl/7.19.7 (x86_64-redhat-linux-gnu) libcurl/7.19.7 NSS/3.19.1 Basic ECC zlib/1.2.3 libidn/1.18 libssh2/1.4.2': %s`, err)
+	} else {
+		if result.Category != "misc" {
+			t.Errorf("Expected result.Category for '%s' to be 'misc', but got '%s'", `curl/7.19.7 (x86_64-redhat-linux-gnu) libcurl/7.19.7 NSS/3.19.1 Basic ECC zlib/1.2.3 libidn/1.18 libssh2/1.4.2`, result.Category)
+		}
+		if result.Name != "HTTP Library" {
+			t.Errorf("Expected result.Name for '%s' to be 'HTTP Library', but got '%s'", `curl/7.19.7 (x86_64-redhat-linux-gnu) libcurl/7.19.7 NSS/3.19.1 Basic ECC zlib/1.2.3 libidn/1.18 libssh2/1.4.2`, result.Name)
+		}
+		if result.Os != "UNKNOWN" {
+			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `curl/7.19.7 (x86_64-redhat-linux-gnu) libcurl/7.19.7 NSS/3.19.1 Basic ECC zlib/1.2.3 libidn/1.18 libssh2/1.4.2`, result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `curl/7.19.7 (x86_64-redhat-linux-gnu) libcurl/7.19.7 NSS/3.19.1 Basic ECC zlib/1.2.3 libidn/1.18 libssh2/1.4.2`, result.OsVersion)
+		}
+		if result.Version != "curl" {
+			t.Errorf("Expected result.Version for '%s' to be 'curl', but got '%s'", `curl/7.19.7 (x86_64-redhat-linux-gnu) libcurl/7.19.7 NSS/3.19.1 Basic ECC zlib/1.2.3 libidn/1.18 libssh2/1.4.2`, result.Version)
+		}
+	}
 
 }
