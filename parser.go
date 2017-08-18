@@ -411,7 +411,7 @@ func (p *Parser) ChallengeCrawlers(agent string, result *Result) error {
 	}
 
 	if strings.Contains(agent, "Yeti") {
-		if strings.Contains(agent, "http://help.naver.com/robots") {
+		if strings.Contains(agent, "http://help.naver.com/robots") || strings.Contains(agent, "http://help.naver.com/support/robots.html") || strings.Contains(agent, "http://naver.me/bot") {
 			return p.PopulateDataSet(result, "Yeti")
 		}
 	}
@@ -480,6 +480,10 @@ func (p *Parser) ChallengeCrawlers(agent string, result *Result) error {
 		if strings.Contains(agent, "compatible; Indy Library") {
 			return p.PopulateDataSet(result, "IndyLibrary")
 		}
+	}
+
+	if strings.Contains(agent, "trendictionbot") {
+		return p.PopulateDataSet(result, "trendictionbot")
 	}
 
 	return ErrNoMatch
@@ -598,6 +602,8 @@ func (p *Parser) ChallengeHTTPLibrary(agent string, result *Result) error {
 		version = "python"
 	} else if p.isPHP(agent) {
 		version = "php"
+	} else if strings.HasPrefix(agent, "curl/") {
+		version = "curl"
 	}
 
 	if version == "" {
@@ -1135,6 +1141,9 @@ func (p *Parser) ChallengeSafariChrome(agent string, result *Result) error {
 	if !strings.Contains(agent, "Safari/") {
 		return ErrNoMatch
 	}
+	if strings.Contains(agent, "Chrome") && strings.Contains(agent, "wv") {
+		return ErrNoMatch
+	}
 
 	if match := rxChromePattern.FindStringSubmatchIndex(agent); match != nil {
 		// Work with Opera (blink)
@@ -1210,6 +1219,19 @@ func (p *Parser) ChallengeOpera(agent string, result *Result) error {
 }
 
 func (p *Parser) ChallengeWebview(agent string, result *Result) error {
+	if strings.Contains(agent, "Chrome") && strings.Contains(agent, "wv") {
+		err := p.PopulateDataSet(result, "Webview")
+		if err != nil {
+			return err
+		}
+
+		if matches := rxWebviewVersionPattern.FindStringSubmatch(agent); matches != nil {
+			result.Version = matches[1]
+		}
+
+		return nil
+	}
+
 	if match := rxWebviewPattern.FindStringSubmatchIndex(agent); match == nil || strings.Contains(agent, "Safari/") {
 		return ErrNoMatch
 	}

@@ -428,6 +428,46 @@ func Test_crawler(t *testing.T) {
 			t.Errorf("Expected result.Version for '%s' to be 'UNKNOWN', but got '%s'", `Yeti/1.0 (NHN Corp.; http://help.naver.com/robots/)`, result.Version)
 		}
 	}
+	result, err = Parse(`Mozilla/5.0 (compatible; Yeti/1.1; +http://help.naver.com/support/robots.html)`)
+	if err != nil {
+		t.Errorf(`Failed to parse 'Mozilla/5.0 (compatible; Yeti/1.1; +http://help.naver.com/support/robots.html)': %s`, err)
+	} else {
+		if result.Category != "crawler" {
+			t.Errorf("Expected result.Category for '%s' to be 'crawler', but got '%s'", `Mozilla/5.0 (compatible; Yeti/1.1; +http://help.naver.com/support/robots.html)`, result.Category)
+		}
+		if result.Name != "Naver Yeti" {
+			t.Errorf("Expected result.Name for '%s' to be 'Naver Yeti', but got '%s'", `Mozilla/5.0 (compatible; Yeti/1.1; +http://help.naver.com/support/robots.html)`, result.Name)
+		}
+		if result.Os != "UNKNOWN" {
+			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `Mozilla/5.0 (compatible; Yeti/1.1; +http://help.naver.com/support/robots.html)`, result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `Mozilla/5.0 (compatible; Yeti/1.1; +http://help.naver.com/support/robots.html)`, result.OsVersion)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version for '%s' to be 'UNKNOWN', but got '%s'", `Mozilla/5.0 (compatible; Yeti/1.1; +http://help.naver.com/support/robots.html)`, result.Version)
+		}
+	}
+	result, err = Parse(`Mozilla/5.0 (compatible; Yeti/1.1; +http://naver.me/bot)`)
+	if err != nil {
+		t.Errorf(`Failed to parse 'Mozilla/5.0 (compatible; Yeti/1.1; +http://naver.me/bot)': %s`, err)
+	} else {
+		if result.Category != "crawler" {
+			t.Errorf("Expected result.Category for '%s' to be 'crawler', but got '%s'", `Mozilla/5.0 (compatible; Yeti/1.1; +http://naver.me/bot)`, result.Category)
+		}
+		if result.Name != "Naver Yeti" {
+			t.Errorf("Expected result.Name for '%s' to be 'Naver Yeti', but got '%s'", `Mozilla/5.0 (compatible; Yeti/1.1; +http://naver.me/bot)`, result.Name)
+		}
+		if result.Os != "UNKNOWN" {
+			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `Mozilla/5.0 (compatible; Yeti/1.1; +http://naver.me/bot)`, result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `Mozilla/5.0 (compatible; Yeti/1.1; +http://naver.me/bot)`, result.OsVersion)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version for '%s' to be 'UNKNOWN', but got '%s'", `Mozilla/5.0 (compatible; Yeti/1.1; +http://naver.me/bot)`, result.Version)
+		}
+	}
 	result, err = Parse(`Mozilla/3.0 (compatible; Indy Library)`)
 	if err != nil {
 		t.Errorf(`Failed to parse 'Mozilla/3.0 (compatible; Indy Library)': %s`, err)
@@ -866,6 +906,26 @@ func Test_crawler(t *testing.T) {
 		}
 		if result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version for '%s' to be 'UNKNOWN', but got '%s'", `mixi-crawler/2.00 (http://mixi.jp/)`, result.Version)
+		}
+	}
+	result, err = Parse(`Mozilla/5.0 (Windows; U; Windows NT 6.0; en-GB; rv:1.0; trendictionbot0.5.0; trendiction search; http://www.trendiction.de/bot; please let us know of any problems; web at trendiction.com) Gecko/20071127 Firefox/3.0.0.11`)
+	if err != nil {
+		t.Errorf(`Failed to parse 'Mozilla/5.0 (Windows; U; Windows NT 6.0; en-GB; rv:1.0; trendictionbot0.5.0; trendiction search; http://www.trendiction.de/bot; please let us know of any problems; web at trendiction.com) Gecko/20071127 Firefox/3.0.0.11': %s`, err)
+	} else {
+		if result.Category != "crawler" {
+			t.Errorf("Expected result.Category for '%s' to be 'crawler', but got '%s'", `Mozilla/5.0 (Windows; U; Windows NT 6.0; en-GB; rv:1.0; trendictionbot0.5.0; trendiction search; http://www.trendiction.de/bot; please let us know of any problems; web at trendiction.com) Gecko/20071127 Firefox/3.0.0.11`, result.Category)
+		}
+		if result.Name != "trendiction" {
+			t.Errorf("Expected result.Name for '%s' to be 'trendiction', but got '%s'", `Mozilla/5.0 (Windows; U; Windows NT 6.0; en-GB; rv:1.0; trendictionbot0.5.0; trendiction search; http://www.trendiction.de/bot; please let us know of any problems; web at trendiction.com) Gecko/20071127 Firefox/3.0.0.11`, result.Name)
+		}
+		if result.Os != "UNKNOWN" {
+			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `Mozilla/5.0 (Windows; U; Windows NT 6.0; en-GB; rv:1.0; trendictionbot0.5.0; trendiction search; http://www.trendiction.de/bot; please let us know of any problems; web at trendiction.com) Gecko/20071127 Firefox/3.0.0.11`, result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `Mozilla/5.0 (Windows; U; Windows NT 6.0; en-GB; rv:1.0; trendictionbot0.5.0; trendiction search; http://www.trendiction.de/bot; please let us know of any problems; web at trendiction.com) Gecko/20071127 Firefox/3.0.0.11`, result.OsVersion)
+		}
+		if result.Version != "UNKNOWN" {
+			t.Errorf("Expected result.Version for '%s' to be 'UNKNOWN', but got '%s'", `Mozilla/5.0 (Windows; U; Windows NT 6.0; en-GB; rv:1.0; trendictionbot0.5.0; trendiction search; http://www.trendiction.de/bot; please let us know of any problems; web at trendiction.com) Gecko/20071127 Firefox/3.0.0.11`, result.Version)
 		}
 	}
 

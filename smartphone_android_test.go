@@ -188,5 +188,25 @@ func Test_smartphone_android(t *testing.T) {
 			t.Errorf("Expected result.Version for '%s' to be 'UNKNOWN', but got '%s'", `LDNReader/2.0.1 (Android)`, result.Version)
 		}
 	}
+	result, err = Parse(`Mozilla/5.0 (Linux; Android 5.1.1; Nexus 5 Build/LMY48B; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/43.0.2357.65 Mobile Safari/537.36`)
+	if err != nil {
+		t.Errorf(`Failed to parse 'Mozilla/5.0 (Linux; Android 5.1.1; Nexus 5 Build/LMY48B; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/43.0.2357.65 Mobile Safari/537.36': %s`, err)
+	} else {
+		if result.Category != "smartphone" {
+			t.Errorf("Expected result.Category for '%s' to be 'smartphone', but got '%s'", `Mozilla/5.0 (Linux; Android 5.1.1; Nexus 5 Build/LMY48B; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/43.0.2357.65 Mobile Safari/537.36`, result.Category)
+		}
+		if result.Name != "Webview" {
+			t.Errorf("Expected result.Name for '%s' to be 'Webview', but got '%s'", `Mozilla/5.0 (Linux; Android 5.1.1; Nexus 5 Build/LMY48B; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/43.0.2357.65 Mobile Safari/537.36`, result.Name)
+		}
+		if result.Os != "Android" {
+			t.Errorf("Expected result.Os for '%s' to be 'Android', but got '%s'", `Mozilla/5.0 (Linux; Android 5.1.1; Nexus 5 Build/LMY48B; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/43.0.2357.65 Mobile Safari/537.36`, result.Os)
+		}
+		if result.OsVersion != "5.1.1" {
+			t.Errorf("Expected result.OsVersion for '%s' to be '5.1.1', but got '%s'", `Mozilla/5.0 (Linux; Android 5.1.1; Nexus 5 Build/LMY48B; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/43.0.2357.65 Mobile Safari/537.36`, result.OsVersion)
+		}
+		if result.Version != "4.0" {
+			t.Errorf("Expected result.Version for '%s' to be '4.0', but got '%s'", `Mozilla/5.0 (Linux; Android 5.1.1; Nexus 5 Build/LMY48B; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/43.0.2357.65 Mobile Safari/537.36`, result.Version)
+		}
+	}
 
 }

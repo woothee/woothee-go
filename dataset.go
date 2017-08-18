@@ -469,6 +469,13 @@ var DefaultDataSet DataSet = DataSet{
 		Category: "crawler",
 		Os:       "UNKNOWN",
 	},
+	"trendictionbot": &Result{
+		Name:     "trendiction",
+		Type:     "crawler",
+		Vendor:   "",
+		Category: "crawler",
+		Os:       "UNKNOWN",
+	},
 	"mixi": &Result{
 		Name:     "mixi",
 		Type:     "crawler",
