@@ -482,6 +482,10 @@ func (p *Parser) ChallengeCrawlers(agent string, result *Result) error {
 		}
 	}
 
+	if strings.Contains(agent, "trendictionbot") {
+		return p.PopulateDataSet(result, "trendictionbot")
+	}
+
 	return ErrNoMatch
 }
 
