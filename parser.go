@@ -1141,6 +1141,9 @@ func (p *Parser) ChallengeSafariChrome(agent string, result *Result) error {
 	if !strings.Contains(agent, "Safari/") {
 		return ErrNoMatch
 	}
+	if strings.Contains(agent, "Chrome") && strings.Contains(agent, "wv") {
+		return ErrNoMatch
+	}
 
 	if match := rxChromePattern.FindStringSubmatchIndex(agent); match != nil {
 		// Work with Opera (blink)
@@ -1216,6 +1219,19 @@ func (p *Parser) ChallengeOpera(agent string, result *Result) error {
 }
 
 func (p *Parser) ChallengeWebview(agent string, result *Result) error {
+	if strings.Contains(agent, "Chrome") && strings.Contains(agent, "wv") {
+		err := p.PopulateDataSet(result, "Webview")
+		if err != nil {
+			return err
+		}
+
+		if matches := rxWebviewVersionPattern.FindStringSubmatch(agent); matches != nil {
+			result.Version = matches[1]
+		}
+
+		return nil
+	}
+
 	if match := rxWebviewPattern.FindStringSubmatchIndex(agent); match == nil || strings.Contains(agent, "Safari/") {
 		return ErrNoMatch
 	}
