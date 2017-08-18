@@ -411,7 +411,7 @@ func (p *Parser) ChallengeCrawlers(agent string, result *Result) error {
 	}
 
 	if strings.Contains(agent, "Yeti") {
-		if strings.Contains(agent, "http://help.naver.com/robots") {
+		if strings.Contains(agent, "http://help.naver.com/robots") || strings.Contains(agent, "http://help.naver.com/support/robots.html") || strings.Contains(agent, "http://naver.me/bot") {
 			return p.PopulateDataSet(result, "Yeti")
 		}
 	}
