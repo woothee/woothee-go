@@ -578,7 +578,7 @@ func (p *Parser) ChallengeHTTPLibrary(agent string, result *Result) error {
 
 		agentLen := len(agent)
 		if agentLen > i+10 { // Longer than "...HttpClient"
-			if agent[i+11] == '/' {
+			if agentLen > i+11 && agent[i+11] == '/' {
 				goto MATCH_JAVA_MISC
 			}
 			return ErrNoMatch
