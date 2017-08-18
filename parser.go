@@ -602,6 +602,8 @@ func (p *Parser) ChallengeHTTPLibrary(agent string, result *Result) error {
 		version = "python"
 	} else if p.isPHP(agent) {
 		version = "php"
+	} else if strings.HasPrefix(agent, "curl/") {
+		version = "curl"
 	}
 
 	if version == "" {
