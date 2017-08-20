@@ -193,6 +193,7 @@ func Test_{{.TestName}}(t *testing.T) {
 
 		testname := filepath.Base(filename)
 		testname = strings.Replace(testname, "_windows", "_win", -1)
+		testname = strings.Replace(testname, "_android", "_android_", -1)
 		testname = strings.TrimSuffix(testname, ".yaml")
 
 		data.TestName = testname

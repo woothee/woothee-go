@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func Test_smartphone_android(t *testing.T) {
+func Test_smartphone_android_(t *testing.T) {
 	var result *Result
 	var err error
 	result, err = Parse(`Mozilla/5.0 (Linux; U; Android 2.3.5; ja-jp; ISW11F Build/FGK500) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1`)
