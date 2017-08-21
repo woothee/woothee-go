@@ -137,7 +137,7 @@ func Test_{{.TestName}}(t *testing.T) {
 
 	for _, field := range []string{"Category", "Name", "Os", "OsVersion", "Version"} {
 		tmpl += fmt.Sprintf(`		if result.%s != "{{.%s}}" {
-			t.Errorf("Expected result.%s for '%%s' to be '{{.%s}}', but got '%%s'", ` + "`{{.Target}}`" + `, result.%s)
+			t.Errorf("Expected result.%s for '%%s' to be '{{.%s}}', but got '%%s'", `+"`{{.Target}}`"+`, result.%s)
 		}
 `, field, field, field, field, field)
 	}
@@ -178,12 +178,12 @@ func Test_{{.TestName}}(t *testing.T) {
 		var data struct {
 			TestName string
 			Tests    []*struct {
-				Target string
-				Name string
-				Os string
+				Target    string
+				Name      string
+				Os        string
 				OsVersion string `yaml:"os_version,omitempty"`
-				Category string
-				Version string
+				Category  string
+				Version   string
 			}
 		}
 
@@ -193,6 +193,7 @@ func Test_{{.TestName}}(t *testing.T) {
 
 		testname := filepath.Base(filename)
 		testname = strings.Replace(testname, "_windows", "_win", -1)
+		testname = strings.Replace(testname, "_android", "_android_", -1)
 		testname = strings.TrimSuffix(testname, ".yaml")
 
 		data.TestName = testname
