@@ -18,7 +18,4 @@ after_success:
     - go get github.com/axw/gocov/gocov
     - go get code.google.com/p/go.tools/cmd/cover
     - export PATH="$HOME/gopath/bin:$PATH"
-    - goveralls $COVERALLS_TOKEN
-env:
-    global:
-        secure: "f6L4an7mAvfe6M+DWiA15ZSfN4DKPxlV5t/cmd/IFHO9RIjmGwcAxAdYPA136o7TuTHcopNQILC31HaA6VymC/DKpX9dAwM9nrAyCr8GkNA5jKl5fbV4AF4RF3sk9YKy+H51uPRrqajXcyHuhuZm+mU41VYmrTMO/v9Uvypgyyc="
+    - goveralls -package "github.com/woothee/woothee-go" -service=travis-ci
