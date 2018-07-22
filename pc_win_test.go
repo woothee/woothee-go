@@ -528,5 +528,25 @@ func Test_pc_win(t *testing.T) {
 			t.Errorf("Expected result.Version for '%s' to be 'UNKNOWN', but got '%s'", `Mozilla/5.0 (Windows NT 5.1; rv:8.0) Gecko/20111105 Thunderbird/8.0`, result.Version)
 		}
 	}
+	result, err = Parse(`Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 YaBrowser/18.1.1.839 Yowser/2.5 Safari/537.36`)
+	if err != nil {
+		t.Errorf(`Failed to parse 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 YaBrowser/18.1.1.839 Yowser/2.5 Safari/537.36': %s`, err)
+	} else {
+		if result.Category != "pc" {
+			t.Errorf("Expected result.Category for '%s' to be 'pc', but got '%s'", `Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 YaBrowser/18.1.1.839 Yowser/2.5 Safari/537.36`, result.Category)
+		}
+		if result.Name != "Yandex Browser" {
+			t.Errorf("Expected result.Name for '%s' to be 'Yandex Browser', but got '%s'", `Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 YaBrowser/18.1.1.839 Yowser/2.5 Safari/537.36`, result.Name)
+		}
+		if result.Os != "Windows 7" {
+			t.Errorf("Expected result.Os for '%s' to be 'Windows 7', but got '%s'", `Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 YaBrowser/18.1.1.839 Yowser/2.5 Safari/537.36`, result.Os)
+		}
+		if result.OsVersion != "NT 6.1" {
+			t.Errorf("Expected result.OsVersion for '%s' to be 'NT 6.1', but got '%s'", `Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 YaBrowser/18.1.1.839 Yowser/2.5 Safari/537.36`, result.OsVersion)
+		}
+		if result.Version != "18.1.1.839" {
+			t.Errorf("Expected result.Version for '%s' to be '18.1.1.839', but got '%s'", `Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 YaBrowser/18.1.1.839 Yowser/2.5 Safari/537.36`, result.Version)
+		}
+	}
 
 }

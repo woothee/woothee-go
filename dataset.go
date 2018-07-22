@@ -47,6 +47,11 @@ var DefaultDataSet DataSet = DataSet{
 		Type:   "",
 		Vendor: "OS vendor",
 	},
+	"YaBrowser": &Result{
+		Name:   "Yandex Browser",
+		Type:   "",
+		Vendor: "Yandex",
+	},
 	"Win": &Result{
 		Name:     "Windows UNKNOWN Ver",
 		Type:     "pc",
