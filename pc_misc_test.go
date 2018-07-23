@@ -390,5 +390,24 @@ func Test_pc_misc(t *testing.T) {
 			t.Errorf("Expected result.Version for '%s' to be '33.0.1750.152', but got '%s'", `Mozilla/5.0 (X11; CrOS x86_64 5116.115.4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36`, result.Version)
 		}
 	}
-
+	result, err = Parse(`Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 YaBrowser/17.11.1.1087 (beta) Yowser/2.5 Safari/537.36`)
+	if err != nil {
+		t.Errorf(`Failed to parse 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 YaBrowser/17.11.1.1087 (beta) Yowser/2.5 Safari/537.36': %s`, err)
+	} else {
+		if result.Category != "pc" {
+			t.Errorf("Expected result.Category for '%s' to be 'pc', but got '%s'", `Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 YaBrowser/17.11.1.1087 (beta) Yowser/2.5 Safari/537.36`, result.Category)
+		}
+		if result.Name != "Yandex Browser" {
+			t.Errorf("Expected result.Name for '%s' to be 'Yandex Browser', but got '%s'", `Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 YaBrowser/17.11.1.1087 (beta) Yowser/2.5 Safari/537.36`, result.Name)
+		}
+		if result.Os != "Linux" {
+			t.Errorf("Expected result.Os for '%s' to be 'Linux', but got '%s'", `Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 YaBrowser/17.11.1.1087 (beta) Yowser/2.5 Safari/537.36`, result.Os)
+		}
+		if result.OsVersion != "UNKNOWN" {
+			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 YaBrowser/17.11.1.1087 (beta) Yowser/2.5 Safari/537.36`, result.OsVersion)
+		}
+		if result.Version != "17.11.1.1087" {
+			t.Errorf("Expected result.Version for '%s' to be '17.11.1.1087', but got '%s'", `Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 YaBrowser/17.11.1.1087 (beta) Yowser/2.5 Safari/537.36`, result.Version)
+		}
+	}
 }
