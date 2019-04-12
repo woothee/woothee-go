@@ -18,13 +18,13 @@ func Test_misc(t *testing.T) {
 		if result.Name != "Safari RSSReader" {
 			t.Errorf("Expected result.Name for '%s' to be 'Safari RSSReader', but got '%s'", `AppleSyndication/56.1`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `AppleSyndication/56.1`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `AppleSyndication/56.1`, result.OsVersion)
 		}
-		if result.Version != "UNKNOWN" {
+		if false && result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version for '%s' to be 'UNKNOWN', but got '%s'", `AppleSyndication/56.1`, result.Version)
 		}
 	}
@@ -38,13 +38,13 @@ func Test_misc(t *testing.T) {
 		if result.Name != "Google Desktop" {
 			t.Errorf("Expected result.Name for '%s' to be 'Google Desktop', but got '%s'", `Mozilla/5.0 (compatible; Google Desktop/5.9.1005.12335; http://desktop.google.com/)`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `Mozilla/5.0 (compatible; Google Desktop/5.9.1005.12335; http://desktop.google.com/)`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `Mozilla/5.0 (compatible; Google Desktop/5.9.1005.12335; http://desktop.google.com/)`, result.OsVersion)
 		}
-		if result.Version != "UNKNOWN" {
+		if false && result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version for '%s' to be 'UNKNOWN', but got '%s'", `Mozilla/5.0 (compatible; Google Desktop/5.9.1005.12335; http://desktop.google.com/)`, result.Version)
 		}
 	}
@@ -58,13 +58,13 @@ func Test_misc(t *testing.T) {
 		if result.Name != "Windows RSSReader" {
 			t.Errorf("Expected result.Name for '%s' to be 'Windows RSSReader', but got '%s'", `Windows-RSS-Platform/2.0 (MSIE 9.0; Windows NT 6.0)`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if false && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `Windows-RSS-Platform/2.0 (MSIE 9.0; Windows NT 6.0)`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `Windows-RSS-Platform/2.0 (MSIE 9.0; Windows NT 6.0)`, result.OsVersion)
 		}
-		if result.Version != "UNKNOWN" {
+		if false && result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version for '%s' to be 'UNKNOWN', but got '%s'", `Windows-RSS-Platform/2.0 (MSIE 9.0; Windows NT 6.0)`, result.Version)
 		}
 	}
@@ -78,13 +78,13 @@ func Test_misc(t *testing.T) {
 		if result.Name != "RSSReader" {
 			t.Errorf("Expected result.Name for '%s' to be 'RSSReader', but got '%s'", `RssBar/1.29 (RssBar for unDonut 1.35)`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `RssBar/1.29 (RssBar for unDonut 1.35)`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `RssBar/1.29 (RssBar for unDonut 1.35)`, result.OsVersion)
 		}
-		if result.Version != "UNKNOWN" {
+		if false && result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version for '%s' to be 'UNKNOWN', but got '%s'", `RssBar/1.29 (RssBar for unDonut 1.35)`, result.Version)
 		}
 	}
@@ -98,13 +98,13 @@ func Test_misc(t *testing.T) {
 		if result.Name != "RSSReader" {
 			t.Errorf("Expected result.Name for '%s' to be 'RSSReader', but got '%s'", `MagpieRSS/0.61 (+http://magpierss.sf.net)`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `MagpieRSS/0.61 (+http://magpierss.sf.net)`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `MagpieRSS/0.61 (+http://magpierss.sf.net)`, result.OsVersion)
 		}
-		if result.Version != "UNKNOWN" {
+		if false && result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version for '%s' to be 'UNKNOWN', but got '%s'", `MagpieRSS/0.61 (+http://magpierss.sf.net)`, result.Version)
 		}
 	}
@@ -118,13 +118,13 @@ func Test_misc(t *testing.T) {
 		if result.Name != "RSSReader" {
 			t.Errorf("Expected result.Name for '%s' to be 'RSSReader', but got '%s'", `gooRSSreader3.7 - build20090410`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `gooRSSreader3.7 - build20090410`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `gooRSSreader3.7 - build20090410`, result.OsVersion)
 		}
-		if result.Version != "UNKNOWN" {
+		if false && result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version for '%s' to be 'UNKNOWN', but got '%s'", `gooRSSreader3.7 - build20090410`, result.Version)
 		}
 	}
@@ -138,13 +138,13 @@ func Test_misc(t *testing.T) {
 		if result.Name != "RSSReader" {
 			t.Errorf("Expected result.Name for '%s' to be 'RSSReader', but got '%s'", `Fenrir Headline-Reader Plugin`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `Fenrir Headline-Reader Plugin`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `Fenrir Headline-Reader Plugin`, result.OsVersion)
 		}
-		if result.Version != "UNKNOWN" {
+		if false && result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version for '%s' to be 'UNKNOWN', but got '%s'", `Fenrir Headline-Reader Plugin`, result.Version)
 		}
 	}
@@ -158,13 +158,13 @@ func Test_misc(t *testing.T) {
 		if result.Name != "RSSReader" {
 			t.Errorf("Expected result.Name for '%s' to be 'RSSReader', but got '%s'", `jsRSS++/3.15`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `jsRSS++/3.15`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `jsRSS++/3.15`, result.OsVersion)
 		}
-		if result.Version != "UNKNOWN" {
+		if false && result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version for '%s' to be 'UNKNOWN', but got '%s'", `jsRSS++/3.15`, result.Version)
 		}
 	}
@@ -178,13 +178,13 @@ func Test_misc(t *testing.T) {
 		if result.Name != "RSSReader" {
 			t.Errorf("Expected result.Name for '%s' to be 'RSSReader', but got '%s'", `cococ/1.06`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `cococ/1.06`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `cococ/1.06`, result.OsVersion)
 		}
-		if result.Version != "UNKNOWN" {
+		if false && result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version for '%s' to be 'UNKNOWN', but got '%s'", `cococ/1.06`, result.Version)
 		}
 	}
@@ -198,13 +198,13 @@ func Test_misc(t *testing.T) {
 		if result.Name != "HTTP Library" {
 			t.Errorf("Expected result.Name for '%s' to be 'HTTP Library', but got '%s'", `Wget/1.12 (linux-gnu)`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `Wget/1.12 (linux-gnu)`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `Wget/1.12 (linux-gnu)`, result.OsVersion)
 		}
-		if result.Version != "wget" {
+		if true && result.Version != "wget" {
 			t.Errorf("Expected result.Version for '%s' to be 'wget', but got '%s'", `Wget/1.12 (linux-gnu)`, result.Version)
 		}
 	}
@@ -218,13 +218,13 @@ func Test_misc(t *testing.T) {
 		if result.Name != "HTTP Library" {
 			t.Errorf("Expected result.Name for '%s' to be 'HTTP Library', but got '%s'", `Apache-HttpClient/UNAVAILABLE (java 1.4)`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `Apache-HttpClient/UNAVAILABLE (java 1.4)`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `Apache-HttpClient/UNAVAILABLE (java 1.4)`, result.OsVersion)
 		}
-		if result.Version != "Java" {
+		if true && result.Version != "Java" {
 			t.Errorf("Expected result.Version for '%s' to be 'Java', but got '%s'", `Apache-HttpClient/UNAVAILABLE (java 1.4)`, result.Version)
 		}
 	}
@@ -238,13 +238,13 @@ func Test_misc(t *testing.T) {
 		if result.Name != "HTTP Library" {
 			t.Errorf("Expected result.Name for '%s' to be 'HTTP Library', but got '%s'", `livedoor HttpClient`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `livedoor HttpClient`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `livedoor HttpClient`, result.OsVersion)
 		}
-		if result.Version != "Java" {
+		if true && result.Version != "Java" {
 			t.Errorf("Expected result.Version for '%s' to be 'Java', but got '%s'", `livedoor HttpClient`, result.Version)
 		}
 	}
@@ -258,13 +258,13 @@ func Test_misc(t *testing.T) {
 		if result.Name != "HTTP Library" {
 			t.Errorf("Expected result.Name for '%s' to be 'HTTP Library', but got '%s'", `Jakarta Commons-HttpClient/3.0`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `Jakarta Commons-HttpClient/3.0`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `Jakarta Commons-HttpClient/3.0`, result.OsVersion)
 		}
-		if result.Version != "Java" {
+		if true && result.Version != "Java" {
 			t.Errorf("Expected result.Version for '%s' to be 'Java', but got '%s'", `Jakarta Commons-HttpClient/3.0`, result.Version)
 		}
 	}
@@ -278,13 +278,13 @@ func Test_misc(t *testing.T) {
 		if result.Name != "HTTP Library" {
 			t.Errorf("Expected result.Name for '%s' to be 'HTTP Library', but got '%s'", `Java/1.5.0_17`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `Java/1.5.0_17`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `Java/1.5.0_17`, result.OsVersion)
 		}
-		if result.Version != "Java" {
+		if true && result.Version != "Java" {
 			t.Errorf("Expected result.Version for '%s' to be 'Java', but got '%s'", `Java/1.5.0_17`, result.Version)
 		}
 	}
@@ -298,13 +298,13 @@ func Test_misc(t *testing.T) {
 		if result.Name != "HTTP Library" {
 			t.Errorf("Expected result.Name for '%s' to be 'HTTP Library', but got '%s'", `IE6.0,Java(TM) 2 Runtime Environment, Standard Edition`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `IE6.0,Java(TM) 2 Runtime Environment, Standard Edition`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `IE6.0,Java(TM) 2 Runtime Environment, Standard Edition`, result.OsVersion)
 		}
-		if result.Version != "Java" {
+		if true && result.Version != "Java" {
 			t.Errorf("Expected result.Version for '%s' to be 'Java', but got '%s'", `IE6.0,Java(TM) 2 Runtime Environment, Standard Edition`, result.Version)
 		}
 	}
@@ -318,13 +318,13 @@ func Test_misc(t *testing.T) {
 		if result.Name != "HTTP Library" {
 			t.Errorf("Expected result.Name for '%s' to be 'HTTP Library', but got '%s'", `libwww-perl/5.835`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `libwww-perl/5.835`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `libwww-perl/5.835`, result.OsVersion)
 		}
-		if result.Version != "perl" {
+		if true && result.Version != "perl" {
 			t.Errorf("Expected result.Version for '%s' to be 'perl', but got '%s'", `libwww-perl/5.835`, result.Version)
 		}
 	}
@@ -338,13 +338,13 @@ func Test_misc(t *testing.T) {
 		if result.Name != "HTTP Library" {
 			t.Errorf("Expected result.Name for '%s' to be 'HTTP Library', but got '%s'", `WWW-Mechanize/1.64`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `WWW-Mechanize/1.64`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `WWW-Mechanize/1.64`, result.OsVersion)
 		}
-		if result.Version != "perl" {
+		if true && result.Version != "perl" {
 			t.Errorf("Expected result.Version for '%s' to be 'perl', but got '%s'", `WWW-Mechanize/1.64`, result.Version)
 		}
 	}
@@ -358,13 +358,13 @@ func Test_misc(t *testing.T) {
 		if result.Name != "HTTP Library" {
 			t.Errorf("Expected result.Name for '%s' to be 'HTTP Library', but got '%s'", `LWP::Simple/5.800`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `LWP::Simple/5.800`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `LWP::Simple/5.800`, result.OsVersion)
 		}
-		if result.Version != "perl" {
+		if true && result.Version != "perl" {
 			t.Errorf("Expected result.Version for '%s' to be 'perl', but got '%s'", `LWP::Simple/5.800`, result.Version)
 		}
 	}
@@ -378,13 +378,13 @@ func Test_misc(t *testing.T) {
 		if result.Name != "HTTP Library" {
 			t.Errorf("Expected result.Name for '%s' to be 'HTTP Library', but got '%s'", `LWP LDMusicNews::LDNewsAPI`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `LWP LDMusicNews::LDNewsAPI`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `LWP LDMusicNews::LDNewsAPI`, result.OsVersion)
 		}
-		if result.Version != "perl" {
+		if true && result.Version != "perl" {
 			t.Errorf("Expected result.Version for '%s' to be 'perl', but got '%s'", `LWP LDMusicNews::LDNewsAPI`, result.Version)
 		}
 	}
@@ -398,13 +398,13 @@ func Test_misc(t *testing.T) {
 		if result.Name != "HTTP Library" {
 			t.Errorf("Expected result.Name for '%s' to be 'HTTP Library', but got '%s'", `lwp-trivial/1.41`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `lwp-trivial/1.41`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `lwp-trivial/1.41`, result.OsVersion)
 		}
-		if result.Version != "perl" {
+		if true && result.Version != "perl" {
 			t.Errorf("Expected result.Version for '%s' to be 'perl', but got '%s'", `lwp-trivial/1.41`, result.Version)
 		}
 	}
@@ -418,13 +418,13 @@ func Test_misc(t *testing.T) {
 		if result.Name != "HTTP Library" {
 			t.Errorf("Expected result.Name for '%s' to be 'HTTP Library', but got '%s'", `Ruby`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `Ruby`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `Ruby`, result.OsVersion)
 		}
-		if result.Version != "ruby" {
+		if true && result.Version != "ruby" {
 			t.Errorf("Expected result.Version for '%s' to be 'ruby', but got '%s'", `Ruby`, result.Version)
 		}
 	}
@@ -438,13 +438,13 @@ func Test_misc(t *testing.T) {
 		if result.Name != "HTTP Library" {
 			t.Errorf("Expected result.Name for '%s' to be 'HTTP Library', but got '%s'", `feedzirra http://github.com/pauldix/feedzirra/tree/master`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `feedzirra http://github.com/pauldix/feedzirra/tree/master`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `feedzirra http://github.com/pauldix/feedzirra/tree/master`, result.OsVersion)
 		}
-		if result.Version != "ruby" {
+		if true && result.Version != "ruby" {
 			t.Errorf("Expected result.Version for '%s' to be 'ruby', but got '%s'", `feedzirra http://github.com/pauldix/feedzirra/tree/master`, result.Version)
 		}
 	}
@@ -458,13 +458,13 @@ func Test_misc(t *testing.T) {
 		if result.Name != "HTTP Library" {
 			t.Errorf("Expected result.Name for '%s' to be 'HTTP Library', but got '%s'", `Typhoeus - https://github.com/typhoeus/typhoeus`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `Typhoeus - https://github.com/typhoeus/typhoeus`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `Typhoeus - https://github.com/typhoeus/typhoeus`, result.OsVersion)
 		}
-		if result.Version != "ruby" {
+		if true && result.Version != "ruby" {
 			t.Errorf("Expected result.Version for '%s' to be 'ruby', but got '%s'", `Typhoeus - https://github.com/typhoeus/typhoeus`, result.Version)
 		}
 	}
@@ -478,13 +478,13 @@ func Test_misc(t *testing.T) {
 		if result.Name != "HTTP Library" {
 			t.Errorf("Expected result.Name for '%s' to be 'HTTP Library', but got '%s'", `Python-urllib/1.16`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `Python-urllib/1.16`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `Python-urllib/1.16`, result.OsVersion)
 		}
-		if result.Version != "python" {
+		if true && result.Version != "python" {
 			t.Errorf("Expected result.Version for '%s' to be 'python', but got '%s'", `Python-urllib/1.16`, result.Version)
 		}
 	}
@@ -498,13 +498,13 @@ func Test_misc(t *testing.T) {
 		if result.Name != "HTTP Library" {
 			t.Errorf("Expected result.Name for '%s' to be 'HTTP Library', but got '%s'", `Twisted PageGetter`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `Twisted PageGetter`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `Twisted PageGetter`, result.OsVersion)
 		}
-		if result.Version != "python" {
+		if true && result.Version != "python" {
 			t.Errorf("Expected result.Version for '%s' to be 'python', but got '%s'", `Twisted PageGetter`, result.Version)
 		}
 	}
@@ -518,13 +518,13 @@ func Test_misc(t *testing.T) {
 		if result.Name != "HTTP Library" {
 			t.Errorf("Expected result.Name for '%s' to be 'HTTP Library', but got '%s'", `PHP/5.2.13`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `PHP/5.2.13`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `PHP/5.2.13`, result.OsVersion)
 		}
-		if result.Version != "php" {
+		if true && result.Version != "php" {
 			t.Errorf("Expected result.Version for '%s' to be 'php', but got '%s'", `PHP/5.2.13`, result.Version)
 		}
 	}
@@ -538,13 +538,13 @@ func Test_misc(t *testing.T) {
 		if result.Name != "HTTP Library" {
 			t.Errorf("Expected result.Name for '%s' to be 'HTTP Library', but got '%s'", `PHP`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `PHP`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `PHP`, result.OsVersion)
 		}
-		if result.Version != "php" {
+		if true && result.Version != "php" {
 			t.Errorf("Expected result.Version for '%s' to be 'php', but got '%s'", `PHP`, result.Version)
 		}
 	}
@@ -558,13 +558,13 @@ func Test_misc(t *testing.T) {
 		if result.Name != "HTTP Library" {
 			t.Errorf("Expected result.Name for '%s' to be 'HTTP Library', but got '%s'", `PEAR HTTP_Request class`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `PEAR HTTP_Request class`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `PEAR HTTP_Request class`, result.OsVersion)
 		}
-		if result.Version != "php" {
+		if true && result.Version != "php" {
 			t.Errorf("Expected result.Version for '%s' to be 'php', but got '%s'", `PEAR HTTP_Request class`, result.Version)
 		}
 	}
@@ -578,13 +578,13 @@ func Test_misc(t *testing.T) {
 		if result.Name != "HTTP Library" {
 			t.Errorf("Expected result.Name for '%s' to be 'HTTP Library', but got '%s'", `HTTP_Request2/2.1.1 (http://pear.php.net/package/http_request2) PHP/5.3.10-1ubuntu3.6`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `HTTP_Request2/2.1.1 (http://pear.php.net/package/http_request2) PHP/5.3.10-1ubuntu3.6`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `HTTP_Request2/2.1.1 (http://pear.php.net/package/http_request2) PHP/5.3.10-1ubuntu3.6`, result.OsVersion)
 		}
-		if result.Version != "php" {
+		if true && result.Version != "php" {
 			t.Errorf("Expected result.Version for '%s' to be 'php', but got '%s'", `HTTP_Request2/2.1.1 (http://pear.php.net/package/http_request2) PHP/5.3.10-1ubuntu3.6`, result.Version)
 		}
 	}
@@ -598,13 +598,13 @@ func Test_misc(t *testing.T) {
 		if result.Name != "HTTP Library" {
 			t.Errorf("Expected result.Name for '%s' to be 'HTTP Library', but got '%s'", `PECL::HTTP/1.7.4 (PHP/5.4.4)`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `PECL::HTTP/1.7.4 (PHP/5.4.4)`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `PECL::HTTP/1.7.4 (PHP/5.4.4)`, result.OsVersion)
 		}
-		if result.Version != "php" {
+		if true && result.Version != "php" {
 			t.Errorf("Expected result.Version for '%s' to be 'php', but got '%s'", `PECL::HTTP/1.7.4 (PHP/5.4.4)`, result.Version)
 		}
 	}
@@ -618,13 +618,13 @@ func Test_misc(t *testing.T) {
 		if result.Name != "HTTP Library" {
 			t.Errorf("Expected result.Name for '%s' to be 'HTTP Library', but got '%s'", `WordPress/3.2.1; http://www.painlog.jp`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `WordPress/3.2.1; http://www.painlog.jp`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `WordPress/3.2.1; http://www.painlog.jp`, result.OsVersion)
 		}
-		if result.Version != "php" {
+		if true && result.Version != "php" {
 			t.Errorf("Expected result.Version for '%s' to be 'php', but got '%s'", `WordPress/3.2.1; http://www.painlog.jp`, result.Version)
 		}
 	}
@@ -638,13 +638,13 @@ func Test_misc(t *testing.T) {
 		if result.Name != "HTTP Library" {
 			t.Errorf("Expected result.Name for '%s' to be 'HTTP Library', but got '%s'", `CakePHP`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `CakePHP`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `CakePHP`, result.OsVersion)
 		}
-		if result.Version != "php" {
+		if true && result.Version != "php" {
 			t.Errorf("Expected result.Version for '%s' to be 'php', but got '%s'", `CakePHP`, result.Version)
 		}
 	}
@@ -658,13 +658,13 @@ func Test_misc(t *testing.T) {
 		if result.Name != "HTTP Library" {
 			t.Errorf("Expected result.Name for '%s' to be 'HTTP Library', but got '%s'", `PukiWiki/1.4.6`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `PukiWiki/1.4.6`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `PukiWiki/1.4.6`, result.OsVersion)
 		}
-		if result.Version != "php" {
+		if true && result.Version != "php" {
 			t.Errorf("Expected result.Version for '%s' to be 'php', but got '%s'", `PukiWiki/1.4.6`, result.Version)
 		}
 	}
@@ -678,13 +678,13 @@ func Test_misc(t *testing.T) {
 		if result.Name != "HTTP Library" {
 			t.Errorf("Expected result.Name for '%s' to be 'HTTP Library', but got '%s'", `Mozilla/5.0 (compatible; PEAR HTTP_Request class;)`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `Mozilla/5.0 (compatible; PEAR HTTP_Request class;)`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `Mozilla/5.0 (compatible; PEAR HTTP_Request class;)`, result.OsVersion)
 		}
-		if result.Version != "php" {
+		if true && result.Version != "php" {
 			t.Errorf("Expected result.Version for '%s' to be 'php', but got '%s'", `Mozilla/5.0 (compatible; PEAR HTTP_Request class;)`, result.Version)
 		}
 	}
@@ -698,13 +698,13 @@ func Test_misc(t *testing.T) {
 		if result.Name != "HTTP Library" {
 			t.Errorf("Expected result.Name for '%s' to be 'HTTP Library', but got '%s'", `curl/7.19.7 (x86_64-redhat-linux-gnu) libcurl/7.19.7 NSS/3.19.1 Basic ECC zlib/1.2.3 libidn/1.18 libssh2/1.4.2`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `curl/7.19.7 (x86_64-redhat-linux-gnu) libcurl/7.19.7 NSS/3.19.1 Basic ECC zlib/1.2.3 libidn/1.18 libssh2/1.4.2`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `curl/7.19.7 (x86_64-redhat-linux-gnu) libcurl/7.19.7 NSS/3.19.1 Basic ECC zlib/1.2.3 libidn/1.18 libssh2/1.4.2`, result.OsVersion)
 		}
-		if result.Version != "curl" {
+		if true && result.Version != "curl" {
 			t.Errorf("Expected result.Version for '%s' to be 'curl', but got '%s'", `curl/7.19.7 (x86_64-redhat-linux-gnu) libcurl/7.19.7 NSS/3.19.1 Basic ECC zlib/1.2.3 libidn/1.18 libssh2/1.4.2`, result.Version)
 		}
 	}
