@@ -20,3 +20,6 @@ _cgo_export.*
 _testmain.go
 
 *.exe
+
+# spec project fetched to update _test.go
+woothee/
