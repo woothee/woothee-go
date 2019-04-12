@@ -39,7 +39,7 @@ var (
 	rxPPCOsVersion           = regexp.MustCompile(`rv:(\d+\.\d+\.\d+)`)
 	rxFreeBSDOsVersion       = regexp.MustCompile(`FreeBSD ([^;\)]+);`)
 	rxChromeOSOsVersion      = regexp.MustCompile(`CrOS ([^\)]+)\)`)
-	rxAndroidOSOsVersion     = regexp.MustCompile(`Android[- ](\d+\.\d+(?:\.\d+)?)`)
+	rxAndroidOSOsVersion     = regexp.MustCompile(`Android[- ](\d+(?:\.\d+(?:\.\d+)?)?)`)
 	rxPSPOsVersion           = regexp.MustCompile(`PSP \(PlayStation Portable\); ([.0-9]+)\)`)
 	rxPS3OsVersion           = regexp.MustCompile(`PLAYSTATION 3;? ([.0-9]+)\)`)
 	rxPSVitaOsVersion        = regexp.MustCompile(`PlayStation Vita ([.0-9]+)\)`)
