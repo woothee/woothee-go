@@ -21,10 +21,9 @@ func Test_smartphone_misc(t *testing.T) {
 		if result.Os != "Firefox OS" {
 			t.Errorf("Expected result.Os for '%s' to be 'Firefox OS', but got '%s'", `Mozilla/5.0 (Mobile; rv:18.0) Gecko/18.0 Firefox/18.0`, result.Os)
 		}
-		/* Skip for now
 		if result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `Mozilla/5.0 (Mobile; rv:18.0) Gecko/18.0 Firefox/18.0`, result.OsVersion)
-		}*/
+		}
 		if result.Version != "18.0" {
 			t.Errorf("Expected result.Version for '%s' to be '18.0', but got '%s'", `Mozilla/5.0 (Mobile; rv:18.0) Gecko/18.0 Firefox/18.0`, result.Version)
 		}
@@ -102,10 +101,9 @@ func Test_smartphone_misc(t *testing.T) {
 		if result.Os != "Windows CE" {
 			t.Errorf("Expected result.Os for '%s' to be 'Windows CE', but got '%s'", `Mozilla/4.0 (compatible; MSIE 6.0; Windows CE; IEMobile 7.7) S12HT`, result.Os)
 		}
-		/* Skip for now
 		if result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `Mozilla/4.0 (compatible; MSIE 6.0; Windows CE; IEMobile 7.7) S12HT`, result.OsVersion)
-		}*/
+		}
 		if result.Version != "6.0" {
 			t.Errorf("Expected result.Version for '%s' to be '6.0', but got '%s'", `Mozilla/4.0 (compatible; MSIE 6.0; Windows CE; IEMobile 7.7) S12HT`, result.Version)
 		}

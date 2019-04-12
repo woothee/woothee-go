@@ -141,10 +141,9 @@ func Test_pc_misc(t *testing.T) {
 		if result.Os != "Mac OSX" {
 			t.Errorf("Expected result.Os for '%s' to be 'Mac OSX', but got '%s'", `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.50 (KHTML, like Gecko) Version/5.1 Instapaper/4.0 (+http://www.instapaper.com/)`, result.Os)
 		}
-		/* Skip for now
 		if result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.50 (KHTML, like Gecko) Version/5.1 Instapaper/4.0 (+http://www.instapaper.com/)`, result.OsVersion)
-		}*/
+		}
 		if result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version for '%s' to be 'UNKNOWN', but got '%s'", `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.50 (KHTML, like Gecko) Version/5.1 Instapaper/4.0 (+http://www.instapaper.com/)`, result.Version)
 		}
@@ -342,10 +341,9 @@ func Test_pc_misc(t *testing.T) {
 		if result.Os != "BSD" {
 			t.Errorf("Expected result.Os for '%s' to be 'BSD', but got '%s'", `Mozilla/5.0 (X11; FreeBSD amd64; rv:8.0) Gecko/20100101 Firefox/8.0`, result.Os)
 		}
-		/* Skip for now
 		if result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `Mozilla/5.0 (X11; FreeBSD amd64; rv:8.0) Gecko/20100101 Firefox/8.0`, result.OsVersion)
-		}*/
+		}
 		if result.Version != "8.0" {
 			t.Errorf("Expected result.Version for '%s' to be '8.0', but got '%s'", `Mozilla/5.0 (X11; FreeBSD amd64; rv:8.0) Gecko/20100101 Firefox/8.0`, result.Version)
 		}
@@ -410,4 +408,5 @@ func Test_pc_misc(t *testing.T) {
 			t.Errorf("Expected result.Version for '%s' to be '17.11.1.1087', but got '%s'", `Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 YaBrowser/17.11.1.1087 (beta) Yowser/2.5 Safari/537.36`, result.Version)
 		}
 	}
+
 }

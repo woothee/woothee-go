@@ -148,6 +148,26 @@ func Test_smartphone_android_(t *testing.T) {
 			t.Errorf("Expected result.Version for '%s' to be '14.0', but got '%s'", `Mozilla/5.0 (Android; Tablet; rv:14.0) Gecko/14.0 Firefox/14.0`, result.Version)
 		}
 	}
+	result, err = Parse(`Mozilla/5.0 (Linux; Android 8.0; Pixel XL Build/OPP3.170518.006) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.0 Mobile Safari/537.36 EdgA/41.1.35.1`)
+	if err != nil {
+		t.Errorf(`Failed to parse 'Mozilla/5.0 (Linux; Android 8.0; Pixel XL Build/OPP3.170518.006) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.0 Mobile Safari/537.36 EdgA/41.1.35.1': %s`, err)
+	} else {
+		if result.Category != "smartphone" {
+			t.Errorf("Expected result.Category for '%s' to be 'smartphone', but got '%s'", `Mozilla/5.0 (Linux; Android 8.0; Pixel XL Build/OPP3.170518.006) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.0 Mobile Safari/537.36 EdgA/41.1.35.1`, result.Category)
+		}
+		if result.Name != "Edge" {
+			t.Errorf("Expected result.Name for '%s' to be 'Edge', but got '%s'", `Mozilla/5.0 (Linux; Android 8.0; Pixel XL Build/OPP3.170518.006) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.0 Mobile Safari/537.36 EdgA/41.1.35.1`, result.Name)
+		}
+		if result.Os != "Android" {
+			t.Errorf("Expected result.Os for '%s' to be 'Android', but got '%s'", `Mozilla/5.0 (Linux; Android 8.0; Pixel XL Build/OPP3.170518.006) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.0 Mobile Safari/537.36 EdgA/41.1.35.1`, result.Os)
+		}
+		if result.OsVersion != "8.0" {
+			t.Errorf("Expected result.OsVersion for '%s' to be '8.0', but got '%s'", `Mozilla/5.0 (Linux; Android 8.0; Pixel XL Build/OPP3.170518.006) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.0 Mobile Safari/537.36 EdgA/41.1.35.1`, result.OsVersion)
+		}
+		if result.Version != "41.1.35.1" {
+			t.Errorf("Expected result.Version for '%s' to be '41.1.35.1', but got '%s'", `Mozilla/5.0 (Linux; Android 8.0; Pixel XL Build/OPP3.170518.006) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.0 Mobile Safari/537.36 EdgA/41.1.35.1`, result.Version)
+		}
+	}
 	result, err = Parse(`Dalvik/1.4.0 (Linux; U; Android 2.3.4; SBM009SH Build/S0008)`)
 	if err != nil {
 		t.Errorf(`Failed to parse 'Dalvik/1.4.0 (Linux; U; Android 2.3.4; SBM009SH Build/S0008)': %s`, err)
@@ -206,6 +226,26 @@ func Test_smartphone_android_(t *testing.T) {
 		}
 		if result.Version != "4.0" {
 			t.Errorf("Expected result.Version for '%s' to be '4.0', but got '%s'", `Mozilla/5.0 (Linux; Android 5.1.1; Nexus 5 Build/LMY48B; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/43.0.2357.65 Mobile Safari/537.36`, result.Version)
+		}
+	}
+	result, err = Parse(`Mozilla/5.0 (Linux; Android 9; SM-N960F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.105 Mobile Safari/537.36`)
+	if err != nil {
+		t.Errorf(`Failed to parse 'Mozilla/5.0 (Linux; Android 9; SM-N960F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.105 Mobile Safari/537.36': %s`, err)
+	} else {
+		if result.Category != "smartphone" {
+			t.Errorf("Expected result.Category for '%s' to be 'smartphone', but got '%s'", `Mozilla/5.0 (Linux; Android 9; SM-N960F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.105 Mobile Safari/537.36`, result.Category)
+		}
+		if result.Name != "Chrome" {
+			t.Errorf("Expected result.Name for '%s' to be 'Chrome', but got '%s'", `Mozilla/5.0 (Linux; Android 9; SM-N960F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.105 Mobile Safari/537.36`, result.Name)
+		}
+		if result.Os != "Android" {
+			t.Errorf("Expected result.Os for '%s' to be 'Android', but got '%s'", `Mozilla/5.0 (Linux; Android 9; SM-N960F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.105 Mobile Safari/537.36`, result.Os)
+		}
+		if result.OsVersion != "9" {
+			t.Errorf("Expected result.OsVersion for '%s' to be '9', but got '%s'", `Mozilla/5.0 (Linux; Android 9; SM-N960F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.105 Mobile Safari/537.36`, result.OsVersion)
+		}
+		if result.Version != "72.0.3626.105" {
+			t.Errorf("Expected result.Version for '%s' to be '72.0.3626.105', but got '%s'", `Mozilla/5.0 (Linux; Android 9; SM-N960F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.105 Mobile Safari/537.36`, result.Version)
 		}
 	}
 

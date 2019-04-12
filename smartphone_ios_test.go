@@ -208,6 +208,26 @@ func Test_smartphone_ios(t *testing.T) {
 			t.Errorf("Expected result.Version for '%s' to be '1.0', but got '%s'", `Mozilla/5.0 (iPhone; CPU iPhone OS 8_3 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) FxiOS/1.0 Mobile/12F69 Safari/600.1.4`, result.Version)
 		}
 	}
+	result, err = Parse(`Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_2 like Mac OS X) AppleWebKit/603.2.4 (KHTML, like Gecko) Mobile/14F89 Safari/603.2.4 EdgiOS/41.1.35.1`)
+	if err != nil {
+		t.Errorf(`Failed to parse 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_2 like Mac OS X) AppleWebKit/603.2.4 (KHTML, like Gecko) Mobile/14F89 Safari/603.2.4 EdgiOS/41.1.35.1': %s`, err)
+	} else {
+		if result.Category != "smartphone" {
+			t.Errorf("Expected result.Category for '%s' to be 'smartphone', but got '%s'", `Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_2 like Mac OS X) AppleWebKit/603.2.4 (KHTML, like Gecko) Mobile/14F89 Safari/603.2.4 EdgiOS/41.1.35.1`, result.Category)
+		}
+		if result.Name != "Edge" {
+			t.Errorf("Expected result.Name for '%s' to be 'Edge', but got '%s'", `Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_2 like Mac OS X) AppleWebKit/603.2.4 (KHTML, like Gecko) Mobile/14F89 Safari/603.2.4 EdgiOS/41.1.35.1`, result.Name)
+		}
+		if result.Os != "iPhone" {
+			t.Errorf("Expected result.Os for '%s' to be 'iPhone', but got '%s'", `Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_2 like Mac OS X) AppleWebKit/603.2.4 (KHTML, like Gecko) Mobile/14F89 Safari/603.2.4 EdgiOS/41.1.35.1`, result.Os)
+		}
+		if result.OsVersion != "10.3.2" {
+			t.Errorf("Expected result.OsVersion for '%s' to be '10.3.2', but got '%s'", `Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_2 like Mac OS X) AppleWebKit/603.2.4 (KHTML, like Gecko) Mobile/14F89 Safari/603.2.4 EdgiOS/41.1.35.1`, result.OsVersion)
+		}
+		if result.Version != "41.1.35.1" {
+			t.Errorf("Expected result.Version for '%s' to be '41.1.35.1', but got '%s'", `Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_2 like Mac OS X) AppleWebKit/603.2.4 (KHTML, like Gecko) Mobile/14F89 Safari/603.2.4 EdgiOS/41.1.35.1`, result.Version)
+		}
+	}
 	result, err = Parse(`Girls/2.0 (livedoor Co.,Ltd.; Peachy 2.1; iPhone; RSS Version 2.0; +http://girls.livedoor.com/)`)
 	if err != nil {
 		t.Errorf(`Failed to parse 'Girls/2.0 (livedoor Co.,Ltd.; Peachy 2.1; iPhone; RSS Version 2.0; +http://girls.livedoor.com/)': %s`, err)

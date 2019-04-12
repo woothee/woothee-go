@@ -41,10 +41,9 @@ func Test_crawler_nonmajor(t *testing.T) {
 		if result.Os != "Windows Vista" {
 			t.Errorf("Expected result.Os for '%s' to be 'Windows Vista', but got '%s'", `Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US; aggregator VocusBot 0.4; +http://www.vocus.com/vnhs.html)`, result.Os)
 		}
-		/* Skip for now
 		if result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US; aggregator VocusBot 0.4; +http://www.vocus.com/vnhs.html)`, result.OsVersion)
-		}*/
+		}
 		if result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version for '%s' to be 'UNKNOWN', but got '%s'", `Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US; aggregator VocusBot 0.4; +http://www.vocus.com/vnhs.html)`, result.Version)
 		}

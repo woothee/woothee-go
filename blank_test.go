@@ -48,44 +48,24 @@ func Test_blank(t *testing.T) {
 			t.Errorf("Expected result.Version for '%s' to be 'UNKNOWN', but got '%s'", ``, result.Version)
 		}
 	}
-	result, err = Parse(``)
+	result, err = Parse(`-`)
 	if err != nil {
-		t.Errorf(`Failed to parse '': %s`, err)
+		t.Errorf(`Failed to parse '-': %s`, err)
 	} else {
 		if result.Category != "UNKNOWN" {
-			t.Errorf("Expected result.Category for '%s' to be 'UNKNOWN', but got '%s'", ``, result.Category)
+			t.Errorf("Expected result.Category for '%s' to be 'UNKNOWN', but got '%s'", `-`, result.Category)
 		}
 		if result.Name != "UNKNOWN" {
-			t.Errorf("Expected result.Name for '%s' to be 'UNKNOWN', but got '%s'", ``, result.Name)
+			t.Errorf("Expected result.Name for '%s' to be 'UNKNOWN', but got '%s'", `-`, result.Name)
 		}
 		if result.Os != "UNKNOWN" {
-			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", ``, result.Os)
+			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `-`, result.Os)
 		}
 		if result.OsVersion != "UNKNOWN" {
-			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", ``, result.OsVersion)
+			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `-`, result.OsVersion)
 		}
 		if result.Version != "UNKNOWN" {
-			t.Errorf("Expected result.Version for '%s' to be 'UNKNOWN', but got '%s'", ``, result.Version)
-		}
-	}
-	result, err = Parse(``)
-	if err != nil {
-		t.Errorf(`Failed to parse '': %s`, err)
-	} else {
-		if result.Category != "UNKNOWN" {
-			t.Errorf("Expected result.Category for '%s' to be 'UNKNOWN', but got '%s'", ``, result.Category)
-		}
-		if result.Name != "UNKNOWN" {
-			t.Errorf("Expected result.Name for '%s' to be 'UNKNOWN', but got '%s'", ``, result.Name)
-		}
-		if result.Os != "UNKNOWN" {
-			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", ``, result.Os)
-		}
-		if result.OsVersion != "UNKNOWN" {
-			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", ``, result.OsVersion)
-		}
-		if result.Version != "UNKNOWN" {
-			t.Errorf("Expected result.Version for '%s' to be 'UNKNOWN', but got '%s'", ``, result.Version)
+			t.Errorf("Expected result.Version for '%s' to be 'UNKNOWN', but got '%s'", `-`, result.Version)
 		}
 	}
 
