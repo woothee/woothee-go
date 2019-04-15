@@ -18,13 +18,13 @@ func Test_pc_lowpriority(t *testing.T) {
 		if result.Name != "Sleipnir" {
 			t.Errorf("Expected result.Name for '%s' to be 'Sleipnir', but got '%s'", `Sleipnir/2.9.9`, result.Name)
 		}
-		if result.Os != "Windows UNKNOWN Ver" {
+		if true && result.Os != "Windows UNKNOWN Ver" {
 			t.Errorf("Expected result.Os for '%s' to be 'Windows UNKNOWN Ver', but got '%s'", `Sleipnir/2.9.9`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `Sleipnir/2.9.9`, result.OsVersion)
 		}
-		if result.Version != "2.9.9" {
+		if true && result.Version != "2.9.9" {
 			t.Errorf("Expected result.Version for '%s' to be '2.9.9', but got '%s'", `Sleipnir/2.9.9`, result.Version)
 		}
 	}

@@ -136,12 +136,28 @@ func Test_{{.TestName}}(t *testing.T) {
 `
 
 	for _, field := range []string{"Category", "Name", "Os", "OsVersion", "Version"} {
-		tmpl += fmt.Sprintf(`		if result.%s != "{{.%s}}" {
+		if field == "Os" {
+			tmpl += fmt.Sprintf(`       if {{.CheckOs}} && result.%s != "{{.%s}}" {
 			t.Errorf("Expected result.%s for '%%s' to be '{{.%s}}', but got '%%s'", `+"`{{.Target}}`"+`, result.%s)
 		}
 `, field, field, field, field, field)
+		} else if field == "OsVersion" {
+			tmpl += fmt.Sprintf(`       if {{.CheckOsVersion}} && result.%s != "{{.%s}}" {
+			t.Errorf("Expected result.%s for '%%s' to be '{{.%s}}', but got '%%s'", `+"`{{.Target}}`"+`, result.%s)
+		}
+`, field, field, field, field, field)
+		} else if field == "Version" {
+			tmpl += fmt.Sprintf(`       if {{.CheckVersion}} && result.%s != "{{.%s}}" {
+			t.Errorf("Expected result.%s for '%%s' to be '{{.%s}}', but got '%%s'", `+"`{{.Target}}`"+`, result.%s)
+		}
+`, field, field, field, field, field)
+		} else {
+			tmpl += fmt.Sprintf(`		if result.%s != "{{.%s}}" {
+			t.Errorf("Expected result.%s for '%%s' to be '{{.%s}}', but got '%%s'", `+"`{{.Target}}`"+`, result.%s)
+		}
+`, field, field, field, field, field)
+		}
 	}
-
 	tmpl += `	}
 {{end}}
 }
@@ -178,12 +194,15 @@ func Test_{{.TestName}}(t *testing.T) {
 		var data struct {
 			TestName string
 			Tests    []*struct {
-				Target    string
-				Name      string
-				Os        string
-				OsVersion string `yaml:"os_version,omitempty"`
-				Category  string
-				Version   string
+				Target         string
+				Name           string
+				Os             string
+				OsVersion      string `yaml:"os_version,omitempty"`
+				Category       string
+				Version        string
+				CheckOs        bool
+				CheckOsVersion bool
+				CheckVersion   bool
 			}
 		}
 
@@ -214,15 +233,21 @@ func Test_{{.TestName}}(t *testing.T) {
 			}
 			if d.Os == "" {
 				d.Os = "UNKNOWN"
+				d.CheckOs = false
+			} else {
+				d.CheckOs = true
 			}
 			if d.Version == "" {
 				d.Version = "UNKNOWN"
+				d.CheckVersion = false
+			} else {
+				d.CheckVersion = true
 			}
 			if d.OsVersion == "" {
 				d.OsVersion = "UNKNOWN"
-			}
-			if d.Version == "" {
-				d.Version = "UNKNOWN"
+				d.CheckOsVersion = false
+			} else {
+				d.CheckOsVersion = true
 			}
 		}
 

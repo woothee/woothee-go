@@ -18,13 +18,13 @@ func Test_crawler_google(t *testing.T) {
 		if result.Name != "Googlebot" {
 			t.Errorf("Expected result.Name for '%s' to be 'Googlebot', but got '%s'", `Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)`, result.OsVersion)
 		}
-		if result.Version != "UNKNOWN" {
+		if false && result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version for '%s' to be 'UNKNOWN', but got '%s'", `Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)`, result.Version)
 		}
 	}
@@ -38,13 +38,13 @@ func Test_crawler_google(t *testing.T) {
 		if result.Name != "Googlebot" {
 			t.Errorf("Expected result.Name for '%s' to be 'Googlebot', but got '%s'", `Googlebot-Image/1.0`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `Googlebot-Image/1.0`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `Googlebot-Image/1.0`, result.OsVersion)
 		}
-		if result.Version != "UNKNOWN" {
+		if false && result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version for '%s' to be 'UNKNOWN', but got '%s'", `Googlebot-Image/1.0`, result.Version)
 		}
 	}
@@ -58,13 +58,13 @@ func Test_crawler_google(t *testing.T) {
 		if result.Name != "Googlebot Mobile" {
 			t.Errorf("Expected result.Name for '%s' to be 'Googlebot Mobile', but got '%s'", `DoCoMo/2.0 N905i(c100;TB;W24H16) (compatible; Googlebot-Mobile/2.1; +http://www.google.com/bot.html)`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `DoCoMo/2.0 N905i(c100;TB;W24H16) (compatible; Googlebot-Mobile/2.1; +http://www.google.com/bot.html)`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `DoCoMo/2.0 N905i(c100;TB;W24H16) (compatible; Googlebot-Mobile/2.1; +http://www.google.com/bot.html)`, result.OsVersion)
 		}
-		if result.Version != "UNKNOWN" {
+		if false && result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version for '%s' to be 'UNKNOWN', but got '%s'", `DoCoMo/2.0 N905i(c100;TB;W24H16) (compatible; Googlebot-Mobile/2.1; +http://www.google.com/bot.html)`, result.Version)
 		}
 	}
@@ -78,13 +78,13 @@ func Test_crawler_google(t *testing.T) {
 		if result.Name != "Googlebot Mobile" {
 			t.Errorf("Expected result.Name for '%s' to be 'Googlebot Mobile', but got '%s'", `SAMSUNG-SGH-E250/1.0 Profile/MIDP-2.0 Configuration/CLDC-1.1 UP.Browser/6.2.3.3.c.1.101 (GUI) MMP/2.0 (compatible; Googlebot-Mobile/2.1; +http://www.google.com/bot.html)`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `SAMSUNG-SGH-E250/1.0 Profile/MIDP-2.0 Configuration/CLDC-1.1 UP.Browser/6.2.3.3.c.1.101 (GUI) MMP/2.0 (compatible; Googlebot-Mobile/2.1; +http://www.google.com/bot.html)`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `SAMSUNG-SGH-E250/1.0 Profile/MIDP-2.0 Configuration/CLDC-1.1 UP.Browser/6.2.3.3.c.1.101 (GUI) MMP/2.0 (compatible; Googlebot-Mobile/2.1; +http://www.google.com/bot.html)`, result.OsVersion)
 		}
-		if result.Version != "UNKNOWN" {
+		if false && result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version for '%s' to be 'UNKNOWN', but got '%s'", `SAMSUNG-SGH-E250/1.0 Profile/MIDP-2.0 Configuration/CLDC-1.1 UP.Browser/6.2.3.3.c.1.101 (GUI) MMP/2.0 (compatible; Googlebot-Mobile/2.1; +http://www.google.com/bot.html)`, result.Version)
 		}
 	}
@@ -98,13 +98,13 @@ func Test_crawler_google(t *testing.T) {
 		if result.Name != "Google Mediapartners" {
 			t.Errorf("Expected result.Name for '%s' to be 'Google Mediapartners', but got '%s'", `DoCoMo/2.0 SH905i(c100;TB;W24H16) (compatible; Mediapartners-Google/2.1; +http://www.google.com/bot.html)`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `DoCoMo/2.0 SH905i(c100;TB;W24H16) (compatible; Mediapartners-Google/2.1; +http://www.google.com/bot.html)`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `DoCoMo/2.0 SH905i(c100;TB;W24H16) (compatible; Mediapartners-Google/2.1; +http://www.google.com/bot.html)`, result.OsVersion)
 		}
-		if result.Version != "UNKNOWN" {
+		if false && result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version for '%s' to be 'UNKNOWN', but got '%s'", `DoCoMo/2.0 SH905i(c100;TB;W24H16) (compatible; Mediapartners-Google/2.1; +http://www.google.com/bot.html)`, result.Version)
 		}
 	}
@@ -118,13 +118,13 @@ func Test_crawler_google(t *testing.T) {
 		if result.Name != "Google Mediapartners" {
 			t.Errorf("Expected result.Name for '%s' to be 'Google Mediapartners', but got '%s'", `Mediapartners-Google`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `Mediapartners-Google`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `Mediapartners-Google`, result.OsVersion)
 		}
-		if result.Version != "UNKNOWN" {
+		if false && result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version for '%s' to be 'UNKNOWN', but got '%s'", `Mediapartners-Google`, result.Version)
 		}
 	}
@@ -138,13 +138,13 @@ func Test_crawler_google(t *testing.T) {
 		if result.Name != "Google Feedfetcher" {
 			t.Errorf("Expected result.Name for '%s' to be 'Google Feedfetcher', but got '%s'", `Feedfetcher-Google; (+http://www.google.com/feedfetcher.html; feed-id=000000000000000000)`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `Feedfetcher-Google; (+http://www.google.com/feedfetcher.html; feed-id=000000000000000000)`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `Feedfetcher-Google; (+http://www.google.com/feedfetcher.html; feed-id=000000000000000000)`, result.OsVersion)
 		}
-		if result.Version != "UNKNOWN" {
+		if false && result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version for '%s' to be 'UNKNOWN', but got '%s'", `Feedfetcher-Google; (+http://www.google.com/feedfetcher.html; feed-id=000000000000000000)`, result.Version)
 		}
 	}
@@ -158,13 +158,13 @@ func Test_crawler_google(t *testing.T) {
 		if result.Name != "Google AppEngine" {
 			t.Errorf("Expected result.Name for '%s' to be 'Google AppEngine', but got '%s'", `AppEngine-Google`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `AppEngine-Google`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `AppEngine-Google`, result.OsVersion)
 		}
-		if result.Version != "UNKNOWN" {
+		if false && result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version for '%s' to be 'UNKNOWN', but got '%s'", `AppEngine-Google`, result.Version)
 		}
 	}
@@ -178,13 +178,13 @@ func Test_crawler_google(t *testing.T) {
 		if result.Name != "Google Web Preview" {
 			t.Errorf("Expected result.Name for '%s' to be 'Google Web Preview', but got '%s'", `Mozilla/5.0 (en-us) AppleWebKit/525.13 (KHTML, like Gecko; Google Web Preview) Version/3.1 Safari/525.13`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `Mozilla/5.0 (en-us) AppleWebKit/525.13 (KHTML, like Gecko; Google Web Preview) Version/3.1 Safari/525.13`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `Mozilla/5.0 (en-us) AppleWebKit/525.13 (KHTML, like Gecko; Google Web Preview) Version/3.1 Safari/525.13`, result.OsVersion)
 		}
-		if result.Version != "UNKNOWN" {
+		if false && result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version for '%s' to be 'UNKNOWN', but got '%s'", `Mozilla/5.0 (en-us) AppleWebKit/525.13 (KHTML, like Gecko; Google Web Preview) Version/3.1 Safari/525.13`, result.Version)
 		}
 	}
@@ -198,13 +198,13 @@ func Test_crawler_google(t *testing.T) {
 		if result.Name != "Google FeedBurner" {
 			t.Errorf("Expected result.Name for '%s' to be 'Google FeedBurner', but got '%s'", `FeedBurner/1.0 (http://www.FeedBurner.com)`, result.Name)
 		}
-		if result.Os != "UNKNOWN" {
+		if true && result.Os != "UNKNOWN" {
 			t.Errorf("Expected result.Os for '%s' to be 'UNKNOWN', but got '%s'", `FeedBurner/1.0 (http://www.FeedBurner.com)`, result.Os)
 		}
-		if result.OsVersion != "UNKNOWN" {
+		if false && result.OsVersion != "UNKNOWN" {
 			t.Errorf("Expected result.OsVersion for '%s' to be 'UNKNOWN', but got '%s'", `FeedBurner/1.0 (http://www.FeedBurner.com)`, result.OsVersion)
 		}
-		if result.Version != "UNKNOWN" {
+		if false && result.Version != "UNKNOWN" {
 			t.Errorf("Expected result.Version for '%s' to be 'UNKNOWN', but got '%s'", `FeedBurner/1.0 (http://www.FeedBurner.com)`, result.Version)
 		}
 	}

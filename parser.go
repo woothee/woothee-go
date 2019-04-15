@@ -19,7 +19,7 @@ var (
 	rxMaybeCrawlerPattern    = regexp.MustCompile(`(?i)(?:bot|crawler|spider)(?:[-_ ./;@()]|$)`)
 	rxMaybeFeedParserPattern = regexp.MustCompile(`(?i)(?:feed|web) ?parser`)
 	rxMaybeWatchdogPattern   = regexp.MustCompile(`(?i)watch ?dog`)
-	rxMSEdgePattern          = regexp.MustCompile(`Edge/([.0-9]+)`)
+	rxMSEdgePattern          = regexp.MustCompile(`(?:Edge|Edg|EdgiOS|EdgA)/([.0-9]+)`)
 	rxMSIEPattern            = regexp.MustCompile(`MSIE ([.0-9]+);`)
 	rxOperaVersionPattern1   = regexp.MustCompile(`Version/([.0-9]+)`)
 	rxOperaVersionPattern2   = regexp.MustCompile(`Opera[/ ]([.0-9]+)`)
@@ -39,7 +39,7 @@ var (
 	rxPPCOsVersion           = regexp.MustCompile(`rv:(\d+\.\d+\.\d+)`)
 	rxFreeBSDOsVersion       = regexp.MustCompile(`FreeBSD ([^;\)]+);`)
 	rxChromeOSOsVersion      = regexp.MustCompile(`CrOS ([^\)]+)\)`)
-	rxAndroidOSOsVersion     = regexp.MustCompile(`Android[- ](\d+\.\d+(?:\.\d+)?)`)
+	rxAndroidOSOsVersion     = regexp.MustCompile(`Android[- ](\d+(?:\.\d+(?:\.\d+)?)?)`)
 	rxPSPOsVersion           = regexp.MustCompile(`PSP \(PlayStation Portable\); ([.0-9]+)\)`)
 	rxPS3OsVersion           = regexp.MustCompile(`PLAYSTATION 3;? ([.0-9]+)\)`)
 	rxPSVitaOsVersion        = regexp.MustCompile(`PlayStation Vita ([.0-9]+)\)`)
@@ -1102,7 +1102,10 @@ func (p *Parser) ChallengeMsie(agent string, result *Result) error {
 }
 
 func (p *Parser) ChallengeMsEdge(agent string, result *Result) error {
-	if matches := rxMSEdgePattern.FindStringSubmatch(agent); matches == nil {
+	version := ValueUnknown
+	if matches := rxMSEdgePattern.FindStringSubmatch(agent); matches != nil {
+		version = matches[1]
+	} else {
 		return ErrNoMatch
 	}
 
@@ -1110,6 +1113,7 @@ func (p *Parser) ChallengeMsEdge(agent string, result *Result) error {
 	if err != nil {
 		return err
 	}
+	result.Version = version
 	return nil
 }
 
