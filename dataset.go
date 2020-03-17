@@ -42,6 +42,11 @@ var DefaultDataSet DataSet = DataSet{
 		Type:   "",
 		Vendor: "Fenrir Inc.",
 	},
+	"GSA": &Result{
+		Name:   "Google Search App",
+		Type:   "",
+		Vendor: "Google",
+	},
 	"Webview": &Result{
 		Name:   "Webview",
 		Type:   "",
