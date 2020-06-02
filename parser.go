@@ -7,6 +7,7 @@ import (
 
 var (
 	rxChromePattern          = regexp.MustCompile(`(?:Chrome|CrMo|CriOS)/([.0-9]+)`)
+	rxGSAPattern             = regexp.MustCompile(`GSA/([.0-9]+)`)
 	rxDocomoVersionPattern   = regexp.MustCompile(`DoCoMo/[.0-9]+[ /]([^- /;()"']+)`)
 	rxFirefoxPattern         = regexp.MustCompile(`Firefox/([.0-9]+)`)
 	rxFirefoxOSPattern       = regexp.MustCompile(`^Mozilla/[.0-9]+ \((?:Mobile|Tablet);(?:.*;)? rv:([.0-9]+)\) Gecko/[.0-9]+ Firefox/[.0-9]+$`)
@@ -1189,6 +1190,15 @@ func (p *Parser) ChallengeSafariChrome(agent string, result *Result) error {
 		}
 		version := agent[match[2]:match[3]]
 		result.Version = version
+		return nil
+	}
+
+	if match := rxGSAPattern.FindStringSubmatchIndex(agent); match != nil {
+		err := p.PopulateDataSet(result, "GSA")
+		if err != nil {
+			return err
+		}
+		result.Version = agent[match[2]:match[3]]
 		return nil
 	}
 
