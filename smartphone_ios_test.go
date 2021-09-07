@@ -228,6 +228,26 @@ func Test_smartphone_ios(t *testing.T) {
 			t.Errorf("Expected result.Version for '%s' to be '41.1.35.1', but got '%s'", `Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_2 like Mac OS X) AppleWebKit/603.2.4 (KHTML, like Gecko) Mobile/14F89 Safari/603.2.4 EdgiOS/41.1.35.1`, result.Version)
 		}
 	}
+	result, err = Parse(`Mozilla/5.0 (iPhone; CPU iPhone OS 11_1_1 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) GSA/41.0.178428663 Mobile/15B150 Safari/604.1`)
+	if err != nil {
+		t.Errorf(`Failed to parse 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_1_1 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) GSA/41.0.178428663 Mobile/15B150 Safari/604.1': %s`, err)
+	} else {
+		if result.Category != "smartphone" {
+			t.Errorf("Expected result.Category for '%s' to be 'smartphone', but got '%s'", `Mozilla/5.0 (iPhone; CPU iPhone OS 11_1_1 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) GSA/41.0.178428663 Mobile/15B150 Safari/604.1`, result.Category)
+		}
+		if result.Name != "Google Search App" {
+			t.Errorf("Expected result.Name for '%s' to be 'Google Search App', but got '%s'", `Mozilla/5.0 (iPhone; CPU iPhone OS 11_1_1 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) GSA/41.0.178428663 Mobile/15B150 Safari/604.1`, result.Name)
+		}
+		if true && result.Os != "iPhone" {
+			t.Errorf("Expected result.Os for '%s' to be 'iPhone', but got '%s'", `Mozilla/5.0 (iPhone; CPU iPhone OS 11_1_1 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) GSA/41.0.178428663 Mobile/15B150 Safari/604.1`, result.Os)
+		}
+		if true && result.OsVersion != "11.1.1" {
+			t.Errorf("Expected result.OsVersion for '%s' to be '11.1.1', but got '%s'", `Mozilla/5.0 (iPhone; CPU iPhone OS 11_1_1 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) GSA/41.0.178428663 Mobile/15B150 Safari/604.1`, result.OsVersion)
+		}
+		if true && result.Version != "41.0.178428663" {
+			t.Errorf("Expected result.Version for '%s' to be '41.0.178428663', but got '%s'", `Mozilla/5.0 (iPhone; CPU iPhone OS 11_1_1 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) GSA/41.0.178428663 Mobile/15B150 Safari/604.1`, result.Version)
+		}
+	}
 	result, err = Parse(`Girls/2.0 (livedoor Co.,Ltd.; Peachy 2.1; iPhone; RSS Version 2.0; +http://girls.livedoor.com/)`)
 	if err != nil {
 		t.Errorf(`Failed to parse 'Girls/2.0 (livedoor Co.,Ltd.; Peachy 2.1; iPhone; RSS Version 2.0; +http://girls.livedoor.com/)': %s`, err)

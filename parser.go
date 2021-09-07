@@ -12,6 +12,7 @@ var (
 	rxFirefoxOSPattern       = regexp.MustCompile(`^Mozilla/[.0-9]+ \((?:Mobile|Tablet);(?:.*;)? rv:([.0-9]+)\) Gecko/[.0-9]+ Firefox/[.0-9]+$`)
 	rxFirefoxiOSPattern      = regexp.MustCompile(`FxiOS/([.0-9]+)`)
 	rxFOMAVersionPattern     = regexp.MustCompile(`\(([^;)]+);FOMA;`)
+	rxGsaPattern             = regexp.MustCompile(`GSA/([.0-9]+)`)
 	rxHeadlineReaderPattern  = regexp.MustCompile(`(?i)headline-reader`)
 	rxJigPattern             = regexp.MustCompile(`jig browser[^;]+; ([^);]+)`)
 	rxKDDIPattern            = regexp.MustCompile(`KDDI-([^- /;()"']+)`)
@@ -1188,6 +1189,16 @@ func (p *Parser) ChallengeSafariChrome(agent string, result *Result) error {
 			return err
 		}
 		version := agent[match[2]:match[3]]
+		result.Version = version
+		return nil
+	}
+
+	if match := rxGsaPattern.FindStringSubmatchIndex(agent); match != nil {
+		version := agent[match[2]:match[3]]
+		err := p.PopulateDataSet(result, "GSA")
+		if err != nil {
+			return err
+		}
 		result.Version = version
 		return nil
 	}
