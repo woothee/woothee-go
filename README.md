@@ -43,6 +43,7 @@ go get github.com/woothee/woothee-go
 ## Running Tests
 
 ```
+go mod download
 go test -v ./...
 ```
 
