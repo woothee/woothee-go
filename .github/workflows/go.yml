@@ -1,0 +1,39 @@
+name: Go
+
+on:
+  push:
+    branches:
+      - master
+      - main
+  pull_request:
+    branches: '*'
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        go: ['1.16', '1.17']
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: ${{ matrix.go }}
+    - name: Build
+      run: go build -v ./...
+    - name: Test
+      run: go test -v ./...
+  coverage:
+    needs: build
+    runs-on: ubuntu-latest
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.17
+    steps:
+    - go get github.com/mattn/goveralls
+    - go get github.com/axw/gocov/gocov
+    - go get code.google.com/p/go.tools/cmd/cover
+    - export PATH="$HOME/gopath/bin:$PATH"
+    - goveralls -package "github.com/woothee/woothee-go" -service=travis-ci
