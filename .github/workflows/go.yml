@@ -20,10 +20,9 @@ jobs:
       uses: actions/setup-go@v2
       with:
         go-version: ${{ matrix.go }}
-    - name: Build
-      run: go build -v ./...
-    - name: Test
-      run: go test -v ./...
+    - run: go env -w GO111MODULE=auto
+    - run: go build -v ./...
+    - run: go test -v ./...
   coverage:
     needs: build
     runs-on: ubuntu-latest
@@ -32,8 +31,10 @@ jobs:
       uses: actions/setup-go@v2
       with:
         go-version: 1.17
-    - run: go get github.com/mattn/goveralls
-    - run: go get github.com/axw/gocov/gocov
-    - run: go get code.google.com/p/go.tools/cmd/cover
-    - run: export PATH="$HOME/gopath/bin:$PATH"
-    - run: goveralls -package "github.com/woothee/woothee-go" -service=travis-ci
+    - run: |
+      go env -w GO111MODULE=auto
+      go get github.com/mattn/goveralls
+      go get github.com/axw/gocov/gocov
+      go get code.google.com/p/go.tools/cmd/cover
+      export PATH="$HOME/gopath/bin:$PATH"
+      goveralls -package "github.com/woothee/woothee-go" -service=travis-ci
