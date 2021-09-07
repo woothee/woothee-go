@@ -248,5 +248,25 @@ func Test_smartphone_android_(t *testing.T) {
 			t.Errorf("Expected result.Version for '%s' to be '72.0.3626.105', but got '%s'", `Mozilla/5.0 (Linux; Android 9; SM-N960F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.105 Mobile Safari/537.36`, result.Version)
 		}
 	}
+	result, err = Parse(`Mozilla/5.0 (Linux; Android 5.0.2; SAMSUNG SM-G925F Build/LRX22G) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/4.0 Chrome/44.0.2403.133 Mobile Safari/537.36`)
+	if err != nil {
+		t.Errorf(`Failed to parse 'Mozilla/5.0 (Linux; Android 5.0.2; SAMSUNG SM-G925F Build/LRX22G) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/4.0 Chrome/44.0.2403.133 Mobile Safari/537.36': %s`, err)
+	} else {
+		if result.Category != "smartphone" {
+			t.Errorf("Expected result.Category for '%s' to be 'smartphone', but got '%s'", `Mozilla/5.0 (Linux; Android 5.0.2; SAMSUNG SM-G925F Build/LRX22G) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/4.0 Chrome/44.0.2403.133 Mobile Safari/537.36`, result.Category)
+		}
+		if result.Name != "SamsungBrowser" {
+			t.Errorf("Expected result.Name for '%s' to be 'SamsungBrowser', but got '%s'", `Mozilla/5.0 (Linux; Android 5.0.2; SAMSUNG SM-G925F Build/LRX22G) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/4.0 Chrome/44.0.2403.133 Mobile Safari/537.36`, result.Name)
+		}
+		if true && result.Os != "Android" {
+			t.Errorf("Expected result.Os for '%s' to be 'Android', but got '%s'", `Mozilla/5.0 (Linux; Android 5.0.2; SAMSUNG SM-G925F Build/LRX22G) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/4.0 Chrome/44.0.2403.133 Mobile Safari/537.36`, result.Os)
+		}
+		if true && result.OsVersion != "5.0.2" {
+			t.Errorf("Expected result.OsVersion for '%s' to be '5.0.2', but got '%s'", `Mozilla/5.0 (Linux; Android 5.0.2; SAMSUNG SM-G925F Build/LRX22G) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/4.0 Chrome/44.0.2403.133 Mobile Safari/537.36`, result.OsVersion)
+		}
+		if true && result.Version != "4.0" {
+			t.Errorf("Expected result.Version for '%s' to be '4.0', but got '%s'", `Mozilla/5.0 (Linux; Android 5.0.2; SAMSUNG SM-G925F Build/LRX22G) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/4.0 Chrome/44.0.2403.133 Mobile Safari/537.36`, result.Version)
+		}
+	}
 
 }

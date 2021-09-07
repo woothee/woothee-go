@@ -57,6 +57,11 @@ var DefaultDataSet DataSet = DataSet{
 		Type:   "",
 		Vendor: "Yandex",
 	},
+	"SamsungBrowser": &Result{
+		Name:   "SamsungBrowser",
+		Type:   "",
+		Vendor: "Samsung",
+	},
 	"Win": &Result{
 		Name:     "Windows UNKNOWN Ver",
 		Type:     "pc",
@@ -565,6 +570,20 @@ var DefaultDataSet DataSet = DataSet{
 	},
 	"VariousCrawler": &Result{
 		Name:     "misc crawler",
+		Type:     "crawler",
+		Vendor:   "",
+		Category: "crawler",
+		Os:       "UNKNOWN",
+	},
+	"AdsBotGoogleMobile": &Result{
+		Name:     "AdsBot-Google-Mobile",
+		Type:     "crawler",
+		Vendor:   "",
+		Category: "crawler",
+		Os:       "UNKNOWN",
+	},
+	"AdsBotGoogle": &Result{
+		Name:     "AdsBot-Google",
 		Type:     "crawler",
 		Vendor:   "",
 		Category: "crawler",
