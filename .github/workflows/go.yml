@@ -21,6 +21,7 @@ jobs:
       with:
         go-version: ${{ matrix.go }}
     - run: go env -w GO111MODULE=auto
+    - run: go get gopkg.in/yaml.v2
     - run: go build -v ./...
     - run: go test -v ./...
   coverage:
